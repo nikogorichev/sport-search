@@ -8,7 +8,7 @@
     "dev": "nodemon app.js --ignore ./sessions",
     "db-create": "npx sequelize db:create",
     "db-migrate": "npx sequelize db:migrate",
-    "db-all": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate"
+    "db-all": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
