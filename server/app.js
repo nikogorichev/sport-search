@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const config = require('./config/config');
+const authRoute = require('./routes/auth.route');
 
 const app = express();
 
@@ -16,6 +17,7 @@ config(app);
 // });
 
 app.use('/profile', profileRouter);
+app.use('/', authRoute);
 
 app.listen(PORT, () => {
   console.log(`***Server started at ${PORT} PORT***`);
