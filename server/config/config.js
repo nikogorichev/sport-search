@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const cors = require('cors')
 
 const sessionConfig = {
   store: new FileStore(),
@@ -18,6 +19,7 @@ const config = (app) => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(session(sessionConfig));
+  app.use(cors())
 };
 
 module.exports = config;
