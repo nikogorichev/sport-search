@@ -8,7 +8,7 @@
     "dev": "nodemon app.js --ignore ./sessions",
     "db-create": "npx sequelize db:create",
     "db-migrate": "npx sequelize db:migrate",
-    "db-all": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate"
+    "db-all": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
