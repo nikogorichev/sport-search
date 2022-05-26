@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { User } = require('../db/models');
+const { User, Sport } = require('../db/models');
 
 router.route('/')
   .get(async (req, res) => {
     const allUsers = await User.findAll();
-    res.status(200).json({ allUsers });
+    const allUsersSports = await Sport.findAll({ include: User });
+    res.status(200).json({ allUsers, allUsersSports });
   });
 
 module.exports = router;

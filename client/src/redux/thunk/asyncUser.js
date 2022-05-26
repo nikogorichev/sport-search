@@ -1,4 +1,5 @@
-import { initUsersAC } from "../actionCreators/userAC"
+import { initUsersAC} from "../actionCreators/userAC"
+import {initUsersSportsAC } from "../actionCreators/usersSportsAC"
 
 export const getFetchUsers = () => {
 
@@ -9,3 +10,14 @@ export const getFetchUsers = () => {
       .catch(err => console.log(err.message))
   }
 }
+
+export const getFetchUsersSports = () => {
+
+  return (dispatch) => {
+    fetch('/profile')
+      .then(res => res.json())
+      .then(data => dispatch(initUsersSportsAC(data)))
+      .catch(err => console.log(err.message))
+  }
+}
+

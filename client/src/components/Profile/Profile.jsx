@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getFetchUsers } from '../../redux/thunk/asyncUser';
+import { getFetchUsers, getFetchUsersSports } from '../../redux/thunk/asyncUser';
+
 
 function Profile() {
   const { user } = useSelector(state => state.user)
+  const { usersSports } = useSelector(state => state.usersSports)
+  console.log(usersSports)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getFetchUsers())
+  }, [])
+
+  useEffect(() => {
+    dispatch(getFetchUsersSports())
   }, [])
 
   return (
