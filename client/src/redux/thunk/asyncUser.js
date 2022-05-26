@@ -1,4 +1,4 @@
-import { initUsersAC } from "../actionCreators/userAC"
+import { initUsersAC, authUsersAC } from "../actionCreators/userAC"
 
 export const getFetchUsers = () => {
 
@@ -9,3 +9,39 @@ export const getFetchUsers = () => {
       .catch(err => console.log(err.message))
   }
 }
+
+export const authUsersFetch = (data) => {
+  return (dispatch) => {
+    fetch("/login",{
+      headers: {"content-type": "application/json"},
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => dispatch(authUsersAC(data)))
+    .catch(err => console.log(err.message))
+  }
+}
+
+export const regUsersFetch = (data) => {
+  return (dispatch) => {
+    fetch("/registration",{
+      headers: {"content-type": "application/json"},
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => dispatch(authUsersAC(data)))
+    .catch(err => console.log(err.message))
+  }
+}
+
+export const checkAuthFetch = () => {
+  return (dispatch) => {
+    fetch("/checkauth")
+    .then(res => res.json())
+    .then(data => dispatch(authUsersAC(data)))
+    .catch(err => console.log(err.message))
+  }
+}
+
