@@ -4,10 +4,14 @@ import { Provider } from 'react-redux'
 import { store as globalStore } from '../../redux/store'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Events from '../Events/Events';
+import Registration from '../Registration/Registration';
+import Login from '../Login/Login';
 
 // Компоненты
+import Profile from '../Profile/Profile';
 
 function App() {
+
   return (
 
     <Provider store={globalStore}>
@@ -15,11 +19,14 @@ function App() {
         {/* <Nav /> */}
           <p>MAIN</p>
         <Routes>
+          <Route path="/profile" element={<Profile/>} />
           <Route path="/" />
           <Route path="/events" element={<Events />}/>
+          <Route path="/registration" element={<Registration/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
-    </Provider>
+     </Provider>
   );
 }
 
