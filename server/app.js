@@ -8,12 +8,15 @@ const app = express();
 
 const PORT = process.env.PORT ?? 4000;
 
+const profileRouter = require('./routes/profile.route');
+
 config(app);
 
 // app.get('/', (req, res) => {
 //   res.send('VSE OK');
 // });
 
+app.use('/profile', profileRouter);
 app.use('/', authRoute);
 
 app.listen(PORT, () => {

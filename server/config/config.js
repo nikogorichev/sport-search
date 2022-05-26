@@ -3,6 +3,7 @@ const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const FileStore = require('session-file-store')(session);
+const cors = require('cors')
 const { cookiesCleaner, local } = require('../middleware/auth');
 
 const sessionConfig = {
@@ -23,6 +24,7 @@ const config = (app) => {
   app.use(cookieParser());
   app.use(cors());
   app.use(session(sessionConfig));
+  app.use(cors())
   app.use(cookiesCleaner);
   app.use(local);
 };
