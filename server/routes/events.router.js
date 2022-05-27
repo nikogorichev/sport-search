@@ -1,13 +1,21 @@
 const router = require('express').Router();
 
-const { Event, Sport, Place } = require('../db/models');
+const {
+  Event, Sport, Place, User, Participant,
+} = require('../db/models');
 
 router.get('/', async (req, res) => {
+  const { user } = req.session;
   const events = await Event.findAll();
   const sports = await Sport.findAll();
   const places = await Place.findAll();
-  console.log('OKK');
-  res.json({ events, sports, places });
+  // const userEvents = await User.findAll({ where: { id: user.id }, include: [{ model: Participant }]});
+  // const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
+  // const userEvents = await Event.findAll({where: {id: participant[0].EventId}})
+  // console.log('OKK', userEvents);
+  res.json({
+    events, sports, places,
+  });
 });
 
 router.post('/', async (req, res) => {
