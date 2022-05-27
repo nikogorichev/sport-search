@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Event } = require('../db/models ');
+const { Event } = require('../db/models');
 
 router.get('/', async (req, res) => {
   const events = await Event.findAll();
