@@ -1,4 +1,4 @@
-import { INIT_USERS, AUTH_USER} from "../actionTypes/userAT"
+import { INIT_USERS, AUTH_USER, LOGOUT_USER} from "../actionTypes/userAT"
 
 export const initUsersAC = (payload) => {
   return {
@@ -14,3 +14,11 @@ export const authUsersAC = (payload) => {
     payload
   }
 }
+
+export const logoutUserAC = (payload) => {
+  return {
+    type: LOGOUT_USER,
+    payload
+  }
+}
+

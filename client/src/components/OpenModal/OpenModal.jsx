@@ -9,9 +9,8 @@ const OpenModal = ({ active, setActive }) => {
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector(state => state.events)
   const { places } = useSelector(state => state.events)
-  const navigation = useNavigate();
+  
   //ОТРАБАТЫВАЕТ ПРИ ОТПРАВКЕ ФОРМЫ В МОДАЛЬНОМ ОКНЕ
- 
   const newEvent = (e) => {
     e.preventDefault();
     const event = {
@@ -20,16 +19,12 @@ const OpenModal = ({ active, setActive }) => {
       description: e.target.description.value,
       members_count: e.target.members_count.value,
       user_id: user.id,
-      //ВОТ ТУТ ВОТ СМОТРИМ И ПРОДОЛАЖЕМ
       sport_id: e.target.sport_id.value,
       place_id: e.target.place_id.value,
       cost: e.target.cost.value,
     }
-    
-    // console.log('USERUSER', event)
     dispatch(fetchAddEvents(event))
     setActive(false)
-    // navigation('/events')
   }
 
   return (

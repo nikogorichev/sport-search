@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const { Event, Sport, Place } = require('../db/models');
 
 router.get('/', async (req, res) => {
