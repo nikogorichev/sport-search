@@ -45,3 +45,12 @@ export const checkAuthFetch = () => {
   }
 }
 
+export const logoutFetch = () => {
+  return (dispatch) => {
+    fetch("/logout")
+    .then(res => res.json())
+    .then(data => dispatch(authUsersAC(data)))
+    .catch(err => console.log(err.message))
+  }
+}
+
