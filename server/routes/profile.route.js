@@ -12,7 +12,7 @@ router.route('/')
     // include: { model: Sport }, where: { user_id: user.id } });
 
     // console.log(allUsersSports);
-    res.status(200).json( allUserSports);
+    res.status(200).json(allUserSports);
     // res.status(200).send(JSON.stringify({ userSports }, undefined, 4))
   });
 

@@ -6,6 +6,7 @@ import SportButton from './SportButton';
 function Profile() {
   const { user } = useSelector(state => state.user)
   const { usersSports } = useSelector(state => state.usersSports)
+  console.log(usersSports);
   const dispatch = useDispatch()
 
   useEffect(() => {
