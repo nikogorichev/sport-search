@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlacesfetch } from '../../redux/thunk/placesAsync';
+import { addPlacesFetch } from '../../redux/thunk/placesAsync';
 import Modal from './Modal/Modal';
 import PlaceItem from './PlaceItem';
 
@@ -12,7 +12,7 @@ const Places = () => {
   console.log(places);
   
   useEffect(() => {
-    dispatch(addPlacesfetch())
+    dispatch(addPlacesFetch())
   }, [dispatch])
 
   return (
