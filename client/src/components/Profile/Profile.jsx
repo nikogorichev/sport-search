@@ -8,7 +8,6 @@ function Profile() {
   const { usersSports } = useSelector(state => state.usersSports)
   const dispatch = useDispatch()
 
-
   useEffect(() => {
     dispatch(getFetchUsersSports())
   }, [])

@@ -11,6 +11,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import { useEffect } from 'react';
 import { checkAuthFetch } from '../../redux/thunk/asyncUser';
+import Header from '../Header/Header';
+import Home from '../Home/Home';
 
 function App() {
   const dispatch = useDispatch()
@@ -24,11 +26,10 @@ function App() {
 
     <Provider store={globalStore}>
       <BrowserRouter>
-        {/* <Nav /> */}
-          <p>MAIN</p>
+        <Header/>
         <Routes>
           <Route path="/profile" element={<Profile/>} />
-          <Route path="/" />
+          <Route path="/" element={<Home/>}/>
           <Route path="/events" element={<Events />}/>
           <Route path="/registration" element={<Registration/>} />
           <Route path="/login" element={<Login/>} />

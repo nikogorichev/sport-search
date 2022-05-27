@@ -1,6 +1,6 @@
-import { authUsersAC } from "../actionCreators/userAC"
-import { initUsersSportsAC } from "../actionCreators/usersSportsAC"
 
+import { initUsersAC, authUsersAC, logoutUserAC } from "../actionCreators/userAC"
+import { initUsersSportsAC } from "../actionCreators/usersSportsAC"
 export const getFetchUsersSports = () => {
   return (dispatch) => {
     fetch('/profile')
@@ -9,6 +9,7 @@ export const getFetchUsersSports = () => {
       .catch(err => console.log(err.message))
   }
 }
+
 
 export const authUsersFetch = (data) => {
   return (dispatch) => {
@@ -42,6 +43,15 @@ export const checkAuthFetch = () => {
       .then(res => res.json())
       .then(data => dispatch(authUsersAC(data)))
       .catch(err => console.log(err.message))
+  }
+}
+
+export const logoutFetch = () => {
+  return (dispatch) => {
+    fetch("/logout")
+    .then(res => res.json())
+    .then(data => dispatch(logoutUserAC(data)))
+    .catch(err => console.log(err.message))
   }
 }
 
