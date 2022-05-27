@@ -50,7 +50,7 @@ function Registration() {
 
   return (
     <Container maxWidth="xs">
-      <form method="post">
+      <form method="post" onSubmit={signUp}>
         <Box mb={2}>
           <TextField
             label="Email"
