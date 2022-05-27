@@ -25,7 +25,7 @@ router.post('/registration', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { name, password } = req.body;
-  const user = await User.FindOne({ where: { name } });
+  const user = await User.findOne({ where: { name } });
   if (user && await bcrypt.compare(password, user.password)) {
     req.session.user = user;
     res.status(201).json(user);
@@ -33,6 +33,15 @@ router.post('/login', async (req, res) => {
     res.status(401).json({
       error: 'Неверный пароль или логин',
     });
+  }
+});
+
+router.get('/checkauth', (req, res) => {
+  const { user } = req.session;
+  if (user) {
+    res.status(201).json(user);
+  } else {
+    res.redirect('/login');
   }
 });
 

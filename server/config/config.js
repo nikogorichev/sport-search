@@ -25,6 +25,7 @@ const config = (app) => {
   app.use(session(sessionConfig));
   app.use(cookiesCleaner);
   app.use(local);
+
 };
 
 module.exports = config;

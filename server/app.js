@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const config = require('./config/config');
+const eventsRouter = require('./routes/events.router');
 const authRoute = require('./routes/auth.route');
 
 const app = express();
@@ -12,9 +13,7 @@ const profileRouter = require('./routes/profile.route');
 
 config(app);
 
-// app.get('/', (req, res) => {
-//   res.send('VSE OK');
-// });
+app.use('/events', eventsRouter);
 
 app.use('/profile', profileRouter);
 app.use('/', authRoute);

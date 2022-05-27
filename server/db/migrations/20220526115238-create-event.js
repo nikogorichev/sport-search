@@ -18,6 +18,10 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      members_count: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

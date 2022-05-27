@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import { Container } from "@mui/system";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { regUsersFetch } from "../../redux/thunk/asyncUser";
 
 function Registration() {
   const [values, setValues] = useState({
@@ -20,6 +23,8 @@ function Registration() {
     weightRange: "",
     showPassword: false,
   });
+  const dispatch = useDispatch()
+  const navigation = useNavigate()
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -36,9 +41,16 @@ function Registration() {
     event.preventDefault();
   };
 
+  function signUp(event) {
+    event.preventDefault()
+    const data = {name: event.target.name.value, email: event.target.email.value, password: event.target.password.value, password2: event.target.password2.value,}
+    dispatch(regUsersFetch(data))
+    navigation('/events')
+  }
+
   return (
     <Container maxWidth="xs">
-      <form method="post">
+      <form method="post" onSubmit={signUp}>
         <Box mb={2}>
           <TextField
             label="Email"
