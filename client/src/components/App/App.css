@@ -19,11 +19,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   background-color: rgb(255, 255, 255);
   border: solid 5px black;
-  height: 500px;
+  height: 550px;
   width: 700px;
   color: black;
 }

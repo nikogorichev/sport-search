@@ -1,5 +1,5 @@
 // redux/asyncAC/asyncUsersAC.js
-import { initEventsAC } from "../actionCreators/eventAC"
+import { addEventsAC, initEventsAC } from "../actionCreators/eventAC"
 
 
 export const fetchInitEvents = () => {
@@ -11,24 +11,25 @@ export const fetchInitEvents = () => {
     fetch("/events")
       .then((res) => res.json())
       .then((data) => dispatch(initEventsAC(data)));
+      // .then((data) => console.log('БЭК', data))
+
   }
 }
 
-export const fetchAddEvents = () => {
+export const fetchAddEvents = (event) => {
 
   // Записываем event в БД ('/events')
-  // return (dispatch) => {
-  //   fetch("/events", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-
-  //     })
-  //   }
-  //     .then((res) => res.json())
-  //     .then((data) => dispatch(initEventsAC(data))))
-  // }
+  return (dispatch) => {
+    fetch("/events", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(event)
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(addEventsAC(data)))
+    // .then((data) => console.log('БЭК', data))
+  }
 }
   
