@@ -16,7 +16,7 @@ const OpenModal = ({ active, setActive }) => {
       members_count: e.target.members_count.value,
       cost: e.target.cost.value,
     }
-    console.log(event)
+    // console.log(event)
   }
 
   return (

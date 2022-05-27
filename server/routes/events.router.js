@@ -3,7 +3,6 @@ const { Event } = require('../db/models');
 
 router.get('/', async (req, res) => {
   const events = await Event.findAll();
-  console.log('OKK');
   res.json(events);
 });
 
@@ -12,7 +11,6 @@ router.post('/', async (req, res) => {
   // const newEvent = await Event.create({
   //   title, date, description, members_count, cost
   // });
-  console.log('OKIOKIOKI');
   res.json({ message: 'YA NORM' });
 });
 
