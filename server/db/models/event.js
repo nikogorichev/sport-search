@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT,
     },
+    members_count: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     user_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
