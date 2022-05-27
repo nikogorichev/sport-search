@@ -15,7 +15,8 @@ function Events(props) {
   useEffect(() => {
     dispatch(fetchInitEvents())
   }, [dispatch]);
-
+  
+  console.log('ONO', events)
   return (
     <div>
       <h6>EVENTS</h6>
@@ -26,7 +27,7 @@ function Events(props) {
           setActive={setModalActive}
         />
       </div>
-      {events.map((el) => <EventCard key={ el.id } event={ el }/> )}
+      {events?.map((el) => <EventCard key={ el.id } event={ el }/> )}
     </div>
   );
 }

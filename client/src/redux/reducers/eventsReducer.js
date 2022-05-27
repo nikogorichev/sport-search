@@ -2,13 +2,13 @@
 import { INIT_EVENTS, ADD_EVENTS } from
   '../actionTypes/eventsAT'
 
-const initialState = { events: [] }
+const initialState = { events: [], sports:[], places:[] }
 
 export const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case INIT_EVENTS:
-      return { ...state, events: action.payload }
+      return { ...state, events: action.payload.events, sports: action.payload.sports, places: action.payload.places }
 
     case ADD_EVENTS:
       return { ...state, events: [...state.events, action.payload] }
