@@ -1,7 +1,7 @@
 import React from 'react';
 
-function EventCard({ event }) {
-  
+function EventCardCabinet({ event }) {
+
   return (
     <div class="card" style={{ width: "18rem" }}>
       <div class="card-body">
@@ -11,8 +11,10 @@ function EventCard({ event }) {
         <p class="card-text">Количество участников:{event.members_count}</p>
         <p class="card-text">Стоимость:{event.cost}</p>
       </div>
+      <button>Изменить</button>
+      <button>Удалить</button>
     </div>
   );
 }
 
-export default EventCard;
+export default EventCardCabinet;
