@@ -1,1 +1,0 @@
-{"cookie":{"originalMaxAge":43200000,"expires":"2022-05-28T07:05:00.421Z","httpOnly":true,"path":"/"},"user":{"id":1,"name":"admin","email":"admin@mail.ru","password":"$2b$10$1TCjy2l17LQWO.8QXlPLPOlG0XDTgfQitsDm0dPR6ESVjXXHnXfm2","description":"i am admin","isAdmin":true,"createdAt":"2022-05-27T17:58:28.179Z","updatedAt":"2022-05-27T17:58:28.179Z"},"__lastAccess":1653678300424}

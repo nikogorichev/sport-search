@@ -16,10 +16,16 @@ import { useEffect } from 'react';
 import { checkAuthFetch } from '../../redux/thunk/asyncUser';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
+import { Box, createTheme, Stack } from '@mui/material';
 
 function App() {
   const dispatch = useDispatch()
-  const {user} = useSelector(state => state.user)
+  const [mode, setMode] = useState("light");
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
 
   useEffect(() => {
     dispatch(checkAuthFetch())
@@ -28,6 +34,7 @@ function App() {
   return (
 
     <Provider store={globalStore}>
+      <Box bgcolor={"background.default"} color={"text.primary"}>
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -39,6 +46,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
+      </Box>
      </Provider>
   );
 }
