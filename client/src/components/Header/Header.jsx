@@ -14,12 +14,18 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
+import { styled } from "@mui/material";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
+
+  const StyledToolbar = styled(Toolbar)({
+    display: "flex",
+    justifyContent: "space-between",
+  });
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,9 +47,9 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{marginBottom:"30px"}}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <StyledToolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -264,7 +270,7 @@ const Header = () => {
               </Menu>
             </Box>
           )}
-        </Toolbar>
+        </StyledToolbar>
       </Container>
     </AppBar>
   );
