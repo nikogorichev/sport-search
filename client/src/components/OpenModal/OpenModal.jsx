@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { costsRenderAC } from "../../redux/actionCreator/costsAC";
-// import QuestCard from "../QuestCard/QuestCard";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAddEvents } from "../../redux/thunk/asyncEvents";
+import {useNavigate} from 'react-router-dom'
 
 const OpenModal = ({ active, setActive }) => {
 
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user);
+  const { sports } = useSelector(state => state.events)
+  const { places } = useSelector(state => state.events)
+  
   //ОТРАБАТЫВАЕТ ПРИ ОТПРАВКЕ ФОРМЫ В МОДАЛЬНОМ ОКНЕ
-
   const newEvent = (e) => {
     e.preventDefault();
     const event = {
@@ -14,9 +18,13 @@ const OpenModal = ({ active, setActive }) => {
       date: e.target.date.value,
       description: e.target.description.value,
       members_count: e.target.members_count.value,
+      user_id: user.id,
+      sport_id: e.target.sport_id.value,
+      place_id: e.target.place_id.value,
       cost: e.target.cost.value,
     }
-    // console.log(event)
+    dispatch(fetchAddEvents(event))
+    setActive(false)
   }
 
   return (
@@ -32,11 +40,19 @@ const OpenModal = ({ active, setActive }) => {
         <p class="card-title">Название:</p>
         <input type="text" name="title" />
         <p class="card-text">Дата мероприятия:</p>
-        <input type="text" name="date" />
+        <input type="datetime-local" name="date" />
         <p class="card-text">Описание:</p>
         <input type="text" name="description" />
         <p class="card-text">Количество участников:</p>
         <input type="text" name="members_count" />
+        <p class="card-text">Вид спорта:</p>
+        <select name="sport_id">
+          {sports.map((el) => <option>{ el.title }</option>)}
+        </select>
+        <p class="card-text">Место проведения:</p>
+        <select name="place_id">
+          {places.map((el) => <option>{el.title}</option>)}
+        </select>
         <p class="card-text">Стоимость:</p>
         <input type="text" name="cost" />
         <button type="submit">

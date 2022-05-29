@@ -11,9 +11,14 @@ router.route('/')
     // const sportId = await Userssport.findAll({
     // include: { model: Sport }, where: { user_id: user.id } });
 
-    // console.log(allUsersSports);
-    res.status(200).json( allUserSports);
+    res.status(200).json(allUserSports);
     // res.status(200).send(JSON.stringify({ userSports }, undefined, 4))
+  })
+
+  .put(async (req, res) => {
+    User.update(req.body)
+      .then((updatedUser) => res.json(updatedUser))
+      .catch((error) => res.status(500).json(error));
   });
 
 module.exports = router;

@@ -1,17 +1,33 @@
 const router = require('express').Router();
-const { Event } = require('../db/models');
+
+const {
+  Event, Sport, Place, User, Participant,
+} = require('../db/models');
 
 router.get('/', async (req, res) => {
+  const { user } = req.session;
   const events = await Event.findAll();
-  res.json(events);
+  const sports = await Sport.findAll();
+  const places = await Place.findAll();
+  // const userEvents = await User.findAll({ where: { id: user.id }, include: [{ model: Participant }]});
+  // const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
+  // const userEvents = await Event.findAll({where: {id: participant[0].EventId}})
+  // console.log('OKK', userEvents);
+  res.json({
+    events, sports, places,
+  });
 });
 
 router.post('/', async (req, res) => {
-  // const {title, date, description, members_count, cost} = req.body;
-  // const newEvent = await Event.create({
-  //   title, date, description, members_count, cost
-  // });
-  res.json({ message: 'YA NORM' });
+  const {
+    title, date, description, members_count, user_id, sport_id, place_id, cost,
+  } = req.body;
+  const sportId = await Sport.findOne({ where: { title: sport_id } });
+  const placeId = await Place.findOne({ where: { title: place_id } });
+  const newEvent = await Event.create({
+    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id,
+  });
+  res.json(newEvent);
 });
 
 module.exports = router;

@@ -1,6 +1,5 @@
-import { authUsersAC } from "../actionCreators/userAC"
+import { authUsersAC, logoutUserAC, fetchUserUpdateAC } from "../actionCreators/userAC"
 import { initUsersSportsAC } from "../actionCreators/usersSportsAC"
-
 export const getFetchUsersSports = () => {
   return (dispatch) => {
     fetch('/profile')
@@ -45,3 +44,24 @@ export const checkAuthFetch = () => {
   }
 }
 
+export const logoutFetch = () => {
+  return (dispatch) => {
+    fetch("/logout")
+      .then(res => res.json())
+      .then(data => dispatch(logoutUserAC(data)))
+      .catch(err => console.log(err.message))
+  }
+}
+
+export const putFetchUser =(data)=>{
+  return (dispatch)=>{
+    fetch("/students",{
+      headers: {"content-type": "application/json"},
+      method: 'PUT',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => dispatch(fetchUserUpdateAC(data)))
+    
+  }
+}

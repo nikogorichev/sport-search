@@ -50,7 +50,7 @@ router.get('/logout', (req, res) => {
   if (user) {
     req.session.destroy();
     res.clearCookie('sid');
-    res.redirect('/');
+    res.status(201).json({});
   } else {
     res.redirect('/login');
   }
