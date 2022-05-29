@@ -8,6 +8,7 @@ import OpenModal from "../OpenModal/OpenModal";
 
 function Events({sport}) {
   const { events } = useSelector((state) => state.events);
+
   const { sports } = useSelector((state) => state.events);
   const filterSport = sports.filter(el => el.title === sport)
   
@@ -22,11 +23,17 @@ function Events({sport}) {
 
   
 
+  const { participants } = useSelector((state) => state.events);
+
+
+  
+
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start"
   }));
+
   const EventBox = styled(Box)(({ theme }) => ({
     maxWidth: 500,
     display: "flex",
@@ -38,7 +45,7 @@ function Events({sport}) {
   //Достаем массив с events/мероприятиями
   
 
- 
+
   return (
    
     <>
@@ -63,9 +70,10 @@ function Events({sport}) {
           </Fab>
         </Tooltip>
       
-      <EventBox p={2}>
-        {sportEvent?.map((el) => (
-          <EventCard key={el.id} event={el} />
+
+      <EventBox>
+        {events?.map((el) => (
+          <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
         ))}
       </EventBox>
       </CardBox>

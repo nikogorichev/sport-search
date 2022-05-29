@@ -45,7 +45,7 @@ function Registration() {
     event.preventDefault()
     const data = {name: event.target.name.value, email: event.target.email.value, password: event.target.password.value, password2: event.target.password2.value,}
     dispatch(regUsersFetch(data))
-    navigation('/events')
+    navigation('/')
   }
 
   return (
