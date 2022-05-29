@@ -6,13 +6,27 @@ import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
 import EventCard from "../EventCard/EventCard";
 import OpenModal from "../OpenModal/OpenModal";
 
-function Events(props) {
-  const dispatch = useDispatch();
+function Events({sport}) {
   const { events } = useSelector((state) => state.events);
+
+  const { sports } = useSelector((state) => state.events);
+  const filterSport = sports.filter(el => el.title === sport)
+  
+  let sportEvent=''
+  if (!sport) {
+    sportEvent = events
+  } else {
+    sportEvent = events.filter(el => el.sport_id === filterSport[0].id)
+  }
+
+  console.log(sportEvent);
+
+  
+
   const { participants } = useSelector((state) => state.events);
 
 
-  console.log('ETO VSE O NEY', participants)
+  
 
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -29,25 +43,14 @@ function Events(props) {
 
   const [modalActive, setModalActive] = useState(false);
   //Достаем массив с events/мероприятиями
-  useEffect(() => {
-    dispatch(fetchInitEvents());
-  }, [dispatch]);
+  
+
 
   return (
-    // <div>
-    //   <h6>EVENTS</h6>
-    //   <div>
-    //     <button onClick={() => setModalActive(true)}>Добавить мероприятие</button>
-    //     <OpenModal
-    //       active={modalActive}
-    //       setActive={setModalActive}
-    //     />
-    //   </div>
-    //   {events?.map((el) => <EventCard key={ el.id } event={ el }/> )}
-    // </div>
+   
     <>
+        
     <CardBox>
-      
         <div>
           <button onClick={() => setModalActive(true)}>
             Добавить мероприятие
@@ -67,6 +70,7 @@ function Events(props) {
           </Fab>
         </Tooltip>
       
+
       <EventBox>
         {events?.map((el) => (
           <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
