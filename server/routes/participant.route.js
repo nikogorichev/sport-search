@@ -14,7 +14,6 @@ router.post('/', async (req, res) => {
 router.delete('/', async (req, res) => {
   const { user_id, event_id } = req.body;
   const participant = await Participant.destroy({ where: { user_id, EventId: event_id } });
-  console.log('DESTROYYYY', participant);
   res.json({ user_id, event_id });
 });
 
