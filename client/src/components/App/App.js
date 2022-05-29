@@ -5,7 +5,6 @@ import { store as globalStore } from '../../redux/store'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Places from '../Places/Places';
 import { useState } from 'react';
-import Events from '../Events/Events';
 import Registration from '../Registration/Registration';
 import Login from '../Login/Login';
 
@@ -17,6 +16,9 @@ import { checkAuthFetch } from '../../redux/thunk/asyncUser';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import { Box, createTheme, Stack } from '@mui/material';
+
+import Events from '../Events/Events';
+import FilterEvent from '../FilterEvent/FilterEvent';
 
 function App() {
   const dispatch = useDispatch()
@@ -41,7 +43,7 @@ function App() {
           <Route path="/places" element={<Places />}/>
           <Route path="/profile" element={<Profile/>} />
           <Route path="/" element={<Home/>}/>
-          <Route path="/events" element={<Events />}/>
+          <Route path="/events" element={<FilterEvent/>}/>
           <Route path="/registration" element={<Registration/>} />
           <Route path="/login" element={<Login/>} />
         </Routes>
