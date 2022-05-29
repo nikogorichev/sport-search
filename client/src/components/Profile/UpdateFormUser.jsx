@@ -15,24 +15,24 @@ function UpdateUser() {
   const updateUser = (event) => {
     event.preventDefault()
     const data = {
-      id: user.id, 
       name: event.target.name.value, 
       email: event.target.email.value,
       description: event.target.description.value
     }
     console.log(data)
     dispatch(putFetchUser(data))
+    
   }
   return (
     <div>
-      <form action="/profile">
+      <form action="/profile" onSubmit={updateUser}>
       <div>Добавить фотографию: <input name="myFile" type="file" /></div>
           <p>Имя: <input id="name" defaultValue={user.name} /></p>
           <p>Email: <input id="email" defaultValue={user.email} /></p>
           <p>О себе: <input id="description" defaultValue={user.description} /></p>
           <p>Виды спорта: {usersSports.map(usersSports => <SportButtonCross key={usersSports.id} usersSports={usersSports} />)}  </p>
           <p>Добавить виды спорта: </p>
-          <button onClick={updateUser}>Сохранить</button>
+          <button type='submit'>Сохранить</button>
       </form>
     </div>
   );

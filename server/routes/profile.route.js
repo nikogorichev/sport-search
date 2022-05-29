@@ -8,17 +8,32 @@ router.route('/')
       where: { id: user.id },
       include: [{ model: Sport }],
     });
-    // const sportId = await Userssport.findAll({
-    // include: { model: Sport }, where: { user_id: user.id } });
-
     res.status(200).json(allUserSports);
-    // res.status(200).send(JSON.stringify({ userSports }, undefined, 4))
   })
 
   .put(async (req, res) => {
-    User.update(req.body)
-      .then((updatedUser) => res.json(updatedUser))
-      .catch((error) => res.status(500).json(error));
+    const { user } = req.session;
+    const {
+      name, email, description,
+    } = req.body;
+    console.log('dddd', req.body);
+    try {
+      const updatedUser = await User.update({
+        name, email, description,
+      }, { where: { id: user.id }, returning: true, raw: true });
+      const [, [newSession]] = updatedUser
+      req.session.user = newSession
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.sendStatus(500);
+    }
   });
+// .delete(async (req, res) => {
+//   const allUserSports = await User.findAll({
+//     where: { id: user.id },
+//     include: [{ model: Sport }],
+//   });
+
+// });
 
 module.exports = router;

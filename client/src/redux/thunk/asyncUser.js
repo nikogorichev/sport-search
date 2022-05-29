@@ -55,7 +55,7 @@ export const logoutFetch = () => {
 
 export const putFetchUser =(data)=>{
   return (dispatch)=>{
-    fetch("/students",{
+    fetch("/profile",{
       headers: {"content-type": "application/json"},
       method: 'PUT',
       body: JSON.stringify(data)

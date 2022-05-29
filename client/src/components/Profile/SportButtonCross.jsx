@@ -4,10 +4,15 @@ import IconButton from '@mui/material/IconButton';
 import './SportButton.css'
 
 function Sport({ usersSports }) {
+
+  const deleteSport = (event) => {
+    
+  }
+
   return (
-    <span className='sport-btn'>
+    <span className='sport-btn' >
       {usersSports.title}
-      <IconButton aria-label="delete" size="small">
+      <IconButton onClick={deleteSport} aria-label="delete" size="small">
         <CloseIcon color='grey' />
       </IconButton>
     </span>
