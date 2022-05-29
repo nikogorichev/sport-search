@@ -45,7 +45,7 @@ function Login() {
     event.preventDefault()
     const data = {name: event.target.name.value, password: event.target.password.value}
     dispatch(authUsersFetch(data))
-    navigation('/events')
+    navigation('/')
   }
 
   return (
