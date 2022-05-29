@@ -28,7 +28,6 @@ function Profile() {
     dispatch(fetchInitEvents())
   }, [dispatch]);
 
-
   const userEvents = events.filter((el) => el.user_id === user.id)
 
   return (

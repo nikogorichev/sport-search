@@ -27,6 +27,8 @@ router.route('/')
       res.sendStatus(500);
     }
   });
+
+
 router.route('/:id')
   .delete(async (req, res) => {
     const { id } = req.params;

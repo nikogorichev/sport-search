@@ -9,11 +9,17 @@ import OpenModal from "../OpenModal/OpenModal";
 function Events(props) {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.events);
+  const { participants } = useSelector((state) => state.events);
+
+
+  console.log('ETO VSE O NEY', participants)
+
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start"
   }));
+
   const EventBox = styled(Box)(({ theme }) => ({
     maxWidth: 500,
     display: "flex",
@@ -61,9 +67,9 @@ function Events(props) {
           </Fab>
         </Tooltip>
       
-      <EventBox p={2}>
+      <EventBox>
         {events?.map((el) => (
-          <EventCard key={el.id} event={el} />
+          <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
         ))}
       </EventBox>
       </CardBox>

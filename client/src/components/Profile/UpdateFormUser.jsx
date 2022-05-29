@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { putFetchUser } from '../../redux/thunk/asyncUser';
 import SportButtonCross from './SportButtonCross';
 import Button from '@mui/material/Button';
+import SportCheckbox from './SportCheckbox'
 import './Profile.css'
 
 function UpdateUser() {
   const { user } = useSelector(state => state.user)
   const { usersSports } = useSelector(state => state.usersSports);
+  // const { sports } = useSelector(state => state.events);
+  // console.log(sports);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -38,7 +41,9 @@ function UpdateUser() {
         <p>Email: <input id="email" defaultValue={user.email} /></p>
         <p>О себе: <input id="description" defaultValue={user.description} /></p>
         <p>Виды спорта: {usersSports.map(usersSports => <SportButtonCross key={usersSports.id} usersSports={usersSports} />)}  </p>
-        <p>Добавить виды спорта: </p>
+        <p>Добавить виды спорта:
+          <SportCheckbox></SportCheckbox>
+        </p>
         <div className='btn-edit'>
           <Button type='submit'>Сохранить</Button>
         </div>
