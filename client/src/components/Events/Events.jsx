@@ -27,7 +27,6 @@ function Events(props) {
     dispatch(fetchInitEvents());
   }, [dispatch]);
 
-  console.log("ONO", events);
   return (
     // <div>
     //   <h6>EVENTS</h6>

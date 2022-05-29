@@ -4,7 +4,6 @@ import { userReducer } from './userReducer'
 import { usersSportsReducer } from './usersSportsReducer'
 import { eventsReducer } from './eventsReducer'
 
-
 export const rootReducer = combineReducers({
   places: placeReducer,
   user: userReducer,

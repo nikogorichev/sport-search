@@ -1,4 +1,4 @@
-import { INIT_USERS, AUTH_USER, LOGOUT_USER} from "../actionTypes/userAT"
+import { INIT_USERS, EDIT_USER, AUTH_USER, LOGOUT_USER} from "../actionTypes/userAT"
 
 export const initUsersAC = (payload) => {
   return {
@@ -6,8 +6,12 @@ export const initUsersAC = (payload) => {
     payload
   }
 }
-
-
+export const fetchUserUpdateAC=(payload)=>{
+  return {
+    type:EDIT_USER,
+    payload
+  }
+}
 export const authUsersAC = (payload) => {
   return {
     type: AUTH_USER,
