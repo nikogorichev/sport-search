@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Card,
@@ -9,10 +9,35 @@ import {
   Checkbox,
   IconButton,
   Typography,
+  Button,
+ 
 } from "@mui/material";
-import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant'
 
-function EventCard({ event }) {
+function EventCard({ event, participants, }) {
+
+  const { user } = useSelector(state => state.user);
+
+  const dispatch = useDispatch();
+
+  const addParticipant = () => { 
+    const participant = {
+      user_id: user.id,
+      event_id: event.id,
+    }
+    dispatch(fetchAddParticipant(participant))
+  }
+
+  const deleteParticipant = () => {
+    const participant = {
+      user_id: user.id,
+      event_id: event.id,
+    }
+    dispatch(fetchDeleteParticipant(participant))
+  }
+
   return (
     // <div class="card" style={{ width: "18rem" }}>
     //   <div class="card-body">
@@ -56,6 +81,16 @@ function EventCard({ event }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
+
+          {participants[0] ?
+            <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
+            Выйти
+          </Button>
+            :
+            <Button onClick={addParticipant} variant="contained" startIcon={<GroupAdd />} >
+              Участвовать
+            </Button>
+          }
           <IconButton aria-label="add to favorites">
             <Checkbox
               icon={<FavoriteBorder />}
