@@ -65,3 +65,13 @@ export const putFetchUser =(data)=>{
     
   }
 }
+
+// export const deleteSportFetchUser =(id)=>{
+//   return (dispatch)=>{
+//     fetch(`/profile/${id}` ,{
+//       headers: {"content-type": "application/json"},
+//       method: 'DELETE',
+//     })
+//     .then(res => res.json())
+//     .then(data => dispatch(initUsersSportsAC(data)))
+//   }}

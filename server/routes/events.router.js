@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
   // const userEvents = await User.findAll({ where: { id: user.id }, include: [{ model: Participant }]});
   // const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
   // const userEvents = await Event.findAll({where: {id: participant[0].EventId}})
-  // console.log('OKK', userEvents);
   res.json({
     events, sports, places,
   });

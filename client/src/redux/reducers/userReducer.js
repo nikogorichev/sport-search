@@ -9,7 +9,6 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, user: action.payload.allUsers }
 
     case EDIT_USER:
-        console.log(action.payload)
         return {
           ...state, user: state.user.filter(user => {
             if (user.id === action.payload.id) {
