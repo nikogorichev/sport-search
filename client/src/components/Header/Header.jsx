@@ -16,11 +16,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
 import { styled } from "@mui/material";
 
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElEvent, setAnchorElEvent] = React.useState(null);
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
 
   const StyledToolbar = styled(Toolbar)({
     display: "flex",
@@ -33,6 +37,9 @@ const Header = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  const handleOpenEventMenu = (event) => {
+    setAnchorElEvent(event.currentTarget);
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -42,12 +49,16 @@ const Header = () => {
     setAnchorElUser(null);
   };
 
+  const handleCloseEventMenu = () => {
+    setAnchorElEvent(null);
+  };
+
   const logoutUser = () => {
     dispatch(logoutFetch());
   };
 
   return (
-    <AppBar position="sticky" sx={{marginBottom:"30px"}}>
+    <AppBar position="sticky" sx={{ marginBottom: "30px" }}>
       <Container maxWidth="xl">
         <StyledToolbar disableGutters>
           <Typography
@@ -174,7 +185,7 @@ const Header = () => {
               <>
                 {" "}
                 <Button
-                  onClick={handleCloseNavMenu}
+                  onClick={handleOpenEventMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   <Link
@@ -184,6 +195,65 @@ const Header = () => {
                     События
                   </Link>
                 </Button>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElEvent}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElEvent)}
+                  onClose={handleCloseEventMenu}
+                  sx={{
+                    display: { xs: "none", md: "block" },
+                  }}
+                >
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/events`}
+                      >
+                        Все события
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/myevents`}
+                      >
+                        Мои события
+                      </Link>
+                    </Typography>
+                  </MenuItem>{" "}
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/eventsplay`}
+                      >
+                        Где я играю
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/eventmaps`}
+                      >
+                        На карте
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                </Menu>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
@@ -231,17 +301,17 @@ const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={{ mt: '45px' }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}

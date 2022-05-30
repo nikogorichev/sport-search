@@ -36,7 +36,7 @@ function App() {
   return (
 
     <Provider store={globalStore}>
-      <Box bgcolor={"background.default"} color={"text.primary"}>
+   
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -48,7 +48,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
-      </Box>
+     
      </Provider>
   );
 }

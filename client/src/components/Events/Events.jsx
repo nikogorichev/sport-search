@@ -60,8 +60,9 @@ function Events({sport}) {
           </Fab>
         </Tooltip>
       
-        <EventBox p={ 2 }>
-        {events?.map((el) => (
+
+      <EventBox>
+        {sportEvent?.map((el) => (
           <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
         ))}
       </EventBox>
