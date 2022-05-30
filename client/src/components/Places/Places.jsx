@@ -10,6 +10,8 @@ const Places = () => {
   const [isModal, setModal] = useState(false);
   const dispatch = useDispatch()
   const {places} = useSelector(state => state.places)
+  const {images} = useSelector(state => state.places)
+  
   const PlaceBox = styled(Box)(({ theme }) => ({
  
 
@@ -32,7 +34,8 @@ const Places = () => {
      
      <PlaceBox>
         {places?.map((el) => {
-          return <PlaceItem place={el} key={el.id}/>
+          const placeImage = images.filter(image => image.place_id === el.id)
+          return <PlaceItem place={el} key={el.id} images={placeImage}/>
          })}
          </PlaceBox>
     </>
