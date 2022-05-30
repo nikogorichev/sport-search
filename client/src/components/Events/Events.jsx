@@ -72,7 +72,7 @@ function Events({sport}) {
       
 
       <EventBox>
-        {events?.map((el) => (
+        {sportEvent?.map((el) => (
           <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
         ))}
       </EventBox>
