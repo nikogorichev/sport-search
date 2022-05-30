@@ -1,3 +1,4 @@
+import { Box, styled } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +10,10 @@ const Places = () => {
   const [isModal, setModal] = useState(false);
   const dispatch = useDispatch()
   const {places} = useSelector(state => state.places)
-  console.log(places);
+  const PlaceBox = styled(Box)(({ theme }) => ({
+ 
+
+  }));
   
   useEffect(() => {
     dispatch(addPlacesFetch())
@@ -17,9 +21,6 @@ const Places = () => {
 
   return (
     <>
-     {places?.map((el) => {
-       return <PlaceItem place={el} key={el.id}/>
-      })}
       <button onClick={() => setModal(true)}>Создать площадку</button>
       <Modal
         isVisible={isModal}
@@ -27,8 +28,13 @@ const Places = () => {
         content={<p>Add your content here</p>}
         footer={<button>Cancel</button>}
         onClose={() => setModal(false)}
-      />
+        />
      
+     <PlaceBox>
+        {places?.map((el) => {
+          return <PlaceItem place={el} key={el.id}/>
+         })}
+         </PlaceBox>
     </>
   );
 };

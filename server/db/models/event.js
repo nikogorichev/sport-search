@@ -15,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       Event.belongsTo(Place, { foreignKey: 'place_id' });
       Event.belongsTo(User, { foreignKey: 'user_id' });
       Event.belongsTo(Sport, { foreignKey: 'sport_id' });
-      Event.belongsToMany(User, { through: Participant, foreignKey: 'event_id' });
+      Event.belongsToMany(User, { through: Participant, foreignKey: 'EventId' });
       Event.belongsToMany(User, { through: Invite, foreignKey: 'event_id' });
+      Event.hasMany(Participant, { foreignKey: 'EventId' });
     }
   }
   Event.init({
@@ -30,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.TEXT,
+    },
+    members_count: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     user_id: {
       allowNull: false,
