@@ -49,7 +49,7 @@ function Profile() {
               {!edit && <><p>Имя: {user.name}</p>
                 <p>Email: {user.email}</p>
                 <p>О себе: {user.description}</p>
-                <p>Виды спорта: {usersSports.map(usersSports => <SportButton key={usersSports.id} usersSports={usersSports} />)}  </p>
+                <p>Виды спорта:<div className='btn-sport'> {usersSports.map(usersSports => <SportButton key={usersSports.id} usersSports={usersSports} />)}  </div> </p>
                 <div className='btn-edit'>
                 <Button onClick={() => setEdit((prevEdit) => !prevEdit)} value={edit} >Изменить</Button>
                 </div>

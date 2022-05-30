@@ -7,6 +7,10 @@ const eventsRouter = require('./routes/events.router');
 const authRoute = require('./routes/auth.route');
 const participantRoute = require('./routes/participant.route');
 
+// добавлять файлы на сайт
+const fileUpload = require('express-fileupload');
+
+
 const app = express();
 
 const PORT = process.env.PORT ?? 4000;
@@ -14,6 +18,12 @@ const PORT = process.env.PORT ?? 4000;
 const profileRouter = require('./routes/profile.route');
 
 config(app);
+
+// добавлять файлы на сайт
+app.use(fileUpload(
+  // { createParentPath: true,}
+  ));
+app.use(express.static('./public'))
 
 app.use('/place', placeRouter);
 app.use('/events', eventsRouter);

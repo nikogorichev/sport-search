@@ -24,6 +24,9 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      photo: {
+        type: Sequelize.TEXT,
+      },
       isAdmin: {
         defaultValue: false,
         type: Sequelize.BOOLEAN,

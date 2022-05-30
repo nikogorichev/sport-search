@@ -37,6 +37,9 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT,
     },
+    photo: {
+      type: DataTypes.TEXT,
+    },
     isAdmin: {
       defaultValue: false,
       type: DataTypes.BOOLEAN,
