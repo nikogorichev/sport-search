@@ -33,7 +33,6 @@ function Events({sport}) {
   }));
 
   const [modalActive, setModalActive] = useState(false);
-  //Достаем массив с events/мероприятиями
   
   return (
    
