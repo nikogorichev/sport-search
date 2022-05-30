@@ -16,7 +16,6 @@ router.route('/')
     const {
       name, email, description,
     } = req.body;
-    console.log('dddd', req.body);
     try {
       const updatedUser = await User.update({
         name, email, description,

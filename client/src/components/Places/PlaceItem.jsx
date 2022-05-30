@@ -1,6 +1,6 @@
 import React from 'react';
+import Carousel from "react-material-ui-carousel";
 import {
-  Avatar,
   Card,
   CardActions,
   CardContent,
@@ -13,7 +13,15 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 
 
-const PlaceItem = ({place}) => {
+const PlaceItem = ({place, images}) => {
+
+  const [index, setIndex] = React.useState(0);
+
+  const handleChange = (cur, prev) => {
+    setIndex(cur);
+    console.log(cur, prev);
+  };
+  
   return (
     <Card sx={{ margin: 5, maxWidth: '500px' }} >
         <CardHeader
@@ -25,13 +33,27 @@ const PlaceItem = ({place}) => {
           title={place.title}
           subheader={place.address}
         />
+        <Carousel
+         index={index}
+         onChange={handleChange}
+         interval={40000}
+         animation="slide"
+         indicators={false}
+         stopAutoPlayOnHover
+         swipe
+         className="my-carousel">
+          {images.map((image, index) => {
+            return <CardMedia
+            key={index}
+            component="img"
+            height="20%"
+            src={image.url}
+            alt="sport"
+            
+          />
+          })}
+        </Carousel>
         
-        <CardMedia
-          component="img"
-          height="20%"
-          image="https://www.oblgazeta.ru/media/article_photos/42cff34ba6ffb5f3d5d3da576637957579c9fe79ed71ac31f275a992.jpg.1024x0_q85.jpg"
-          alt="sport"
-        />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {place.description}
