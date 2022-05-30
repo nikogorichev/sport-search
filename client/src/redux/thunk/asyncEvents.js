@@ -29,7 +29,6 @@ export const fetchAddEvents = (event) => {
     })
       .then((res) => res.json())
       .then((data) => dispatch(addEventsAC(data)))
-    // .then((data) => console.log('БЭК', data))
   }
 }
   
