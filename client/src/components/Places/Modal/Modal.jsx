@@ -43,8 +43,8 @@ const Modal = ({ isVisible = true, title, content, footer, onClose }) => {
           <input placeholder='title' ref={inputPlaceTitle} type="text"></input>
           <input placeholder='address' ref={inputPlaceAddress} type="text"></input>
           <input placeholder='description' ref={inputPlaceDescription} type="text"></input>
-          <button>ФОТО</button>
-          <button >Добавить площадку</button>
+          <input placeholder='description' type="file"></input>
+          <button type='submit'>Добавить площадку</button>
         </form>
       </div>
     </div>
