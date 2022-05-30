@@ -47,7 +47,7 @@ function Events({sport}) {
           <OpenModal active={modalActive} setActive={setModalActive} />
         </div> */}
         <Tooltip
-          title="Delete"
+          title="Add"
           sx={{
             position: "fixed",
             bottom: 20,
