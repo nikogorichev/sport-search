@@ -49,12 +49,12 @@ function Events(props) {
     <>
     <CardBox>
       
-        <div>
+        {/* <div>
           <button onClick={() => setModalActive(true)}>
             Добавить мероприятие
           </button>
           <OpenModal active={modalActive} setActive={setModalActive} />
-        </div>
+        </div> */}
         <Tooltip
           title="Delete"
           sx={{
@@ -64,11 +64,12 @@ function Events(props) {
           }}
         >
           <Fab color="primary" aria-label="add">
-            <Add />
+            <Add onClick={() => setModalActive(true)}></Add>
+            <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
       
-      <EventBox>
+        <EventBox p={ 2 }>
         {events?.map((el) => (
           <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
         ))}
