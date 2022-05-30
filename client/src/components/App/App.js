@@ -19,6 +19,8 @@ import { Box, createTheme, Stack } from '@mui/material';
 
 import Events from '../Events/Events';
 import FilterEvent from '../FilterEvent/FilterEvent';
+import MyEvents from '../MyEvents/MyEvents';
+import EventsPlay from '../EventsPlay/EventsPlay';
 
 function App() {
   const dispatch = useDispatch()
@@ -43,7 +45,9 @@ function App() {
           <Route path="/places" element={<Places />}/>
           <Route path="/profile" element={<Profile/>} />
           <Route path="/" element={<Home/>}/>
-          <Route path="/events" element={<FilterEvent/>}/>
+          <Route path="/events" element={<FilterEvent />} />
+          <Route path="/myevents" element={<MyEvents />} />
+          <Route path="/eventsplay" element={<EventsPlay />} />
           <Route path="/registration" element={<Registration/>} />
           <Route path="/login" element={<Login/>} />
         </Routes>

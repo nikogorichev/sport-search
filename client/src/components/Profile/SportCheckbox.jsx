@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch} from 'react-redux'
-// import { getFetchSports } from '../../redux/thunk/asyncSport';
+import * as React from 'react';
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 import CheckIcon from '@mui/icons-material/Check';
@@ -10,8 +9,9 @@ import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 const Root = styled('div')(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
-    };
+  color: ${
+    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+  };
   font-size: 14px;
 `,
 );
@@ -43,7 +43,8 @@ const InputWrapper = styled('div')(
 
   & input {
     background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
-    color: ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+    color: ${
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
     };
     height: 30px;
     box-sizing: border-box;
@@ -80,8 +81,9 @@ const StyledTag = styled(Tag)(
   height: 24px;
   margin: 2px;
   line-height: 22px;
-  background-color: ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : '#fafafa'
-    };
+  background-color: ${
+    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : '#fafafa'
+  };
   border: 1px solid ${theme.palette.mode === 'dark' ? '#303030' : '#e8e8e8'};
   border-radius: 2px;
   box-sizing: content-box;
@@ -155,13 +157,8 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function SportCheckbox() {
-  // const { sports } = useSelector(state => state.sports)
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getFetchSports())
-  // }, [])
+export default function CustomizedHook() {
+  const { sports } = useSelector(state => state.events);
 
   const {
     getRootProps,
@@ -176,12 +173,11 @@ export default function SportCheckbox() {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    // defaultValue: [top100Films[1]],
+    defaultValue: sports,
     multiple: true,
-    // options: sports,
-    // getOptionLabel: (option) => option.title,
+    options: sports,
+    getOptionLabel: (option) => option.title,
   });
-
 
   return (
     <Root>
@@ -209,13 +205,20 @@ export default function SportCheckbox() {
   );
 }
 
-// const top100Films = [
-//   { title: 'The Shawshank Redemption', year: 1994 },
-//   { title: 'The Godfather', year: 1972 },
-//   { title: 'The Godfather: Part II', year: 1974 },
-//   { title: 'The Dark Knight', year: 2008 },
-//   { title: 'Forrest Gump', year: 1994 },
-//   { title: 'Inception', year: 2010 },
+// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+const top100Films = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+  { title: 'The Dark Knight', year: 2008 },
+  { title: '12 Angry Men', year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: 'Pulp Fiction', year: 1994 },
+  {
+    title: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
+  { title: 'The Good, the Bad and the Ugly', year: 1966 },
+  { title: 'Fight Club', year: 1999 },
 
-// ];
-
+];

@@ -12,16 +12,23 @@ import {
   Button,
  
 } from "@mui/material";
-import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant'
 
 function EventCard({ event, participants, }) {
 
   const { user } = useSelector(state => state.user);
+  const { allParticipants } = useSelector((state) => state.events);
 
   const dispatch = useDispatch();
+  
+  
+  const playersCounter = allParticipants.filter(el => event.id === el.EventId )
+  console.log('playersCounter', playersCounter)
 
+  const [counter, setCounter] = useState(playersCounter.length);
+  
   const addParticipant = () => { 
     const participant = {
       user_id: user.id,
@@ -37,17 +44,10 @@ function EventCard({ event, participants, }) {
     }
     dispatch(fetchDeleteParticipant(participant))
   }
-
+  
+  
   return (
-    // <div class="card" style={{ width: "18rem" }}>
-    //   <div class="card-body">
-    //     <h5 class="card-title">{event.title}</h5>
-    //     <p class="card-text">Дата мероприятия:{event.date}</p>
-    //     <p class="card-text">Описание:{event.description}</p>
-    //     <p class="card-text">Количество участников:{event.members_count}</p>
-    //     <p class="card-text">Стоимость:{event.cost}</p>
-    //   </div>
-    // </div>
+
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
@@ -77,12 +77,16 @@ function EventCard({ event, participants, }) {
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{event.members_count}
+            Количество участников:{ counter }/{event.members_count}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-
-          {participants[0] ?
+          {user.id === event.user_id ? 
+            <Button variant="contained" startIcon={<Delete />} >
+              Удалить
+            </Button>
+            :
+            participants[0] ?
             <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
             Выйти
           </Button>
@@ -91,6 +95,7 @@ function EventCard({ event, participants, }) {
               Участвовать
             </Button>
           }
+        
           <IconButton aria-label="add to favorites">
             <Checkbox
               icon={<FavoriteBorder />}

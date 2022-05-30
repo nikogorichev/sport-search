@@ -1,0 +1,11 @@
+.card {
+  margin: 10px;
+}
+.person-info {
+  text-align: center;
+}
+
+.btn-edit {
+  display: flex;
+  justify-content: center;
+}

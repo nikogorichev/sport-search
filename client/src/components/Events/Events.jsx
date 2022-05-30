@@ -8,7 +8,7 @@ import OpenModal from "../OpenModal/OpenModal";
 
 function Events({sport}) {
   const { events } = useSelector((state) => state.events);
-
+  const { participants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
   const filterSport = sports.filter(el => el.title === sport)
   
@@ -18,15 +18,6 @@ function Events({sport}) {
   } else {
     sportEvent = events.filter(el => el.sport_id === filterSport[0].id)
   }
-
-  console.log(sportEvent);
-
-  
-
-  const { participants } = useSelector((state) => state.events);
-
-
-  
 
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -42,23 +33,20 @@ function Events({sport}) {
   }));
 
   const [modalActive, setModalActive] = useState(false);
-  //Достаем массив с events/мероприятиями
   
-
-
   return (
    
     <>
         
-    <CardBox>
-        <div>
+    <CardBox>      
+        {/* <div>
           <button onClick={() => setModalActive(true)}>
             Добавить мероприятие
           </button>
           <OpenModal active={modalActive} setActive={setModalActive} />
-        </div>
+        </div> */}
         <Tooltip
-          title="Delete"
+          title="Add"
           sx={{
             position: "fixed",
             bottom: 20,
@@ -66,7 +54,8 @@ function Events({sport}) {
           }}
         >
           <Fab color="primary" aria-label="add">
-            <Add />
+            <Add onClick={() => setModalActive(true)}></Add>
+            <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
       

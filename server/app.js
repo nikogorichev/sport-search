@@ -6,6 +6,7 @@ const placeRouter = require('./routes/place.routes');
 const eventsRouter = require('./routes/events.router');
 const authRoute = require('./routes/auth.route');
 const participantRoute = require('./routes/participant.route');
+const myeventsRoute = require('./routes/myevents.route');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/place', placeRouter);
 app.use('/events', eventsRouter);
 app.use('/profile', profileRouter);
 app.use('/participant', participantRoute);
+app.use('/myevents', myeventsRoute);
 app.use('/', authRoute);
 
 app.listen(PORT, () => {
