@@ -1,11 +1,18 @@
 import React from 'react';
 
+
+
 const PlaceItem = ({place}) => {
   return (
     <div>
-      <h1>{place.title}</h1>
+      <div className='placeTitle'>{place.title}</div>
+      <div>{place.address}</div>
+      <div>{place.description}</div>
     </div>
   );
 };
 
+
+
 export default PlaceItem;
+
