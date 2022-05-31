@@ -106,8 +106,9 @@ function EventCard({ event, participants, creator }) {
           title={creator[0].name}
           subheader={event.date}
         />
-        <div onClick={ () => navigation(`/events/${event.id}`)} >
+        
         <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
+        <div onClick={ () => navigation(`/events/${event.id}`)}   >
         {event.image ? (
           <>
         <CardMedia
@@ -128,7 +129,7 @@ function EventCard({ event, participants, creator }) {
             />
           </>
         )}
-
+        
         <CardContent>
           <Typography variant="h5">{event.title}</Typography>
         </CardContent>
@@ -164,7 +165,7 @@ function EventCard({ event, participants, creator }) {
             Стоимость: {event.cost}
           </Typography>
           </CardContent>
-      </div>
+          </div>
         <CardActions disableSpacing>
           {user.id === event.user_id ? (
             <>

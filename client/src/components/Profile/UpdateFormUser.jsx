@@ -55,17 +55,10 @@ function UpdateUser(props) {
       description: event.target.description.value,
       photo: imageURL,
       // sport: event.target.sport
-<<<<<<< HEAD
     }
     // console.log(data)
     dispatch(putFetchUser(data))
   }
-=======
-    };
-    console.log(data);
-    dispatch(putFetchUser(data));
-  };
->>>>>>> 6a9d6c458de262dfb9c7caaaf3b9c55a0b309f81
 
 
   // добавить спорт
@@ -90,7 +83,7 @@ function UpdateUser(props) {
               onChange={(e) => handleImageUpload(e, setImageUrl)}
             />
             <figure class="personal-figure">
-              {!user.photo ? (
+              {/* {!user.photo ? (
                 <>
                   <Avatar
                     src="/static/images/avatar/1.jpg"
@@ -108,6 +101,28 @@ function UpdateUser(props) {
                 <>
                   <Avatar
                     src={user.photo}
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              )} */}
+              {imageURL  ? (
+                <>
+                  <Avatar
+                    src={imageURL}
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              ) : user.photo ? (
+                <>
+                 <Avatar
+                    src={user.photo}
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              ) : (
+                <>
+                  <Avatar
+                    src="/static/images/avatar/1.jpg"
                     sx={{ width: 200, height: 200 }}
                   ></Avatar>
                 </>

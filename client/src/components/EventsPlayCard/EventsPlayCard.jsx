@@ -66,8 +66,8 @@ function EventsPlayCard({event, creator}) {
           title={creator[0].name}
           subheader={event.date}
         />
-          <div onClick={() => navigation(`/events/${event.event.id}`)} >
          <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
+          <div onClick={() => navigation(`/events/${event.id}`)} >
          {event.image ? (
           <>
         <CardMedia
