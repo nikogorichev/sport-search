@@ -1,11 +1,20 @@
 import { authUsersAC, logoutUserAC, fetchUserUpdateAC, addUserPhotoAC } from "../actionCreators/userAC"
-import { initUsersSportsAC } from "../actionCreators/usersSportsAC"
+import { initUsersSportsAC, addUserSportsAC } from "../actionCreators/usersSportsAC"
 
 export const getFetchUsersSports = () => {
   return (dispatch) => {
     fetch('/profile')
       .then(res => res.json())
       .then(data => dispatch(initUsersSportsAC(data)))
+      .catch(err => console.log(err.message))
+  }
+}
+
+export const postFetchUsersSports = () => {
+  return (dispatch) => {
+    fetch('/profile')
+      .then(res => res.json())
+      .then(data => dispatch(addUserSportsAC(data)))
       .catch(err => console.log(err.message))
   }
 }
