@@ -15,12 +15,14 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
+import { useNavigate } from 'react-router-dom';
 
 function EventsPlayCard(event) {
 
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
   const [block, setBlock] = useState(true);
 
@@ -38,7 +40,7 @@ console.log('sep event', block)
   return (
   <>
     { block ? 
-    <div>
+        <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
@@ -53,7 +55,8 @@ console.log('sep event', block)
           }
           title={event.event.title}
           subheader={event.event.date}
-        />
+            />
+      <div onClick={() => navigation(`/events/${event.event.id}`)} >
         <CardMedia
           component="img"
           height="20%"
@@ -84,7 +87,8 @@ console.log('sep event', block)
               <Typography variant="body2" color="text.secondary">
                 Стоимость: {event.event.cost}
               </Typography>
-            </CardContent>
+              </CardContent>
+          </div>
         <CardActions disableSpacing>
           <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти
