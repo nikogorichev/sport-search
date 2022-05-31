@@ -55,10 +55,17 @@ function UpdateUser(props) {
       description: event.target.description.value,
       photo: imageURL,
       // sport: event.target.sport
+<<<<<<< HEAD
+    }
+    // console.log(data)
+    dispatch(putFetchUser(data))
+  }
+=======
     };
     console.log(data);
     dispatch(putFetchUser(data));
   };
+>>>>>>> 6a9d6c458de262dfb9c7caaaf3b9c55a0b309f81
 
 
   // добавить спорт

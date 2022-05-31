@@ -6,13 +6,13 @@ import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
 import EventCard from "../EventCard/EventCard";
 import OpenModal from "../OpenModal/OpenModal";
 
-function Events({sport}) {
+function Events({ sport }) {
   const { events } = useSelector((state) => state.events);
   const { participants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
   const filterSport = sports.filter(el => el.title === sport)
-  
-  let sportEvent=''
+
+  let sportEvent = ''
   if (!sport) {
     sportEvent = events
   } else {
@@ -21,24 +21,23 @@ function Events({sport}) {
 
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start"
+    justifyContent: "space-around",
+    flexWrap: "wrap",
   }));
 
   const EventBox = styled(Box)(({ theme }) => ({
-    maxWidth: 500,
-    display: "flex",
-    justifyContent: "space-around",
-    flexWrap: "wrap"
+    // maxWidth: 500,
+    // display: "flex",
+    // justifyContent: "space-around",
+    // flexWrap: "nowrap",
+    // width: 500,
   }));
 
   const [modalActive, setModalActive] = useState(false);
-  
+
   return (
-   
     <>
-        
-    <CardBox>      
+      <CardBox>
         <Tooltip
           title="Add"
           sx={{
@@ -52,13 +51,12 @@ function Events({sport}) {
             <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
-      
 
-      <EventBox>
-        {sportEvent?.map((el) => (
-          <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
-        ))}
-      </EventBox>
+        <EventBox>
+          {sportEvent?.map((el) => (
+            <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
+          ))}
+        </EventBox>
       </CardBox>
     </>
   );

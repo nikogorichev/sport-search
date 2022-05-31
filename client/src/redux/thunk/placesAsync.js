@@ -16,7 +16,6 @@ export const newPlacesFetch = (data) => {
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    // .then(data => console.log(data))
     .then(data => value(newPlacesAC(data)))
   }
 }

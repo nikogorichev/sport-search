@@ -23,10 +23,10 @@ export const eventsReducer = (state = initialState, action) => {
       return { ...state, events: [...state.events, action.payload] }
 
     case ADD_PARTICIPANT:
-      return {
-        ...state, participants: [...state.participants, action.payload],
-        allParticipants: [...state.allParticipants, action.payload],
-      }
+      // console.log('fact1', state.participants)
+      
+      return { ...state, participants: [...state.participants, action.payload], allParticipants: [...state.allParticipants, action.payload] }
+
 
     case DELETE_PARTICIPANT:
       return {

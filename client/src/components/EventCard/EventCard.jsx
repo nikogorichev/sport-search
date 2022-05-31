@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './EventCard.css'
 import {
   Avatar,
   Card,
@@ -33,8 +34,6 @@ function EventCard({ event, participants, }) {
   
   // Фильтр по количеству игроков к каждому мероприятию
   const playersCounter = allParticipants.filter(el => event.id === el.EventId)
-  
-
 
   //добавить участие
   const addParticipant = () => { 
