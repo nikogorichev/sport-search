@@ -3,7 +3,7 @@ import { INIT_EVENTS, ADD_EVENTS, DELETE_EVENT, EDIT_EVENT, } from
 import { ADD_PARTICIPANT, DELETE_PARTICIPANT } from '../actionTypes/participantAT';
 
 
-const initialState = { events: [], sports: [], places: [], participants: [], allParticipants: [] }
+const initialState = { events: [], sports: [], places: [], participants: [], allParticipants: [], allUsers: [], }
 
 export const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,7 +16,8 @@ export const eventsReducer = (state = initialState, action) => {
         places: action.payload.places,
         participants: action.payload.participants,
         allParticipants: action.payload.allParticipants,
-        userEvents: action.payload.userEvents
+        userEvents: action.payload.userEvents,
+        allUsers: action.payload.allUsers,
       }
 
     case ADD_EVENTS:
