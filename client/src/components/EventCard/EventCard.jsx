@@ -28,8 +28,10 @@ import {
 } from "../../redux/thunk/asyncParticipant";
 import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
 import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
+import UserPage from "../UserPage/UserPage";
 
 function EventCard({ event, participants, creator }) {
+  const [open, setOpen] = useState(false);
   const { user } = useSelector((state) => state.user);
   const { allParticipants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
@@ -77,6 +79,7 @@ function EventCard({ event, participants, creator }) {
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
+        onClick={() => setOpen(true)}
           avatar={
             creator[0].photo ? (
               <>
@@ -101,6 +104,7 @@ function EventCard({ event, participants, creator }) {
           title={creator[0].name}
           subheader={event.date}
         />
+        <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
         {event.image ? (
           <>
             <CardMedia

@@ -16,9 +16,10 @@ import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delet
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteEvent } from '../../redux/thunk/asyncEvents';
 import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
+import { useNavigate } from 'react-router-dom';
 
 function EventCardCabinet({ event }) {
-
+  const navigation = useNavigate()
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
@@ -40,6 +41,7 @@ function EventCardCabinet({ event }) {
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
+        onClick={() => navigation('/profile')}
           avatar={
             user.photo ? (
               <>
@@ -62,12 +64,25 @@ function EventCardCabinet({ event }) {
           title={event.title}
           subheader={event.date}
         />
-        <CardMedia
+        {event.image ? (
+          <>
+            <CardMedia
           component="img"
           height="20%"
-          image="https://lede-admin.defector.com/wp-content/uploads/sites/28/2022/05/GettyImages-1397468129.jpg?crop=0px%2C38px%2C1024px%2C577px&resize=1200%2C675"
+          image={event.image}
           alt="sport"
         />
+          </>
+        ) : (
+          <>
+            <CardMedia
+              component="img"
+              height="20%"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+              alt="sport"
+            />
+          </>
+        )}
         <CardContent>
           <Typography variant="body2" color="text.secondary">
            Описание: {event.description}

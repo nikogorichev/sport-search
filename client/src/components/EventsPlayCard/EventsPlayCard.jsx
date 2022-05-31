@@ -15,10 +15,11 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
+import UserPage from '../UserPage/UserPage';
 
 function EventsPlayCard({event, creator}) {
 
-  console.log(event);
+  const [open, setOpen] = useState(false);
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
@@ -34,7 +35,6 @@ function EventsPlayCard({event, creator}) {
     setBlock(!block)
   }
 
-console.log('sep event', block)
 
   return (
   <>
@@ -42,6 +42,7 @@ console.log('sep event', block)
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
+        onClick={() => setOpen(true)}
          avatar={
           creator[0].photo ? (
             <>
@@ -64,12 +65,26 @@ console.log('sep event', block)
           title={creator[0].name}
           subheader={event.date}
         />
-        <CardMedia
+         <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
+         {event.image ? (
+          <>
+            <CardMedia
           component="img"
           height="20%"
-          image="https://lede-admin.defector.com/wp-content/uploads/sites/28/2022/05/GettyImages-1397468129.jpg?crop=0px%2C38px%2C1024px%2C577px&resize=1200%2C675"
+          image={event.image}
           alt="sport"
         />
+          </>
+        ) : (
+          <>
+            <CardMedia
+              component="img"
+              height="20%"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+              alt="sport"
+            />
+          </>
+        )}
         <CardContent>
           <Typography variant="h5">
             {event.title}
