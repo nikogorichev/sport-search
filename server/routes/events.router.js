@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable camelcase */
 const router = require('express').Router();
 
 const {
@@ -5,16 +7,15 @@ const {
 } = require('../db/models');
 
 router.get('/', async (req, res) => {
-
   const { user } = req.session;
 
   const events = await Event.findAll();
   const sports = await Sport.findAll();
   const places = await Place.findAll();
   const allUsers = await User.findAll();
-  //все события, в которых участвует юзер
+  // все события, в которых участвует юзер
   const participants = await Participant.findAll({ where: { user_id: user.id } });
-  //все связи юзер-событие, в котором он участвует
+  // все связи юзер-событие, в котором он участвует
   const allParticipants = await Participant.findAll({ raw: true });
   const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
   // Достаем и создаем массив нужных айди евентов
@@ -29,12 +30,12 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, date, description, members_count, user_id, sport_id, place_id, cost,
+    title, date, description, members_count, user_id, sport_id, place_id, cost, image,
   } = req.body;
   const sportId = await Sport.findOne({ where: { title: sport_id } });
   const placeId = await Place.findOne({ where: { title: place_id } });
   const newEvent = await Event.create({
-    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id,
+    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id, image,
   });
   res.json(newEvent);
 });

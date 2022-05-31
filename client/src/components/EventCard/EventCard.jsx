@@ -73,8 +73,6 @@ function EventCard({ event, participants, creator }) {
     dispatch(fetchDeleteEvent(delEvent));
   };
 
-  
-
   return (
     <div>
       <Card sx={{ margin: 5 }}>
@@ -89,7 +87,9 @@ function EventCard({ event, participants, creator }) {
                 <Avatar
                   src="/static/images/avatar/1.jpg"
                   sx={{ bgcolor: "red" }}
-                >{creator[0].name.slice(0,1).toUpperCase()}</Avatar>
+                >
+                  {creator[0].name.slice(0, 1).toUpperCase()}
+                </Avatar>
               </>
             )
           }
@@ -100,18 +100,29 @@ function EventCard({ event, participants, creator }) {
           }
           title={creator[0].name}
           subheader={event.date}
-          
         />
-        <CardMedia
+        {event.image ? (
+          <>
+            <CardMedia
           component="img"
           height="20%"
-          image="https://lede-admin.defector.com/wp-content/uploads/sites/28/2022/05/GettyImages-1397468129.jpg?crop=0px%2C38px%2C1024px%2C577px&resize=1200%2C675"
+          image={event.image}
           alt="sport"
         />
-         <CardContent>
-          <Typography variant="h5">
-            {event.title}
-          </Typography>
+          </>
+        ) : (
+          <>
+            <CardMedia
+              component="img"
+              height="20%"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+              alt="sport"
+            />
+          </>
+        )}
+
+        <CardContent>
+          <Typography variant="h5">{event.title}</Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
