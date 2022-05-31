@@ -35,7 +35,6 @@ function EventsPlayCard(event) {
     setBlock(!block)
   }
 
-console.log('sep event', block)
 
   return (
   <>
