@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './EventCard.css'
 import {
   Avatar,
   Card,
@@ -29,6 +30,8 @@ import {
 import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
 import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
 import UserPage from "../UserPage/UserPage";
+import { useNavigate } from "react-router-dom";
+
 
 function EventCard({ event, participants, creator }) {
   const [open, setOpen] = useState(false);
@@ -36,17 +39,16 @@ function EventCard({ event, participants, creator }) {
   const { allParticipants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
 
   const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
 
   // Фильтр по количеству игроков к каждому мероприятию
-  const playersCounter = allParticipants.filter(
-    (el) => event.id === el.EventId
-  );
 
-  // const [counter, setCounter] = useState(playersCounter.length);
+  const playersCounter = allParticipants.filter(el => event.id === el.EventId)
+
 
   //добавить участие
   const addParticipant = () => {
@@ -76,7 +78,7 @@ function EventCard({ event, participants, creator }) {
   };
 
   return (
-    <div>
+<div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
         onClick={() => setOpen(true)}
@@ -104,10 +106,12 @@ function EventCard({ event, participants, creator }) {
           title={creator[0].name}
           subheader={event.date}
         />
+        <div onClick={ () => navigation(`/events/${event.id}`)} >
         <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
         {event.image ? (
           <>
-            <CardMedia
+        <CardMedia
+
           component="img"
           height="20%"
           image={event.image}
@@ -159,7 +163,8 @@ function EventCard({ event, participants, creator }) {
           <Typography variant="body2" color="text.secondary">
             Стоимость: {event.cost}
           </Typography>
-        </CardContent>
+          </CardContent>
+      </div>
         <CardActions disableSpacing>
           {user.id === event.user_id ? (
             <>
@@ -212,6 +217,7 @@ function EventCard({ event, participants, creator }) {
           </IconButton>
         </CardActions>
       </Card>
+      
     </div>
   );
 }

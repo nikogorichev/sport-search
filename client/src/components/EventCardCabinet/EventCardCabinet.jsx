@@ -23,6 +23,7 @@ function EventCardCabinet({ event }) {
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   const [modalActive, setModalActive] = useState(false);
@@ -64,9 +65,11 @@ function EventCardCabinet({ event }) {
           title={event.title}
           subheader={event.date}
         />
+          <div onClick={() => navigation(`/events/${event.id}`)} >
+
         {event.image ? (
-          <>
-            <CardMedia
+          <>    
+        <CardMedia
           component="img"
           height="20%"
           image={event.image}
@@ -107,7 +110,8 @@ function EventCardCabinet({ event }) {
           <Typography variant="body2" color="text.secondary">
             Стоимость: {event.cost}
           </Typography>
-        </CardContent>
+          </CardContent>
+          </div>
         <CardActions disableSpacing>
           <Button onClick={() => setModalActive(true)} variant="contained" startIcon={<Edit />} >
             Изменить

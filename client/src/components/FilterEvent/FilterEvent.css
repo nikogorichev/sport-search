@@ -1,0 +1,17 @@
+/* .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root,
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root,  
+.css-yavrlm-MuiAutocomplete-root{
+margin-left: 200px; 
+  display: flex
+}
+
+
+.css-wb57ya-MuiFormControl-root-MuiTextField-root {
+padding-left: 20px; 
+  margin-left: 20px;
+} */
+
+.filter {
+  display: flex;
+  justify-content: space-around;
+}

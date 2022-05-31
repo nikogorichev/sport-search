@@ -16,6 +16,7 @@ import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delet
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
 import UserPage from '../UserPage/UserPage';
+import { useNavigate } from 'react-router-dom';
 
 function EventsPlayCard({event, creator}) {
 
@@ -23,6 +24,7 @@ function EventsPlayCard({event, creator}) {
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
   const [block, setBlock] = useState(true);
 
@@ -35,11 +37,10 @@ function EventsPlayCard({event, creator}) {
     setBlock(!block)
   }
 
-
   return (
   <>
     { block ? 
-    <div>
+        <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
         onClick={() => setOpen(true)}
@@ -65,10 +66,11 @@ function EventsPlayCard({event, creator}) {
           title={creator[0].name}
           subheader={event.date}
         />
+          <div onClick={() => navigation(`/events/${event.event.id}`)} >
          <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
          {event.image ? (
           <>
-            <CardMedia
+        <CardMedia
           component="img"
           height="20%"
           image={event.image}
@@ -114,7 +116,8 @@ function EventsPlayCard({event, creator}) {
               <Typography variant="body2" color="text.secondary">
                 Стоимость: {event.cost}
               </Typography>
-            </CardContent>
+              </CardContent>
+          </div>
         <CardActions disableSpacing>
           <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти

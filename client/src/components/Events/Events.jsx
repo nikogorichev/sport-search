@@ -15,6 +15,7 @@ function Events({ sport }) {
   const filterSport = sports.filter((el) => el.title === sport);
 
   let sportEvent = "";
+
   if (!sport) {
     sportEvent = events;
   } else {
@@ -23,15 +24,16 @@ function Events({ sport }) {
 
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
   }));
 
   const EventBox = styled(Box)(({ theme }) => ({
-    maxWidth: 500,
-    display: "flex",
-    justifyContent: "space-around",
-    flexWrap: "wrap",
+    // maxWidth: 500,
+    // display: "flex",
+    // justifyContent: "space-around",
+    // flexWrap: "nowrap",
+    // width: 500,
   }));
 
   const [modalActive, setModalActive] = useState(false);
@@ -67,6 +69,7 @@ function Events({ sport }) {
               />
             );
           })}
+
         </EventBox>
       </CardBox>
     </>

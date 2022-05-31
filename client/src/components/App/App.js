@@ -21,6 +21,7 @@ import Events from '../Events/Events';
 import FilterEvent from '../FilterEvent/FilterEvent';
 import MyEvents from '../MyEvents/MyEvents';
 import EventsPlay from '../EventsPlay/EventsPlay';
+import EventPage from '../EventPage/EventPage';
 
 function App() {
   const dispatch = useDispatch()
@@ -46,6 +47,7 @@ function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/" element={<Home/>}/>
           <Route path="/events" element={<FilterEvent />} />
+          <Route path="/events/:id" element={<EventPage />} />
           <Route path="/myevents" element={<MyEvents />} />
           <Route path="/eventsplay" element={<EventsPlay />} />
           <Route path="/registration" element={<Registration/>} />

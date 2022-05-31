@@ -14,7 +14,6 @@ export const fetchAddParticipant = (participant) => {
     })
       .then((res) => res.json())
       .then((data) => dispatch(addParticipantAC(data)))
-      // .then((data) => console.log('БЭК', data))
   }
 }
 
@@ -30,6 +29,5 @@ export const fetchDeleteParticipant = (participant) => {
     })
       .then((res) => res.json())
       .then((data) => dispatch(deleteParticipantAC(data)))
-    // .then((data) => console.log('БЭК', data))
   }
 }

@@ -10,6 +10,7 @@ function EventsPlay(props) {
   const { userEvents } = useSelector((state) => state.events);
   const dispatch = useDispatch();
 
+
   //Достаем events из БД
   useEffect(() => {
     dispatch(fetchInitEvents());
