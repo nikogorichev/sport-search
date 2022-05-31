@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ marginBottom: "30px" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "0px" }}>
       <Container maxWidth="xl">
         <StyledToolbar disableGutters>
           <Typography
