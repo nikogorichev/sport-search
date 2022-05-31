@@ -15,10 +15,12 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
+import UserPage from '../UserPage/UserPage';
 import { useNavigate } from 'react-router-dom';
 
-function EventsPlayCard(event) {
+function EventsPlayCard({event, creator}) {
 
+  const [open, setOpen] = useState(false);
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
@@ -29,12 +31,11 @@ function EventsPlayCard(event) {
   const exit = () => { 
       const participant = {
         user_id: user.id,
-        event_id: event.event.id,
+        event_id: event.id,
       }
     dispatch(fetchDeleteParticipant(participant))
     setBlock(!block)
   }
-
 
   return (
   <>
@@ -42,49 +43,78 @@ function EventsPlayCard(event) {
         <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
-            </Avatar>
-          }
+        onClick={() => setOpen(true)}
+         avatar={
+          creator[0].photo ? (
+            <>
+              <Avatar src={creator[0].photo}></Avatar>
+            </>
+          ) : (
+            <>
+              <Avatar
+                src="/static/images/avatar/1.jpg"
+                sx={{ bgcolor: "red" }}
+              >{creator[0].name.slice(0,1).toUpperCase()}</Avatar>
+            </>
+          )
+        }
           action={
             <IconButton aria-label="settings">
               <MoreVert />
             </IconButton>
           }
-          title={event.event.title}
-          subheader={event.event.date}
-            />
-      <div onClick={() => navigation(`/events/${event.event.id}`)} >
+          title={creator[0].name}
+          subheader={event.date}
+        />
+         <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
+          <div onClick={() => navigation(`/events/${event.id}`)} >
+         {event.image ? (
+          <>
         <CardMedia
           component="img"
           height="20%"
-          image="https://lede-admin.defector.com/wp-content/uploads/sites/28/2022/05/GettyImages-1397468129.jpg?crop=0px%2C38px%2C1024px%2C577px&resize=1200%2C675"
+          image={event.image}
           alt="sport"
         />
+          </>
+        ) : (
+          <>
+            <CardMedia
+              component="img"
+              height="20%"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+              alt="sport"
+            />
+          </>
+        )}
+        <CardContent>
+          <Typography variant="h5">
+            {event.title}
+          </Typography>
+        </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Описание: {event.event.description}
+            Описание: {event.description}
           </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Вид спорта: {sports.filter((el) => el.id === event.event.sport_id)[0].title}
+                Вид спорта: {sports.filter((el) => el.id === event.sport_id)[0].title}
               </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Место проведения: {places.filter((el) => el.id === event.event.place_id)[0].title}
+                Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
               </Typography>
             </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{event.event.members_count}
+            Количество участников:{event.members_count}
           </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Стоимость: {event.event.cost}
+                Стоимость: {event.cost}
               </Typography>
               </CardContent>
           </div>

@@ -68,6 +68,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
       type: DataTypes.INTEGER,
     },
+    image: {
+      type: DataTypes.TEXT,
+    },
   }, {
     sequelize,
     modelName: 'Event',

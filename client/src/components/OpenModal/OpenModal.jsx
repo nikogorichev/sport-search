@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddEvents } from "../../redux/thunk/asyncEvents";
 import {useNavigate} from 'react-router-dom'
+import axios from "axios";
 
 const OpenModal = ({ active, setActive }) => {
-
+  const [imageURL, setImageUrl] = useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector(state => state.events)
   const { places } = useSelector(state => state.events)
   
+  const handleImageUpload = (event, setImg) => {
+    const imageData = new FormData();
+    imageData.set("key", "ca5482cb4e564b594544191602467167");
+    imageData.append("image", event.target.files[0]);
+
+    axios
+      .post("https://api.imgbb.com/1/upload", imageData)
+      .then(function (response) {
+        setImg(response.data.data.display_url);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   //ОТРАБАТЫВАЕТ ПРИ ОТПРАВКЕ ФОРМЫ В МОДАЛЬНОМ ОКНЕ
   const newEvent = (e) => {
     e.preventDefault();
@@ -22,6 +37,7 @@ const OpenModal = ({ active, setActive }) => {
       sport_id: e.target.sport_id.value,
       place_id: e.target.place_id.value,
       cost: e.target.cost.value,
+      image: imageURL,
     }
     dispatch(fetchAddEvents(event))
     setActive(false)
@@ -54,7 +70,12 @@ const OpenModal = ({ active, setActive }) => {
           {places.map((el) => <option>{el.title}</option>)}
         </select>
         <p class="card-text">Стоимость:</p>
-        <input type="text" name="cost" />
+        <input type="text" name="cost" defaultValue={0}/>
+        <input
+            id="img"
+            type="file"
+            onChange={(e) => handleImageUpload(e, setImageUrl)}
+          />
         <button type="submit">
           Ответить
         </button>
