@@ -20,6 +20,8 @@ import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
 function EventCardCabinet({ event }) {
 
   const { user } = useSelector(state => state.user);
+  const { sports } = useSelector((state) => state.events);
+  const { places } = useSelector((state) => state.events);
   const dispatch = useDispatch();
 
   const [modalActive, setModalActive] = useState(false);
@@ -59,12 +61,27 @@ function EventCardCabinet({ event }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.description}
+           Описание: {event.description}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Вид спорта: {sports.filter((el) => el.id === event.sport_id)[0].title}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             Количество участников:{event.members_count}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Стоимость: {event.cost}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
