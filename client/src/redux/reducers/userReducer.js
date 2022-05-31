@@ -16,6 +16,7 @@ export const userReducer = (state = initialState, action) => {
             user.name = action.payload.name
             user.email = action.payload.email
             user.description = action.payload.description
+            user.photo = action.payload.photo
           }
           return user
         })
