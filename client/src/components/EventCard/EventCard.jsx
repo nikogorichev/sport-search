@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant'
 import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
 import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
+import { useNavigate } from "react-router-dom";
 
 function EventCard({ event, participants, }) {
 
@@ -24,16 +25,16 @@ function EventCard({ event, participants, }) {
   const { allParticipants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
-  console.log(allParticipants);
+  const navigation = useNavigate();
+
   const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
   
   // Фильтр по количеству игроков к каждому мероприятию
-  const playersCounter = allParticipants.filter(el => event.id === el.EventId )
-  console.log('playersCounter', playersCounter)
+  const playersCounter = allParticipants.filter(el => event.id === el.EventId)
+  
 
-  // const [counter, setCounter] = useState(playersCounter.length);
 
   //добавить участие
   const addParticipant = () => { 
@@ -63,8 +64,7 @@ function EventCard({ event, participants, }) {
   }
   
   return (
-
-    <div>
+<div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
@@ -80,6 +80,7 @@ function EventCard({ event, participants, }) {
           title={event.title}
           subheader={event.date}
         />
+      <div onClick={ () => navigation(`/events/${event.id}`)} >
         <CardMedia
           component="img"
           height="20%"
@@ -115,7 +116,8 @@ function EventCard({ event, participants, }) {
           <Typography variant="body2" color="text.secondary">
             Стоимость: {event.cost}
           </Typography>
-        </CardContent>
+          </CardContent>
+      </div>
         <CardActions disableSpacing>
           {user.id === event.user_id ? 
             <>
@@ -149,6 +151,7 @@ function EventCard({ event, participants, }) {
           </IconButton>
         </CardActions>
       </Card>
+      
     </div>
   );
 }

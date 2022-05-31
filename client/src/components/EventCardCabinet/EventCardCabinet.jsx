@@ -16,12 +16,14 @@ import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delet
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteEvent } from '../../redux/thunk/asyncEvents';
 import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
+import { useNavigate } from 'react-router-dom';
 
 function EventCardCabinet({ event }) {
 
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   const [modalActive, setModalActive] = useState(false);
@@ -53,6 +55,7 @@ function EventCardCabinet({ event }) {
           title={event.title}
           subheader={event.date}
         />
+        <div onClick={() => navigation(`/events/${event.id}`)} >
         <CardMedia
           component="img"
           height="20%"
@@ -83,7 +86,8 @@ function EventCardCabinet({ event }) {
           <Typography variant="body2" color="text.secondary">
             Стоимость: {event.cost}
           </Typography>
-        </CardContent>
+          </CardContent>
+          </div>
         <CardActions disableSpacing>
           <Button onClick={() => setModalActive(true)} variant="contained" startIcon={<Edit />} >
             Изменить
