@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Card,
@@ -15,11 +15,14 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteEvent } from '../../redux/thunk/asyncEvents';
+import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
 
 function EventCardCabinet({ event }) {
 
   const { user } = useSelector(state => state.user);
   const dispatch = useDispatch();
+
+  const [modalActive, setModalActive] = useState(false);
 
   //удалить событие
   const deleteEvent = () => {
@@ -65,9 +68,10 @@ function EventCardCabinet({ event }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Button variant="contained" startIcon={<Edit />} >
+          <Button onClick={() => setModalActive(true)} variant="contained" startIcon={<Edit />} >
             Изменить
           </Button>
+          <OpenModalEdit active={modalActive} setActive={setModalActive} event={ event }/>
           <Button onClick={ deleteEvent } variant="contained" startIcon={<Delete />} >
             Удалить
           </Button>
