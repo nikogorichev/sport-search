@@ -13,21 +13,24 @@ import {
 
 } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDeleteEvent } from '../../redux/thunk/asyncEvents';
 
 function EventCardCabinet({ event }) {
 
+  const { user } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  //удалить событие
+  const deleteEvent = () => {
+    const delEvent = {
+      user_id: user.id,
+      event_id: event.id,
+    }
+    dispatch(fetchDeleteEvent(delEvent))
+  }
+
   return (
-    // <div class="card" style={{ width: "18rem" }}>
-    //   <div class="card-body">
-    //     <h5 class="card-title">{event.title}</h5>
-    //     <p class="card-text">Дата мероприятия:{event.date}</p>
-    //     <p class="card-text">Описание:{event.description}</p>
-    //     <p class="card-text">Количество участников:{event.members_count}</p>
-    //     <p class="card-text">Стоимость:{event.cost}</p>
-    //   </div>
-    //   <button>Изменить</button>
-    //   <button>Удалить</button>
-    // </div>
 
     <div>
       <Card sx={{ margin: 5 }}>
@@ -62,20 +65,10 @@ function EventCardCabinet({ event }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-
-          {/* {participants[0] ?
-            <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
-            Выйти
-          </Button>
-            :
-            <Button onClick={addParticipant} variant="contained" startIcon={<GroupAdd />} >
-              Участвовать
-            </Button>
-          } */}
           <Button variant="contained" startIcon={<Edit />} >
             Изменить
           </Button>
-          <Button variant="contained" startIcon={<Delete />} >
+          <Button onClick={ deleteEvent } variant="contained" startIcon={<Delete />} >
             Удалить
           </Button>
           <IconButton aria-label="add to favorites">

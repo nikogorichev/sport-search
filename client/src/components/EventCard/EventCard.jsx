@@ -15,20 +15,23 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant'
+import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
 
 function EventCard({ event, participants, }) {
 
   const { user } = useSelector(state => state.user);
   const { allParticipants } = useSelector((state) => state.events);
+  console.log(allParticipants);
 
   const dispatch = useDispatch();
   
-  
+  // Фильтр по количеству игроков к каждому мероприятию
   const playersCounter = allParticipants.filter(el => event.id === el.EventId )
   console.log('playersCounter', playersCounter)
 
-  const [counter, setCounter] = useState(playersCounter.length);
-  
+  // const [counter, setCounter] = useState(playersCounter.length);
+
+  //добавить участие
   const addParticipant = () => { 
     const participant = {
       user_id: user.id,
@@ -37,6 +40,7 @@ function EventCard({ event, participants, }) {
     dispatch(fetchAddParticipant(participant))
   }
 
+//удалить участие
   const deleteParticipant = () => {
     const participant = {
       user_id: user.id,
@@ -44,7 +48,15 @@ function EventCard({ event, participants, }) {
     }
     dispatch(fetchDeleteParticipant(participant))
   }
-  
+
+  //удалить событие
+  const deleteEvent = () => {
+    const delEvent = {
+      user_id: user.id,
+      event_id: event.id,
+    }
+    dispatch(fetchDeleteEvent(delEvent))
+  }
   
   return (
 
@@ -77,12 +89,12 @@ function EventCard({ event, participants, }) {
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{ counter }/{event.members_count}
+            Количество участников:{ playersCounter.length }/{event.members_count}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
           {user.id === event.user_id ? 
-            <Button variant="contained" startIcon={<Delete />} >
+            <Button onClick={ deleteEvent } variant="contained" startIcon={<Delete />} >
               Удалить
             </Button>
             :

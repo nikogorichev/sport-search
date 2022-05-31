@@ -39,12 +39,6 @@ function Events({sport}) {
     <>
         
     <CardBox>      
-        {/* <div>
-          <button onClick={() => setModalActive(true)}>
-            Добавить мероприятие
-          </button>
-          <OpenModal active={modalActive} setActive={setModalActive} />
-        </div> */}
         <Tooltip
           title="Add"
           sx={{
