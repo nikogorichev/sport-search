@@ -16,8 +16,9 @@ import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delet
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
 
-function EventsPlayCard(event) {
+function EventsPlayCard({event, creator}) {
 
+  console.log(event);
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
@@ -27,7 +28,7 @@ function EventsPlayCard(event) {
   const exit = () => { 
       const participant = {
         user_id: user.id,
-        event_id: event.event.id,
+        event_id: event.id,
       }
     dispatch(fetchDeleteParticipant(participant))
     setBlock(!block)
@@ -41,18 +42,27 @@ console.log('sep event', block)
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
-            </Avatar>
-          }
+         avatar={
+          creator[0].photo ? (
+            <>
+              <Avatar src={creator[0].photo}></Avatar>
+            </>
+          ) : (
+            <>
+              <Avatar
+                src="/static/images/avatar/1.jpg"
+                sx={{ bgcolor: "red" }}
+              >{creator[0].name.slice(0,1).toUpperCase()}</Avatar>
+            </>
+          )
+        }
           action={
             <IconButton aria-label="settings">
               <MoreVert />
             </IconButton>
           }
-          title={event.event.title}
-          subheader={event.event.date}
+          title={creator[0].name}
+          subheader={event.date}
         />
         <CardMedia
           component="img"
@@ -61,28 +71,33 @@ console.log('sep event', block)
           alt="sport"
         />
         <CardContent>
+          <Typography variant="h5">
+            {event.title}
+          </Typography>
+        </CardContent>
+        <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Описание: {event.event.description}
+            Описание: {event.description}
           </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Вид спорта: {sports.filter((el) => el.id === event.event.sport_id)[0].title}
+                Вид спорта: {sports.filter((el) => el.id === event.sport_id)[0].title}
               </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Место проведения: {places.filter((el) => el.id === event.event.place_id)[0].title}
+                Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
               </Typography>
             </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{event.event.members_count}
+            Количество участников:{event.members_count}
           </Typography>
             </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                Стоимость: {event.event.cost}
+                Стоимость: {event.cost}
               </Typography>
             </CardContent>
         <CardActions disableSpacing>

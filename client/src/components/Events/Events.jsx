@@ -6,39 +6,39 @@ import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
 import EventCard from "../EventCard/EventCard";
 import OpenModal from "../OpenModal/OpenModal";
 
-function Events({sport}) {
+function Events({ sport }) {
   const { events } = useSelector((state) => state.events);
   const { participants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
-  const filterSport = sports.filter(el => el.title === sport)
-  
-  let sportEvent=''
+  const { allUsers } = useSelector((state) => state.events);
+
+  const filterSport = sports.filter((el) => el.title === sport);
+
+  let sportEvent = "";
   if (!sport) {
-    sportEvent = events
+    sportEvent = events;
   } else {
-    sportEvent = events.filter(el => el.sport_id === filterSport[0].id)
+    sportEvent = events.filter((el) => el.sport_id === filterSport[0].id);
   }
 
   const CardBox = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   }));
 
   const EventBox = styled(Box)(({ theme }) => ({
     maxWidth: 500,
     display: "flex",
     justifyContent: "space-around",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   }));
 
   const [modalActive, setModalActive] = useState(false);
-  
+
   return (
-   
     <>
-        
-    <CardBox>      
+      <CardBox>
         <Tooltip
           title="Add"
           sx={{
@@ -52,13 +52,22 @@ function Events({sport}) {
             <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
-      
 
-      <EventBox>
-        {sportEvent?.map((el) => (
-          <EventCard key={el.id} event={el} participants={participants.filter((e) => e.EventId === el.id)} />
-        ))}
-      </EventBox>
+        <EventBox>
+          {sportEvent?.map((el) => {
+            const filteredUser = allUsers.filter(
+              (user) => user.id === el.user_id
+            );
+            return (
+              <EventCard
+                key={el.id}
+                event={el}
+                creator = {filteredUser}
+                participants={participants.filter((e) => e.EventId === el.id)}
+              />
+            );
+          })}
+        </EventBox>
       </CardBox>
     </>
   );

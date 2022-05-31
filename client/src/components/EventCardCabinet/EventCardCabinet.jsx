@@ -41,9 +41,18 @@ function EventCardCabinet({ event }) {
       <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
-            </Avatar>
+            user.photo ? (
+              <>
+                <Avatar src={user.photo}></Avatar>
+              </>
+            ) : (
+              <>
+                <Avatar
+                  src="/static/images/avatar/1.jpg"
+                  sx={{ bgcolor: "red" }}
+                >{user.name.slice(0,1).toUpperCase()}</Avatar>
+              </>
+            )
           }
           action={
             <IconButton aria-label="settings">

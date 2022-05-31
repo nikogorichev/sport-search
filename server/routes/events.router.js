@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
   const events = await Event.findAll();
   const sports = await Sport.findAll();
   const places = await Place.findAll();
+  const allUsers = await User.findAll();
   //все события, в которых участвует юзер
   const participants = await Participant.findAll({ where: { user_id: user.id } });
   //все связи юзер-событие, в котором он участвует
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
   const userEvents = await Event.findAll({ where: { id: arr }, raw: true });
 
   res.json({
-    events, sports, places, participants, allParticipants, userEvents,
+    events, sports, places, participants, allParticipants, userEvents, allUsers,
   });
 });
 
