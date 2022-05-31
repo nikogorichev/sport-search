@@ -1,4 +1,4 @@
-import { ADD_PLACES, NEW_PLACES } from "../actionTypes/placesAT"
+import { ADD_PLACES, NEW_PLACES, GET_PLACES } from "../actionTypes/placesAT"
 
 const initialState = { places: [] }
 
@@ -7,10 +7,12 @@ export const placeReducer = (state = initialState, action) => {
     case ADD_PLACES:
       return { ...state, places: action.payload }
 
-      case NEW_PLACES: 
-      return {...state, places: [...state.places, action.payload]}
+    case NEW_PLACES:
+      return { ...state, places: [...state.places, action.payload] }
+
+    case GET_PLACES:
+      return { ...state, places: action.payload }
     default:
       return state
   }
-
 }

@@ -7,7 +7,6 @@ import Places from '../Places/Places';
 import { useState } from 'react';
 import Registration from '../Registration/Registration';
 import Login from '../Login/Login';
-import PlacesMap from '../PlacesMap/PlacesMap'
 
 
 // Компоненты
@@ -20,6 +19,7 @@ import { Box, createTheme, Stack } from '@mui/material';
 
 import Events from '../Events/Events';
 import FilterEvent from '../FilterEvent/FilterEvent';
+import PlacesMap from '../PlacesMap/PlacesMap';
 
 function App() {
   const dispatch = useDispatch()

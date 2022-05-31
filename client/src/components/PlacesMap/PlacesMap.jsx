@@ -1,86 +1,103 @@
-import React from "react";
-import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps";
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from 'react';
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Typography,
+  Box,
+  Container
+} from '@mui/material';
 
-import { points, gradientColors } from "./Data";
+import { useSelector, useDispatch } from 'react-redux';
 
-const mapState = {
-  center: [55.751574, 80.573856],
-  zoom: 3,
-  behaviors: ["default", "scrollZoom"]
-};
+import { addPlacesFetch, getPlacesFetch } from '../../redux/thunk/placesAsync';
 
-const getPointData = index => {
-  return {
-    balloonContentBody: "placemark <strong>balloon " + index + "</strong>",
-    clusterCaption: "placemark <strong>" + index + "</strong>"
+function PlacesMap() {
+  const { places } = useSelector((state) => state.places);
+ 
+  
+
+  const [state, setState] = useState(true);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addPlacesFetch());
+  }, [dispatch]);
+
+  let myMap;
+  const initMap = () => {
+    window.ymaps.ready(() => {
+      if (places.length) {
+        myMap = new window.ymaps.Map('map', {
+          center: [59.97, 30.35],
+          zoom: 10,
+          controls: [
+            'zoomControl',
+            'searchControl',
+            'fullscreenControl',
+            'routeButtonControl',
+          ],
+        });
+        
+        
+          places?.map((el) => {
+            ymaps
+              .geocode(el.address, {
+                // boundedBy: myMap.getBounds(),
+              })
+              
+              .then(function (res) {
+                let firstGeoObj = res.geoObjects.get(0);
+              
+                let coords = firstGeoObj.geometry.getCoordinates();
+                const myPlacemark = new ymaps.Placemark(
+                  coords,
+                  {
+                    hintContent: el.title,
+                    balloonContentHeader: `${el.title}`,
+                    balloonContentBody: `${el.description}`,
+                    // balloonContentBody: `<img src="${el.description}" alt="event_pic" height="170">`,
+                    balloonContentFooter: `<br>${el.address
+                      }<br><a href="/event/${el.id}">Посмотреть подробнее</a>`,
+                  },
+                  {
+                    iconLayout: 'default#image',
+                    iconImageSize: [45, 45],
+                  }
+                );
+
+                myMap?.geoObjects.add(myPlacemark);
+              });
+          });
+        
+      }
+    });
   };
-};
 
-const getPointOptions = () => {
-  return {
-    preset: "islands#violetIcon",
-    iconColor: getRandomColor()
-  };
-};
+  useEffect(() => {
+    initMap();
 
-function getRandomColor() {
-  return gradientColors[Math.floor(Math.random() * gradientColors.length)];
-}
-
-class PlacesMap extends React.Component {
-  constructor(props) {
-    super(props);
-    this.changeSomething = this.changeSomething.bind(this);
-    this.state = {
-      some: 0
+    return () => {
+      myMap?.destroy();
     };
-  }
-
-  changeSomething = () => {
-    this.setState({ some: 1 });
-  };
-
-  render() {
-    return (
-      <div>
-        <YMaps>
-          <Map
-            state={mapState}
-            width="750px"
-            height="600px"
-            modules={["package.full"]}
-          >
-            <Clusterer
-              options={{
-                clusterIconLayout: "default#pieChart",
-                clusterIconPieChartRadius: 25,
-                clusterIconPieChartCoreRadius: 10,
-                clusterIconPieChartStrokeWidth: 1,
-                clusterDisableClickZoom: true,
-                clusterHideIconOnBalloonOpen: false,
-                geoObjectHideIconOnBalloonOpen: false
-              }}
-            >
-              {points.map((points, idx) => (
-                <Placemark
-                  key={idx}
-                  geometry={points}
-                  properties={getPointData(idx)}
-                  options={getPointOptions()}
-                />
-              ))}
-            </Clusterer>
-          </Map>
-        </YMaps>
-        <button
-          onClick={this.changeSomething}
-          style={{ marginTop: 40, width: 200, height: 60 }}
-        >
-          Click to rerender
-        </button>
-      </div>
-    );
-  }
+  }, [myMap, state, places]);
+  return (
+    <Container>
+      <Typography variant="h4" sx={{ py: 2 }}>
+        Карта мероприятий:
+      </Typography>
+      <FormGroup sx={{ mb: 2 }}>
+        <FormControlLabel
+          control={<Checkbox />}
+          label="Показать площадки"
+          onChange={() => setState(!state)}
+        />
+      </FormGroup>
+      <Box id="map" sx={{ height: 600, mb: 5 }}></Box>
+    </Container>
+  );
 }
 
 export default PlacesMap;
