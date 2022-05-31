@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getFetchUsersSports } from '../../redux/thunk/asyncUser';
+import { getFetchUsersSports, postFetchUsersSports } from '../../redux/thunk/asyncUser';
 import { fetchInitEvents } from '../../redux/thunk/asyncEvents';
 import EventCardCabinet from '../EventCardCabinet/EventCardCabinet';
 import SportButton from './SportButton';
@@ -28,7 +28,12 @@ function Profile() {
     dispatch(fetchInitEvents())
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(postFetchUsersSports())
+  }, [dispatch]);
+
   const userEvents = events.filter((el) => el.user_id === user.id)
+  
 
   return (
     <>
@@ -49,7 +54,7 @@ function Profile() {
               {!edit && <><p>Имя: {user.name}</p>
                 <p>Email: {user.email}</p>
                 <p>О себе: {user.description}</p>
-                <p>Виды спорта: {usersSports.map(usersSports => <SportButton key={usersSports.id} usersSports={usersSports} />)}  </p>
+                <p>Виды спорта:<div className='btn-sport'> {usersSports.map(usersSports => <SportButton key={usersSports.id} usersSports={usersSports} />)}  </div> </p>
                 <div className='btn-edit'>
                 <Button onClick={() => setEdit((prevEdit) => !prevEdit)} value={edit} >Изменить</Button>
                 </div>

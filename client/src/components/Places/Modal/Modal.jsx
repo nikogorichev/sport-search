@@ -105,6 +105,7 @@ const Modal = ({ isVisible = true, title, content, footer, onClose }) => {
             onChange={(e) => handleImageUpload(e, setImageUrl3)}
           />
           <button type="submit">Добавить площадку</button>
+
         </form>
       </div>
     </div>

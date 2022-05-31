@@ -22,8 +22,6 @@ function FilterEvent() {
       options={sports}
       autoHighlight
       getOptionLabel={(option) => option.title}
-      
-      
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
           

@@ -1,10 +1,20 @@
-import { authUsersAC, logoutUserAC, fetchUserUpdateAC } from "../actionCreators/userAC"
-import { initUsersSportsAC } from "../actionCreators/usersSportsAC"
+import { authUsersAC, logoutUserAC, fetchUserUpdateAC, addUserPhotoAC } from "../actionCreators/userAC"
+import { initUsersSportsAC, addUserSportsAC } from "../actionCreators/usersSportsAC"
+
 export const getFetchUsersSports = () => {
   return (dispatch) => {
     fetch('/profile')
       .then(res => res.json())
       .then(data => dispatch(initUsersSportsAC(data)))
+      .catch(err => console.log(err.message))
+  }
+}
+
+export const postFetchUsersSports = () => {
+  return (dispatch) => {
+    fetch('/profile')
+      .then(res => res.json())
+      .then(data => dispatch(addUserSportsAC(data)))
       .catch(err => console.log(err.message))
   }
 }
@@ -53,19 +63,35 @@ export const logoutFetch = () => {
   }
 }
 
-export const putFetchUser =(data)=>{
-  return (dispatch)=>{
-    fetch("/profile",{
-      headers: {"content-type": "application/json"},
+export const putFetchUser = (data) => {
+  return (dispatch) => {
+    fetch("/profile", {
+      headers: { "content-type": "application/json" },
       method: 'PUT',
       body: JSON.stringify(data)
     })
-    .then(res => res.json())
-    .then(data => dispatch(fetchUserUpdateAC(data)))
-    
+      .then(res => res.json())
+      .then(data => dispatch(fetchUserUpdateAC(data)))
+
+  }
+}
+// загрузка фото
+export const postFetchUserPhoto = (data) => {
+  return (dispatch) => {
+    fetch("/profile", {
+      headers: { "content-type": "application/json" },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => dispatch(addUserPhotoAC(data)))
   }
 }
 
+
+
+
+ // удаление спорта у пользователя в профиле
 // export const deleteSportFetchUser =(id)=>{
 //   return (dispatch)=>{
 //     fetch(`/profile/${id}` ,{
