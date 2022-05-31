@@ -10,11 +10,17 @@ router.get('/', async (req, res) => {
   const sports = await Sport.findAll();
   const places = await Place.findAll();
   const participants = await Participant.findAll({ where: { user_id: user.id } });
-  // const userEvents = await User.findAll({ where: { id: user.id }, include: [{ model: Participant }]});
-  // const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
+  const allParticipants = await Participant.findAll({ raw: true });
+  const participant = await Participant.findAll({ where: { user_id: user.id }, raw: true });
+  // Достаем и создаем массив нужных айди евентов
+  const arr = [];
+  const partArr = participant.map((el) => arr.push(el.EventId));
+  const userEvents = await Event.findAll({ where: { id: arr }, raw: true });
+  console.log('get na events', participant, arr, userEvents);
+
   // const userEvents = await Event.findAll({where: {id: participant[0].EventId}})
   res.json({
-    events, sports, places, participants,
+    events, sports, places, participants, allParticipants, userEvents,
   });
 });
 

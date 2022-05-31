@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Card,
@@ -13,22 +13,29 @@ import {
 
 } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
 
-function EventCardCabinet({ event }) {
+function EventsPlayCard(event) {
+
+  const { user } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const [block, setBlock] = useState(true);
+
+  const exit = () => { 
+      const participant = {
+        user_id: user.id,
+        event_id: event.event.id,
+      }
+    dispatch(fetchDeleteParticipant(participant))
+    setBlock(!block)
+  }
+
+console.log('sep event', block)
 
   return (
-    // <div class="card" style={{ width: "18rem" }}>
-    //   <div class="card-body">
-    //     <h5 class="card-title">{event.title}</h5>
-    //     <p class="card-text">Дата мероприятия:{event.date}</p>
-    //     <p class="card-text">Описание:{event.description}</p>
-    //     <p class="card-text">Количество участников:{event.members_count}</p>
-    //     <p class="card-text">Стоимость:{event.cost}</p>
-    //   </div>
-    //   <button>Изменить</button>
-    //   <button>Удалить</button>
-    // </div>
-
+  <>
+    { block ? 
     <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
@@ -42,8 +49,8 @@ function EventCardCabinet({ event }) {
               <MoreVert />
             </IconButton>
           }
-          title={event.title}
-          subheader={event.date}
+          title={event.event.title}
+          subheader={event.event.date}
         />
         <CardMedia
           component="img"
@@ -53,30 +60,17 @@ function EventCardCabinet({ event }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.description}
+            {event.event.description}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{event.members_count}
+            Количество участников:{event.event.members_count}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-
-          {/* {participants[0] ?
-            <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
+          <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти
-          </Button>
-            :
-            <Button onClick={addParticipant} variant="contained" startIcon={<GroupAdd />} >
-              Участвовать
-            </Button>
-          } */}
-          <Button variant="contained" startIcon={<Edit />} >
-            Изменить
-          </Button>
-          <Button variant="contained" startIcon={<Delete />} >
-            Удалить
           </Button>
           <IconButton aria-label="add to favorites">
             <Checkbox
@@ -89,8 +83,12 @@ function EventCardCabinet({ event }) {
           </IconButton>
         </CardActions>
       </Card>
-    </div>
+        </div>
+        :
+        <h6>Вы не записывались на мероприятия.</h6>
+      }
+    </>
   );
 }
 
-export default EventCardCabinet;
+export default EventsPlayCard;

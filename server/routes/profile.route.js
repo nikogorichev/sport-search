@@ -10,6 +10,7 @@ router.route('/')
       where: { id: user.id },
       include: [{ model: Sport }],
     });
+    // console.log(allUserSports[0].Sports)
     res.status(200).json(allUserSports);
   })
 
