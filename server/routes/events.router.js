@@ -45,4 +45,18 @@ router.delete('/', async (req, res) => {
   res.json({ user_id, event_id });
 });
 
+router.put('/', async (req, res) => {
+  const {
+    title, date, description, members_count, user_id, sport_id, place_id, cost, event,
+  } = req.body;
+  const sportId = await Sport.findOne({ where: { title: sport_id } });
+  const placeId = await Place.findOne({ where: { title: place_id } });
+
+  const newEvent = await Event.update({
+    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id,
+  }, { where: { id: event } });
+  const updateEvent = await Event.findOne({ where: { id: event } });
+  res.json(updateEvent);
+});
+
 module.exports = router;

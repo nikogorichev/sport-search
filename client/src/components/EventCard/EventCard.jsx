@@ -12,16 +12,18 @@ import {
   Button,
  
 } from "@mui/material";
-import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete, Edit } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant'
 import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
+import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
 
 function EventCard({ event, participants, }) {
 
   const { user } = useSelector(state => state.user);
   const { allParticipants } = useSelector((state) => state.events);
   console.log(allParticipants);
+  const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
   
@@ -94,10 +96,16 @@ function EventCard({ event, participants, }) {
         </CardContent>
         <CardActions disableSpacing>
           {user.id === event.user_id ? 
+            <>
             <Button onClick={ deleteEvent } variant="contained" startIcon={<Delete />} >
               Удалить
             </Button>
-            :
+            <Button onClick={() => setModalActive(true)} variant="contained" startIcon={<Edit />} >
+            Изменить
+          </Button>
+          <OpenModalEdit active={modalActive} setActive={setModalActive} event={ event }/>
+            </>
+              :
             participants[0] ?
             <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
             Выйти

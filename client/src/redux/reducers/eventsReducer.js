@@ -1,4 +1,4 @@
-import { INIT_EVENTS, ADD_EVENTS, DELETE_EVENT } from
+import { INIT_EVENTS, ADD_EVENTS, DELETE_EVENT, EDIT_EVENT, } from
   '../actionTypes/eventsAT'
 import { ADD_PARTICIPANT, DELETE_PARTICIPANT } from '../actionTypes/participantAT';
 
@@ -43,16 +43,25 @@ export const eventsReducer = (state = initialState, action) => {
       }
 
 
-    // case UPDATE_STUDENT:
-    //   return {
-    //     ...state, students: state.students.map(el => {
-    //       if (el.id === action.payload.id) {
-    //         return { ...el, name: action.payload.name, phase: action.payload.phase }
-    //       } else {
-    //         return el
-    //       }
-    //     })
-    //   }
+    case EDIT_EVENT:
+      return {
+        ...state, events: state.events.map(el => {
+          if (el.id === action.payload.id) {
+            return {
+              ...el, title: action.payload.title,
+              date: action.payload.date,
+              description: action.payload.description,
+              members_count: action.payload.members_count,
+              cost: action.payload.cost,
+              user_id: action.payload.user_id,
+              sport_id: action.payload.sport_id,
+              place_id: action.payload.place_id,
+            }
+          } else {
+            return el
+          }
+        })
+      }
 
     default:
       return state
