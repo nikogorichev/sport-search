@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
   const arr = [];
   const partArr = participant.map((el) => arr.push(el.EventId));
   const userEvents = await Event.findAll({ where: { id: arr }, raw: true });
-  console.log('get na events', participant, arr, userEvents);
 
   // const userEvents = await Event.findAll({where: {id: participant[0].EventId}})
   res.json({

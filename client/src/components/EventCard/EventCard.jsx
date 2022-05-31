@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './EventCard.css'
 import {
   Avatar,
   Card,
@@ -25,7 +26,7 @@ function EventCard({ event, participants, }) {
   
   
   const playersCounter = allParticipants.filter(el => event.id === el.EventId )
-  console.log('playersCounter', playersCounter)
+  // console.log('playersCounter', playersCounter)
 
   const [counter, setCounter] = useState(playersCounter.length);
   

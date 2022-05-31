@@ -26,7 +26,7 @@ function UpdateUser(props) {
       description: event.target.description.value,
       // sport: event.target.sport
     }
-    console.log(data)
+    // console.log(data)
     dispatch(putFetchUser(data))
   }
 

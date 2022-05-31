@@ -19,7 +19,6 @@ const PlaceItem = ({place, images}) => {
 
   const handleChange = (cur, prev) => {
     setIndex(cur);
-    console.log(cur, prev);
   };
   
   return (

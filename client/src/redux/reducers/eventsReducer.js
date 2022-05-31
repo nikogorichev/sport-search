@@ -15,7 +15,7 @@ export const eventsReducer = (state = initialState, action) => {
       return { ...state, events: [...state.events, action.payload] }
     
     case ADD_PARTICIPANT:
-      console.log('fact1', state.participants)
+      // console.log('fact1', state.participants)
       
       return { ...state, participants: [...state.participants, action.payload], allParticipants: [...state.allParticipants, action.payload] }
       

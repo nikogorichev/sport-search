@@ -11,7 +11,6 @@ export const fetchInitEvents = () => {
     fetch("/events")
       .then((res) => res.json())
       .then((data) => dispatch(initEventsAC(data)));
-      // .then((data) => console.log('БЭК', data))
 
   }
 }
