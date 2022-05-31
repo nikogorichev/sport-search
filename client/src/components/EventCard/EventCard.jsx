@@ -22,6 +22,8 @@ function EventCard({ event, participants, }) {
 
   const { user } = useSelector(state => state.user);
   const { allParticipants } = useSelector((state) => state.events);
+  const { sports } = useSelector((state) => state.events);
+  const { places } = useSelector((state) => state.events);
   console.log(allParticipants);
   const [modalActive, setModalActive] = useState(false);
 
@@ -86,12 +88,32 @@ function EventCard({ event, participants, }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.description}
+            Описание: {event.description}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Количество участников:{ playersCounter.length }/{event.members_count}
+            Вид спорта: {sports.filter((el) => el.id === event.sport_id)[0].title}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+             Количество участников: 
+            {playersCounter.length == event.members_count ?
+              <p>участники набраны</p>
+              :
+              ` ${playersCounter.length} / ${event.members_count}`
+            }
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Стоимость: {event.cost}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

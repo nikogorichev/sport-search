@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Events', {
@@ -14,6 +16,9 @@ module.exports = {
       date: {
         allowNull: false,
         type: Sequelize.DATE,
+        get() {
+          return moment(this.getDataValue('date')).format('DD/MM/YYYY h:mm');
+        },
       },
       description: {
         type: Sequelize.TEXT,

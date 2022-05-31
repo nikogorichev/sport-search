@@ -19,6 +19,8 @@ import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
 function EventsPlayCard(event) {
 
   const { user } = useSelector(state => state.user);
+  const { sports } = useSelector((state) => state.events);
+  const { places } = useSelector((state) => state.events);
   const dispatch = useDispatch();
   const [block, setBlock] = useState(true);
 
@@ -60,14 +62,29 @@ console.log('sep event', block)
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.event.description}
+            Описание: {event.event.description}
           </Typography>
-        </CardContent>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Вид спорта: {sports.filter((el) => el.id === event.event.sport_id)[0].title}
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Место проведения: {places.filter((el) => el.id === event.event.place_id)[0].title}
+              </Typography>
+            </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             Количество участников:{event.event.members_count}
           </Typography>
-        </CardContent>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Стоимость: {event.event.cost}
+              </Typography>
+            </CardContent>
         <CardActions disableSpacing>
           <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти
