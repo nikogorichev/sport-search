@@ -15,10 +15,14 @@ import {
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
+import { useNavigate } from 'react-router-dom';
 
 function EventsPlayCard(event) {
 
   const { user } = useSelector(state => state.user);
+  const { sports } = useSelector((state) => state.events);
+  const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
   const [block, setBlock] = useState(true);
 
@@ -34,7 +38,7 @@ function EventsPlayCard(event) {
   return (
   <>
     { block ? 
-    <div>
+        <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
@@ -49,7 +53,8 @@ function EventsPlayCard(event) {
           }
           title={event.event.title}
           subheader={event.event.date}
-        />
+            />
+      <div onClick={() => navigation(`/events/${event.event.id}`)} >
         <CardMedia
           component="img"
           height="20%"
@@ -58,14 +63,30 @@ function EventsPlayCard(event) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.event.description}
+            Описание: {event.event.description}
           </Typography>
-        </CardContent>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Вид спорта: {sports.filter((el) => el.id === event.event.sport_id)[0].title}
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Место проведения: {places.filter((el) => el.id === event.event.place_id)[0].title}
+              </Typography>
+            </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             Количество участников:{event.event.members_count}
           </Typography>
-        </CardContent>
+            </CardContent>
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                Стоимость: {event.event.cost}
+              </Typography>
+              </CardContent>
+          </div>
         <CardActions disableSpacing>
           <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти

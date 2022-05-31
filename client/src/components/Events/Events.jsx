@@ -36,16 +36,8 @@ function Events({ sport }) {
   const [modalActive, setModalActive] = useState(false);
 
   return (
-
     <>
-
       <CardBox>
-        {/* <div>
-          <button onClick={() => setModalActive(true)}>
-            Добавить мероприятие
-          </button>
-          <OpenModal active={modalActive} setActive={setModalActive} />
-        </div> */}
         <Tooltip
           title="Add"
           sx={{
@@ -59,7 +51,6 @@ function Events({ sport }) {
             <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
-
 
         <EventBox>
           {sportEvent?.map((el) => (

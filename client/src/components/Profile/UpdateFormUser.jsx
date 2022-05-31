@@ -1,21 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { putFetchUser, postFetchUserPhoto, postFetchUsersSports } from '../../redux/thunk/asyncUser';
-import SportButtonCross from './SportButtonCross';
-import Button from '@mui/material/Button';
-import { Autocomplete, Box, TextField } from "@mui/material"
-import './Profile.css'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  putFetchUser,
+  postFetchUserPhoto,
+  postFetchUsersSports,
+} from "../../redux/thunk/asyncUser";
+import SportButtonCross from "./SportButtonCross";
+import Button from "@mui/material/Button";
+import {
+  Autocomplete,
+  Avatar,
+  Box,
+  CardContent,
+  TextField,
+  Typography,
+} from "@mui/material";
+import "./Profile.css";
 
 function UpdateUser(props) {
-  const { user } = useSelector(state => state.user)
-  const { usersSports } = useSelector(state => state.usersSports);
-  const { sports } = useSelector(state => state.events);
-  const [sport, setSport] = useState('')
-  const dispatch = useDispatch()
+  const [imageURL, setImageUrl] = useState(null);
+  const { user } = useSelector((state) => state.user);
+  const { usersSports } = useSelector((state) => state.usersSports);
+  const { sports } = useSelector((state) => state.events);
+  console.log(sports);
+  const [sport, setSport] = useState("");
+  const dispatch = useDispatch();
+
+  const handleImageUpload = (event, setImg) => {
+    const imageData = new FormData();
+    imageData.set("key", "ca5482cb4e564b594544191602467167");
+    imageData.append("image", event.target.files[0]);
+
+    axios
+      .post("https://api.imgbb.com/1/upload", imageData)
+      .then(function (response) {
+        setImg(response.data.data.display_url);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   // изменение имени, емайла и описания в профиле
   useEffect(() => {
-    dispatch(putFetchUser())
+    dispatch(putFetchUser());
   }, [dispatch]);
 
   const updateUser = (event) => {
@@ -24,25 +53,22 @@ function UpdateUser(props) {
       name: event.target.name.value,
       email: event.target.email.value,
       description: event.target.description.value,
+      photo: imageURL,
       // sport: event.target.sport
+<<<<<<< HEAD
     }
     // console.log(data)
     dispatch(putFetchUser(data))
   }
+=======
+    };
+    console.log(data);
+    dispatch(putFetchUser(data));
+  };
+>>>>>>> 6a9d6c458de262dfb9c7caaaf3b9c55a0b309f81
 
-  // добавление фотографии в профиле
-  // useEffect(() => {
-  //   dispatch(postFetchUserPhoto())
-  // }, [dispatch]);
 
-  // const addUserPhoto = (event) => {
-  //   const data = {
-  //     photo: event.target.photo.value,
-  //   }
-  //   dispatch(postFetchUserPhoto(data))
-  // }
-
-  // добавить спорт 
+  // добавить спорт
   // const [name, setName] = useState('')
 
   // const addUserSport = (e) => {
@@ -54,53 +80,166 @@ function UpdateUser(props) {
   // }
 
   return (
-    <div>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <form action="/profile" onSubmit={updateUser}>
-        {/* {user.photo.length > 0 && <>
-          <img src={user.photo} alt="photo" /></>} */}
-        <br />
-        <div>Добавить фотографию:
-          <br />
-          <br />
-          <input id="photo" name="myFile" type="file" />
-        </div>
-        <br />
-        <p>Имя: <input id="name" defaultValue={user.name} /></p>
-        <p>Email: <input id="email" defaultValue={user.email} /></p>
-        <p>О себе: <input id="description" defaultValue={user.description} /></p>
-        <p>Виды спорта: {usersSports.map(usersSports => <SportButtonCross sport={sport} key={usersSports.id} usersSports={usersSports} />)}  </p>
-
-        <Autocomplete onChange={(event) => setSport(event.target.innerText)}
-          id="country-select-demo"
-          sx={{ width: 300 }}
-          options={sports}
-          autoHighlight
-          getOptionLabel={(option) => option.title}
-          renderOption={(props, option) => (
-            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-
-              {option.title}
-            </Box>
-          )}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Choose a sport"
-              inputProps={{
-                ...params.inputProps,
-                autoComplete: 'new-password', // disable autocomplete and autofill
-              }}
+        <div class="personal-image">
+          <label class="label">
+            <input
+              id="img"
+              type="file"
+              onChange={(e) => handleImageUpload(e, setImageUrl)}
             />
-          )}
-        />
-
-        <div className='btn-edit'>
-          <Button type='submit'>Сохранить</Button>
+            <figure class="personal-figure">
+              {!user.photo ? (
+                <>
+                  <Avatar
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              ) : imageURL ? (
+                <>
+                  <Avatar
+                    src={imageURL}
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              ) : (
+                <>
+                  <Avatar
+                    src={user.photo}
+                    sx={{ width: 200, height: 200 }}
+                  ></Avatar>
+                </>
+              )}
+              <figcaption class="personal-figcaption">
+                <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" />
+              </figcaption>
+            </figure>
+          </label>
         </div>
+
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ m: 1, p: 1 }}
+          >
+            Имя:{" "}
+            <TextField
+              id="name"
+              label="Имя"
+              variant="outlined"
+              defaultValue={user.name}
+              size="small"
+            />
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ m: 1, p: 1 }}
+          >
+            Email:{" "}
+            <TextField
+              id="email"
+              label="Email"
+              variant="outlined"
+              defaultValue={user.email}
+              size="small"
+            />
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ m: 1, p: 1 }}
+          >
+            О себе:{" "}
+            <TextField
+              id="description"
+              label="Description"
+              variant="outlined"
+              defaultValue={user.description}
+              size="small"
+            />
+          </Typography>
+          {/* <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ m: 1, p: 1 }}
+          >
+            Виды спорта:
+            {usersSports.map((usersSports) => (
+              <SportButtonCross
+                sport={sport}
+                key={usersSports.id}
+                usersSports={usersSports}
+              />
+            ))}
+          </Typography>
+          <Autocomplete
+            onChange={(event) => setSport(event.target.innerText)}
+            id="country-select-demo"
+            sx={{ width: 300 }}
+            options={sports}
+            autoHighlight
+            getOptionLabel={(option) => option.title}
+            renderOption={(props, option) => (
+              <Box
+                component="li"
+                sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                {...props}
+              >
+                {option.title}
+              </Box>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Choose a sport"
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: "new-password", // disable autocomplete and autofill
+                }}
+              />
+            )}
+          /> */}
+          <Button type="submit">Сохранить</Button>
+        </CardContent>
       </form>
-    </div>
+    </Box>
+    // <br />
+    // <div>
+    //   Добавить фотографию:
+    //   <br />
+    //   <br />
+    //   <input id="photo" name="myFile" type="file" />
+    // </div>
+    // <br />
+    // <p>
+    //   Имя: <input id="name" defaultValue={user.name} />
+    // </p>
+    // <p>
+    //   Email: <input id="email" defaultValue={user.email} />
+    // </p>
+    // <p>
+    //   О себе: <input id="description" defaultValue={user.description} />
+    // </p>
+    // <p>
+    //   Виды спорта:{" "}
+    //   {usersSports.map((usersSports) => (
+    //     <SportButtonCross
+    //       sport={sport}
+    //       key={usersSports.id}
+    //       usersSports={usersSports}
+    //     />
+    //   ))}{" "}
+    // </p>
+
+    // <div className="btn-edit">
+
+    // </div>
   );
 }
-
 
 export default UpdateUser;

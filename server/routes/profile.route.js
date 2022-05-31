@@ -14,11 +14,11 @@ router.route('/')
   .put(async (req, res) => {
     const { user } = req.session;
     const {
-      name, email, description,
+      name, email, description, photo,
     } = req.body;
     try {
       const updatedUser = await User.update({
-        name, email, description,
+        name, email, description, photo,
       }, { where: { id: user.id }, returning: true, raw: true });
       const [, [newSession]] = updatedUser;
       req.session.user = newSession;

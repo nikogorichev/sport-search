@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Card,
@@ -13,21 +13,31 @@ import {
 
 } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Edit, Delete } from "@mui/icons-material";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDeleteEvent } from '../../redux/thunk/asyncEvents';
+import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
+import { useNavigate } from 'react-router-dom';
 
 function EventCardCabinet({ event }) {
 
+  const { user } = useSelector(state => state.user);
+  const { sports } = useSelector((state) => state.events);
+  const { places } = useSelector((state) => state.events);
+  const navigation = useNavigate();
+  const dispatch = useDispatch();
+
+  const [modalActive, setModalActive] = useState(false);
+
+  //удалить событие
+  const deleteEvent = () => {
+    const delEvent = {
+      user_id: user.id,
+      event_id: event.id,
+    }
+    dispatch(fetchDeleteEvent(delEvent))
+  }
+
   return (
-    // <div class="card" style={{ width: "18rem" }}>
-    //   <div class="card-body">
-    //     <h5 class="card-title">{event.title}</h5>
-    //     <p class="card-text">Дата мероприятия:{event.date}</p>
-    //     <p class="card-text">Описание:{event.description}</p>
-    //     <p class="card-text">Количество участников:{event.members_count}</p>
-    //     <p class="card-text">Стоимость:{event.cost}</p>
-    //   </div>
-    //   <button>Изменить</button>
-    //   <button>Удалить</button>
-    // </div>
 
     <div>
       <Card sx={{ margin: 5 }}>
@@ -45,6 +55,7 @@ function EventCardCabinet({ event }) {
           title={event.title}
           subheader={event.date}
         />
+        <div onClick={() => navigation(`/events/${event.id}`)} >
         <CardMedia
           component="img"
           height="20%"
@@ -53,7 +64,17 @@ function EventCardCabinet({ event }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {event.description}
+           Описание: {event.description}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Вид спорта: {sports.filter((el) => el.id === event.sport_id)[0].title}
+          </Typography>
+        </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
           </Typography>
         </CardContent>
         <CardContent>
@@ -61,21 +82,18 @@ function EventCardCabinet({ event }) {
             Количество участников:{event.members_count}
           </Typography>
         </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Стоимость: {event.cost}
+          </Typography>
+          </CardContent>
+          </div>
         <CardActions disableSpacing>
-
-          {/* {participants[0] ?
-            <Button onClick={deleteParticipant} variant="contained" startIcon={<Close />}>
-            Выйти
-          </Button>
-            :
-            <Button onClick={addParticipant} variant="contained" startIcon={<GroupAdd />} >
-              Участвовать
-            </Button>
-          } */}
-          <Button variant="contained" startIcon={<Edit />} >
+          <Button onClick={() => setModalActive(true)} variant="contained" startIcon={<Edit />} >
             Изменить
           </Button>
-          <Button variant="contained" startIcon={<Delete />} >
+          <OpenModalEdit active={modalActive} setActive={setModalActive} event={ event }/>
+          <Button onClick={ deleteEvent } variant="contained" startIcon={<Delete />} >
             Удалить
           </Button>
           <IconButton aria-label="add to favorites">
