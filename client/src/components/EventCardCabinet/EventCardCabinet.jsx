@@ -23,7 +23,6 @@ function EventCardCabinet({ event }) {
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
-  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   const [modalActive, setModalActive] = useState(false);

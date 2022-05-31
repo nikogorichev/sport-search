@@ -20,7 +20,7 @@ import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/a
 import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
 
 function EventPage(props) {
-
+  const { allUsers } = useSelector((state) => state.events);
   const { user } = useSelector((state) => state.user);
   const { id } = useParams();
   const { events } = useSelector((state) => state.events);
@@ -37,12 +37,13 @@ function EventPage(props) {
   const playersCounter = allParticipants.filter(el => event[0].id === el.EventId);
 
   const participant = participants.filter((e) => e.EventId === event[0].id);
+  const creator = allUsers.filter(el => el.id === event[0].user_id)
+  
 
   useEffect(() => { 
     dispatch(fetchInitEvents())
   }, [dispatch])
 
-  console.log(events, event)
 
   //добавить участие
   const addParticipant = () => {
@@ -78,24 +79,51 @@ function EventPage(props) {
     <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
-            </Avatar>
+            creator[0].photo ? (
+              <>
+                <Avatar src={creator[0].photo}></Avatar>
+              </>
+            ) : (
+              <>
+                <Avatar
+                  src="/static/images/avatar/1.jpg"
+                  sx={{ bgcolor: "red" }}
+                >
+                  {creator[0].name.slice(0, 1).toUpperCase()}
+                </Avatar>
+              </>
+            )
           }
           action={
             <IconButton aria-label="settings">
               <MoreVert />
             </IconButton>
           }
-          title={event[0].title}
-        subheader={event[0].date}
+          title={creator[0].name}
+          subheader={event[0].date}
         />
+        {event[0].image ? (
+          <>
         <CardMedia
           component="img"
           height="20%"
-          image="https://lede-admin.defector.com/wp-content/uploads/sites/28/2022/05/GettyImages-1397468129.jpg?crop=0px%2C38px%2C1024px%2C577px&resize=1200%2C675"
+          image={event[0].image}
           alt="sport"
         />
+          </>
+        ) : (
+          <>
+            <CardMedia
+              component="img"
+              height="20%"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+              alt="sport"
+            />
+          </>
+        )}
+        <CardContent>
+          <Typography variant="h5">{event[0].title}</Typography>
+        </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
           Описание: {event[0].description}
