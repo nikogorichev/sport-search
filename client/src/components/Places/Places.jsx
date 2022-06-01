@@ -10,7 +10,7 @@ import PlaceItem from './PlaceItem';
 import './Places.css'
 import PlacesMap from '../PlacesMap/PlacesMap';
 
-const Places = () => { 
+const Places = () => {
   const [map, setMap] = useState(false);
   const [isModal, setModal] = useState(false);
   const dispatch = useDispatch()
@@ -27,19 +27,25 @@ const Places = () => {
 
   return (
     <>
-        <Tooltip
-          title="Добавить"
-          sx={{
-            backgroundColor: "rgb(160, 251, 255)",
-            position: "fixed",
-            bottom: 20,
-            left: { xs: "calc(50% )", md: 30 },
-          }}
-        >
-          <Fab color="primary" aria-label="add">
-            <Add onClick={() => setModal(true)}></Add>
-          </Fab>
-        </Tooltip>
+      <Tooltip
+        title="Добавить"
+        sx={{
+          backgroundColor: "black",
+          position: "fixed",
+          bottom: 20,
+          left: { xs: "calc(50% )", md: 15 },
+        }}
+      >
+        <Fab sx={{
+          backgroundColor: "black",
+          color: "white",
+          position: "fixed",
+          bottom: 20,
+          left: { xs: "calc(50% )", md: 15 },
+        }}>
+          <Add onClick={() => setModal(true)}></Add>
+        </Fab>
+      </Tooltip>
 
       <Modal
         isVisible={isModal}
@@ -56,18 +62,18 @@ const Places = () => {
         />
       </FormGroup>
 
-      {map ? (<><PlacesMap map={map}/></>) : (
+      {map ? (<><PlacesMap map={map} /></>) : (
         <>
-        <PlaceBox>
-        {places?.map((el) => {
-          const placeImage = images.filter(image => image.place_id === el.id)
-          return <PlaceItem place={el} key={el.id} images={placeImage} />
-        })}
-      </PlaceBox>
+          <PlaceBox>
+            {places?.map((el) => {
+              const placeImage = images.filter(image => image.place_id === el.id)
+              return <PlaceItem place={el} key={el.id} images={placeImage} />
+            })}
+          </PlaceBox>
         </>
       )}
 
-      
+
     </>
   );
 };
