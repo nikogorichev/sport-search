@@ -22,7 +22,7 @@ import FilterEvent from '../FilterEvent/FilterEvent';
 import MyEvents from '../MyEvents/MyEvents';
 import EventsPlay from '../EventsPlay/EventsPlay';
 import EventPage from '../EventPage/EventPage';
-import PlacesMap from '../PlacesMap/PlacesMap';
+import PlacePage from '../PlacePage/PlacePage';
 
 function App() {
   const dispatch = useDispatch()
@@ -53,7 +53,7 @@ function App() {
           <Route path="/eventsplay" element={<EventsPlay />} />
           <Route path="/registration" element={<Registration/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/placesmap" element={<PlacesMap/>} />
+          <Route path="/place/:id" element={<PlacePage/>} />
         </Routes>
       </BrowserRouter>
      
