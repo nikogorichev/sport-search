@@ -59,7 +59,7 @@ function PlacesMap() {
                     hintContent: el.title,
                     balloonContentHeader: `${el.title}`,
                     
-                    balloonContentBody: `<br><img src="${placeImage[0].url}" alt="event_pic" height="100"><br>${el.description}`,
+                    balloonContentBody: `<br><img src="${placeImage[0]?.url}" alt="event_pic" height="100"><br>${el.description}`,
                     balloonContentFooter: `<br>${el.address
                       }<br><a href="/place/${el.id}">Посмотреть подробнее</a>`,
                   },
