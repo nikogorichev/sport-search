@@ -9,7 +9,9 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addPlacesFetch} from '../../redux/thunk/placesAsync';
+
 import { useNavigate } from 'react-router-dom';
+
 
 function PlacesMap() {
   const { places } = useSelector((state) => state.places);

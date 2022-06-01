@@ -23,6 +23,7 @@ const OpenModalEdit = ({ active, setActive, event }) => {
       place_id: e.target.place_id.value,
       cost: e.target.cost.value,
       event: event.id,
+      phone: e.target.phone.value,
     }
     console.log('EVENT',editEvent)
     dispatch(fetchEditEvent(editEvent))
@@ -45,6 +46,8 @@ const OpenModalEdit = ({ active, setActive, event }) => {
         <input type="datetime-local" name="date" defaultValue={event?.date}/>
         <p class="card-text">Описание:</p>
         <input type="text" name="description" defaultValue={event?.description}/>
+        <p class="card-text">Способ связи:</p>
+        <input type="text" name="phone" defaultValue={event.phone}/>
         <p class="card-text">Количество участников:</p>
         <input type="text" name="members_count" defaultValue={event?.members_count}/>
         <p class="card-text">Вид спорта:</p>

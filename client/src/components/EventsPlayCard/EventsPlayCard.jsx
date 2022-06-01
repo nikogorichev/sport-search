@@ -24,9 +24,13 @@ function EventsPlayCard({event, creator}) {
   const { user } = useSelector(state => state.user);
   const { sports } = useSelector((state) => state.events);
   const { places } = useSelector((state) => state.events);
+  const { allParticipants } = useSelector((state) => state.events);
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const [block, setBlock] = useState(true);
+
+  const playersCounter = allParticipants.filter(el => event.id === el.EventId);
+
 
   const exit = () => { 
       const participant = {
@@ -106,12 +110,22 @@ function EventsPlayCard({event, creator}) {
               <Typography variant="body2" color="text.secondary">
                 Место проведения: {places.filter((el) => el.id === event.place_id)[0].title}
               </Typography>
-            </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Количество участников:{event.members_count}
-          </Typography>
-            </CardContent>
+              </CardContent>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  Способ связи: {event.phone}
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  Количество участников:
+                  {playersCounter.length === event.members_count ?
+                    <p>участники набраны</p>
+                    :
+                    ` ${playersCounter.length} / ${event.members_count}`
+                  }
+                </Typography>
+              </CardContent>
             <CardContent>
               <Typography variant="body2" color="text.secondary">
                 Стоимость: {event.cost}
