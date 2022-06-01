@@ -35,9 +35,9 @@ function PlacePage() {
   const { participants } = useSelector((state) => state.events);
   
   const location = places.filter(el => el.id === +id)
-  const image = images.filter(el => el.place_id === location[0].id)
+  const image = images.filter(el => el.place_id === location[0]?.id)
   
-  const event = events.filter(el => el.place_id === location[0].id)
+  const event = events.filter(el => el.place_id === location[0]?.id)
 
   const [index, setIndex] = useState(0);
 
@@ -49,11 +49,11 @@ function PlacePage() {
     <>
     <Button startIcon={<ArrowBack />} onClick={() => navigation(-1)}></Button>
     <Card sx={{ margin: 5, maxWidth: '500px' }} >
-        {/* <CardHeader
+        <CardHeader
           
-          title={location[0].title}
-          subheader={location[0].address}
-        /> */}
+          title={location[0]?.title}
+          subheader={location[0]?.address}
+        />
         <Carousel
          index={index}
          onChange={handleChange}
@@ -63,7 +63,7 @@ function PlacePage() {
          stopAutoPlayOnHover
          swipe
          className="my-carousel">
-          {images.map((image, index) => {
+          {image.map((image, index) => {
             return <CardMedia
             key={index}
             component="img"
@@ -75,12 +75,12 @@ function PlacePage() {
           })}
         </Carousel>
         
-        {/* <CardContent>
+        <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {location[0].description}
+            {location[0]?.description}
           </Typography>
         </CardContent>
-       */}
+      
       </Card>
       <Typography variant="h5" >
             Проводимые игры:
