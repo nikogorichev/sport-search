@@ -79,7 +79,7 @@ function EventPage(props) {
     <Card sx={{ margin: 5 }}>
         <CardHeader
           avatar={
-            creator[0].photo ? (
+            creator[0]?.photo ? (
               <>
                 <Avatar src={creator[0].photo}></Avatar>
               </>
@@ -89,7 +89,7 @@ function EventPage(props) {
                   src="/static/images/avatar/1.jpg"
                   sx={{ bgcolor: "red" }}
                 >
-                  {creator[0].name.slice(0, 1).toUpperCase()}
+                  {creator[0]?.name.slice(0, 1).toUpperCase()}
                 </Avatar>
               </>
             )
@@ -99,15 +99,15 @@ function EventPage(props) {
               <MoreVert />
             </IconButton>
           }
-          title={creator[0].name}
-          subheader={event[0].date}
+          title={creator[0]?.name}
+          subheader={event[0]?.date}
         />
-        {event[0].image ? (
+        {event[0]?.image ? (
           <>
         <CardMedia
           component="img"
           height="20%"
-          image={event[0].image}
+          image={event[0]?.image}
           alt="sport"
         />
           </>
@@ -122,41 +122,41 @@ function EventPage(props) {
           </>
         )}
         <CardContent>
-          <Typography variant="h5">{event[0].title}</Typography>
+          <Typography variant="h5">{event[0]?.title}</Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-          Описание: {event[0].description}
+          Описание: {event[0]?.description}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-          Вид спорта: {sports?.filter((el) => el.id === event[0].sport_id)[0].title}
+          Вид спорта: {sports?.filter((el) => el.id === event[0]?.sport_id)[0]?.title}
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-          Место проведения: {places?.filter((el) => el.id === event[0].place_id)[0].title}
+          Место проведения: {places?.filter((el) => el.id === event[0]?.place_id)[0]?.title}
           </Typography>
       </CardContent>
       
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             Количество участников:
-            {playersCounter.length == event[0].members_count ?
+            {playersCounter.length == event[0]?.members_count ?
               <p>участники набраны</p>
               :
-              ` ${playersCounter.length} / ${event[0].members_count}`
+              ` ${playersCounter.length} / ${event[0]?.members_count}`
             }
           </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Стоимость: {event[0].cost}
+            Стоимость: {event[0]?.cost}
           </Typography>
         </CardContent>
       <CardActions disableSpacing>
-        {user.id === event[0].user_id ?
+        {user.id === event[0]?.user_id ?
           <>
             <Button onClick={deleteEvent} variant="contained" startIcon={<Delete />} >
               Удалить
