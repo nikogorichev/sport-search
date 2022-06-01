@@ -78,10 +78,10 @@ function EventCard({ event, participants, creator }) {
   };
 
   return (
-<div>
+    <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
-        onClick={() => setOpen(true)}
+          onClick={() => setOpen(true)}
           avatar={
             creator[0].photo ? (
               <>
@@ -106,76 +106,78 @@ function EventCard({ event, participants, creator }) {
           title={creator[0].name}
           subheader={event.date}
         />
-        
-        <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
-        <div onClick={ () => navigation(`/events/${event.id}`)}   >
-        {event.image ? (
-          <>
-        <CardMedia
 
-          component="img"
-          height="20%"
-          image={event.image}
-          alt="sport"
-        />
-          </>
-        ) : (
-          <>
-            <CardMedia
-              component="img"
-              height="20%"
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
-              alt="sport"
-            />
-          </>
-        )}
-        
-        <CardContent>
-          <Typography variant="h5">{event.title}</Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Описание: {event.description}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Вид спорта:{" "}
-            {sports.filter((el) => el.id === event.sport_id)[0].title}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Место проведения:{" "}
-            {places.filter((el) => el.id === event.place_id)[0].title}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Количество участников:
-            {playersCounter.length == event.members_count ? (
-              <p>участники набраны</p>
-            ) : (
-              ` ${playersCounter.length} / ${event.members_count}`
-            )}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Стоимость: {event.cost}
-          </Typography>
+        <UserPage open={open} setOpen={setOpen} user={creator[0]} />
+        <div onClick={() => navigation(`/events/${event.id}`)}   >
+          {event.image ? (
+            <>
+              <CardMedia
+
+                component="img"
+                height="20%"
+                image={event.image}
+                alt="sport"
+              />
+            </>
+          ) : (
+            <>
+              <CardMedia
+                component="img"
+                height="20%"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+                alt="sport"
+              />
+            </>
+          )}
+
+          <CardContent>
+            <Typography variant="h5">{event.title}</Typography>
           </CardContent>
-          </div>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Описание: {event.description}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Вид спорта:{" "}
+              {sports.filter((el) => el.id === event.sport_id)[0].title}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Место проведения:{" "}
+              {places.filter((el) => el.id === event.place_id)[0].title}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Количество участников:
+              {playersCounter.length == event.members_count ? (
+                <p>участники набраны</p>
+              ) : (
+                ` ${playersCounter.length} / ${event.members_count}`
+              )}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Стоимость: {event.cost}
+            </Typography>
+          </CardContent>
+        </div>
         <CardActions disableSpacing>
           {user.id === event.user_id ? (
             <>
-              <Button
-                onClick={deleteEvent}
-                variant="contained"
-                startIcon={<Delete />}
-              >
-                Удалить
-              </Button>
+              <div className='btn-delete'>
+                <Button
+                  onClick={deleteEvent}
+                  variant="contained"
+                  startIcon={<Delete />}
+                >
+                  Удалить
+                </Button>
+              </div>
               <Button
                 onClick={() => setModalActive(true)}
                 variant="contained"
@@ -218,7 +220,7 @@ function EventCard({ event, participants, creator }) {
           </IconButton>
         </CardActions>
       </Card>
-      
+
     </div>
   );
 }

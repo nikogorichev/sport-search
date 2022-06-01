@@ -25,18 +25,19 @@ const Places = () => {
 
   return (
     <>
-      <Tooltip
-        title="Add"
-        sx={{
-          position: "fixed",
-          bottom: 20,
-          left: { xs: "calc(50% )", md: 30 },
-        }}
-      >
-        <Fab color="primary" aria-label="add">
-          <Add onClick={() => setModal(true)}></Add>
-        </Fab>
-      </Tooltip>
+        <Tooltip
+          title="Добавить"
+          sx={{
+            backgroundColor: "rgb(160, 251, 255)",
+            position: "fixed",
+            bottom: 20,
+            left: { xs: "calc(50% )", md: 30 },
+          }}
+        >
+          <Fab color="primary" aria-label="add">
+            <Add onClick={() => setModal(true)}></Add>
+          </Fab>
+        </Tooltip>
 
       {/* <button onClick={() => setModal(true)}>Создать площадку</button> */}
       <Modal

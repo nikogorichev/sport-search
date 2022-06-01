@@ -211,7 +211,7 @@ function UpdateUser(props) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Choose a sport"
+                label="Выбери вид спорта"
                 inputProps={{
                   ...params.inputProps,
                   autoComplete: "new-password", // disable autocomplete and autofill

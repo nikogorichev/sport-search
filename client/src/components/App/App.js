@@ -39,23 +39,23 @@ function App() {
   return (
 
     <Provider store={globalStore}>
-   
+
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/places" element={<Places />}/>
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/" element={<Home/>}/>
-          <Route path="/events" element={<FilterEvent />} />
-          <Route path="/events/:id" element={<EventPage />} />
-          <Route path="/myevents" element={<MyEvents />} />
-          <Route path="/eventsplay" element={<EventsPlay />} />
-          <Route path="/registration" element={<Registration/>} />
-          <Route path="/login" element={<Login/>} />
+            <Route path="/places" element={<Places />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<FilterEvent />} />
+            <Route path="/events/:id" element={<EventPage />} />
+            <Route path="/myevents" element={<MyEvents />} />
+            <Route path="/eventsplay" element={<EventsPlay />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-     
-     </Provider>
+
+    </Provider>
   );
 }
 

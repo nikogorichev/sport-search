@@ -5,9 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  background: url(https://funart.pro/uploads/posts/2021-12/1640456733_64-funart-pro-p-futbolnie-foni-s-myachikami-66.jpg);
+  /* background:url(https://colorearimagenes.net/wp-content/uploads/2020/04/Pelotas19.jpg); */
+  /* background: url(https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-motion-cycling-bicycle-sports-competition-image_36987.jpg); */
+  /* Firefox 3.6+ */
+  -moz-background-size: 100% 100%;
+  /* Safari 3.1+ и Chrome 4.0+ */
+  -webkit-background-size: 100% 100%;
+  /* Opera 9.6+ */
+  -o-background-size: 100% 100%;
+  /* Современные браузеры */
+  background-size: 100% 100%;
+}
+
