@@ -1,6 +1,11 @@
+import React from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
 import style from './Home.module.css';
+import { Grid, Typography, Button, Box } from '@mui/material';
+
+
 function Home() {
+
 
   const images = [
     { url: "https://images.unsplash.com/photo-1484482340112-e1e2682b4856?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxMDY1NDAyfHxlbnwwfHx8fA%3D%3D&w=1000&q=80" },
@@ -10,6 +15,7 @@ function Home() {
   ];
 
   return ( 
+    <>
     < div className={style.home}>
       <SimpleImageSlider
         style={{ margin: '0 auto', marginTop: '0px' }}
@@ -22,7 +28,8 @@ function Home() {
         loop={true}
         slideDuration={ 2 }
     />
-  </div >
+      </div >
+    </>
 )
 }
 

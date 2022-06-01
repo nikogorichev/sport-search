@@ -58,6 +58,7 @@ const Header = () => {
   };
 
   return (
+
     <AppBar position="sticky" sx={{ marginBottom: "0px", backgroundColor: "white", boxShadow: "none" }}>
       <Container maxWidth="xl">
         <StyledToolbar disableGutters>
@@ -80,6 +81,7 @@ const Header = () => {
               SPORTSEARCH
             </Link>
           </Typography>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -158,6 +160,7 @@ const Header = () => {
                   </MenuItem>{" "}
                 </>
               )}
+
             </Menu>
           </Box>
           <Typography
@@ -195,6 +198,7 @@ const Header = () => {
                     События
                   </Link>
                 </Button>
+
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorElEvent}
