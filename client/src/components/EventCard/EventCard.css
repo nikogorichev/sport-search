@@ -1,4 +1,10 @@
 /* ширина карточки */
 .css-19m3y2l-MuiPaper-root-MuiCard-root {
   width: 420px;
+  opacity: 0.8;
 }
+
+.btn-delete {
+  margin-right: 7px;
+}
+

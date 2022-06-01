@@ -22,8 +22,9 @@ import FilterEvent from '../FilterEvent/FilterEvent';
 import MyEvents from '../MyEvents/MyEvents';
 import EventsPlay from '../EventsPlay/EventsPlay';
 import EventPage from '../EventPage/EventPage';
-import PlacesMap from '../PlacesMap/PlacesMap';
+import PlacePage from '../PlacePage/PlacePage';
 import Footer from '../Footer/Footer';
+
 
 function App() {
   const dispatch = useDispatch()
@@ -41,9 +42,9 @@ function App() {
   return (
 
     <Provider store={globalStore}>
-   
+
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/places" element={<Places />}/>
           <Route path="/profile" element={<Profile/>} />
@@ -54,12 +55,12 @@ function App() {
           <Route path="/eventsplay" element={<EventsPlay />} />
           <Route path="/registration" element={<Registration/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/placesmap" element={<PlacesMap/>} />
+          <Route path="/place/:id" element={<PlacePage/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>
-     
-     </Provider>
+
+    </Provider>
   );
 }
 

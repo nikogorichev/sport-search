@@ -1,0 +1,5 @@
+.header {
+  background: -webkit-linear-gradient(270deg, rgb(206, 251, 255) 28%, rgb(255, 203, 219));
+  background: -moz-linear-gradient(270deg, rgb(206, 251, 255) 28%, rgb(255, 203, 219));
+  background: linear-gradient(270deg, rgb(206, 251, 255) 28%, rgb(255, 203, 219));
+}
