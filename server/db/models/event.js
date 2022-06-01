@@ -68,6 +68,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
       type: DataTypes.INTEGER,
     },
+    phone: {
+      type: DataTypes.TEXT,
+    },
     image: {
       type: DataTypes.TEXT,
     },

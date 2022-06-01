@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { Box, Fab, Stack, styled, Tooltip } from "@mui/material";
+import { Box, Checkbox, Fab, FormControlLabel, FormGroup, Stack, styled, Tooltip } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
@@ -12,6 +12,7 @@ function Events({ sport }) {
   const { participants } = useSelector((state) => state.events);
   const { sports } = useSelector((state) => state.events);
   const { allUsers } = useSelector((state) => state.events);
+  const [map, setMap] = useState(false);
 
   const filterSport = sports.filter((el) => el.title === sport);
 
@@ -56,8 +57,10 @@ function Events({ sport }) {
             <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
+       
 
-        <EventBox>
+     
+       <EventBox>
           {sportEvent?.map((el) => {
             const filteredUser = allUsers.filter(
               (user) => user.id === el.user_id
@@ -73,6 +76,8 @@ function Events({ sport }) {
           })}
 
         </EventBox>
+        
+        
       </CardBox>
     </>
   );

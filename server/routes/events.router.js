@@ -30,12 +30,12 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, date, description, members_count, user_id, sport_id, place_id, cost, image,
+    title, date, description, members_count, user_id, sport_id, place_id, cost, image, phone,
   } = req.body;
   const sportId = await Sport.findOne({ where: { title: sport_id } });
   const placeId = await Place.findOne({ where: { title: place_id } });
   const newEvent = await Event.create({
-    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id, image,
+    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id, image, phone,
   });
   res.json(newEvent);
 });
@@ -49,13 +49,13 @@ router.delete('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
   const {
-    title, date, description, members_count, user_id, sport_id, place_id, cost, event,
+    title, date, description, members_count, user_id, sport_id, place_id, cost, event, phone,
   } = req.body;
   const sportId = await Sport.findOne({ where: { title: sport_id } });
   const placeId = await Place.findOne({ where: { title: place_id } });
 
   const newEvent = await Event.update({
-    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id,
+    title, date, description, members_count, cost, user_id, sport_id: sportId.id, place_id: placeId.id, phone,
   }, { where: { id: event } });
   const updateEvent = await Event.findOne({ where: { id: event } });
   res.json(updateEvent);

@@ -14,8 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
-import { styled } from "@mui/material";
 import './Header.css'
+import { styled, Switch } from "@mui/material";
+
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -356,10 +357,11 @@ const Header = () => {
                 </Menu>
               </Box>
             )}
+
           </StyledToolbar>
         </Container>
       </div >
-    </AppBar>
+   </AppBar>
   );
 };
 export default Header;

@@ -22,6 +22,9 @@ import FilterEvent from '../FilterEvent/FilterEvent';
 import MyEvents from '../MyEvents/MyEvents';
 import EventsPlay from '../EventsPlay/EventsPlay';
 import EventPage from '../EventPage/EventPage';
+import PlacePage from '../PlacePage/PlacePage';
+import Footer from '../Footer/Footer';
+
 
 function App() {
   const dispatch = useDispatch()
@@ -43,16 +46,18 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-            <Route path="/places" element={<Places />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<FilterEvent />} />
-            <Route path="/events/:id" element={<EventPage />} />
-            <Route path="/myevents" element={<MyEvents />} />
-            <Route path="/eventsplay" element={<EventsPlay />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/login" element={<Login />} />
+          <Route path="/places" element={<Places />}/>
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/" element={<Home/>}/>
+          <Route path="/events" element={<FilterEvent />} />
+          <Route path="/events/:id" element={<EventPage />} />
+          <Route path="/myevents" element={<MyEvents />} />
+          <Route path="/eventsplay" element={<EventsPlay />} />
+          <Route path="/registration" element={<Registration/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/place/:id" element={<PlacePage/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
 
     </Provider>

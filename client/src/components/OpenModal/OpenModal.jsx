@@ -38,6 +38,7 @@ const OpenModal = ({ active, setActive }) => {
       place_id: e.target.place_id.value,
       cost: e.target.cost.value,
       image: imageURL,
+      phone: e.target.phone.value,
     }
     dispatch(fetchAddEvents(event))
     setActive(false)
@@ -61,6 +62,8 @@ const OpenModal = ({ active, setActive }) => {
         <input type="text" name="description" />
         <p class="card-text">Количество участников:</p>
         <input type="text" name="members_count" />
+        <p class="card-text">Способ связи:</p>
+        <input type="text" name="phone" />
         <p class="card-text">Вид спорта:</p>
         <select name="sport_id">
           {sports.map((el) => <option>{ el.title }</option>)}

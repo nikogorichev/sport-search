@@ -1,5 +1,5 @@
 import SimpleImageSlider from "react-simple-image-slider";
-
+import style from './Home.module.css';
 function Home() {
 
   const images = [
@@ -10,11 +10,11 @@ function Home() {
   ];
 
   return ( 
-    < div >
+    < div className={style.home}>
       <SimpleImageSlider
         style={{ margin: '0 auto', marginTop: '0px' }}
         width={'100%'}
-        height={800}
+        height={'100%'}
         images={images}
         showBullets={true}
         showNavs={true}

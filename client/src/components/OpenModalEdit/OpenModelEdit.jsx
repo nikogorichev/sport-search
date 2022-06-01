@@ -23,6 +23,7 @@ const OpenModalEdit = ({ active, setActive, event }) => {
       place_id: e.target.place_id.value,
       cost: e.target.cost.value,
       event: event.id,
+      phone: e.target.phone.value,
     }
     console.log('EVENT',editEvent)
     dispatch(fetchEditEvent(editEvent))
@@ -40,23 +41,25 @@ const OpenModalEdit = ({ active, setActive, event }) => {
       >
         <h5>Изменить событие:</h5>
         <p class="card-title">Название:</p>
-        <input type="text" name="title" defaultValue={event.title}/>
+        <input type="text" name="title" defaultValue={event?.title}/>
         <p class="card-text">Дата мероприятия:</p>
-        <input type="datetime-local" name="date" defaultValue={event.date}/>
+        <input type="datetime-local" name="date" defaultValue={event?.date}/>
         <p class="card-text">Описание:</p>
-        <input type="text" name="description" defaultValue={event.description}/>
+        <input type="text" name="description" defaultValue={event?.description}/>
+        <p class="card-text">Способ связи:</p>
+        <input type="text" name="phone" defaultValue={event.phone}/>
         <p class="card-text">Количество участников:</p>
-        <input type="text" name="members_count" defaultValue={event.members_count}/>
+        <input type="text" name="members_count" defaultValue={event?.members_count}/>
         <p class="card-text">Вид спорта:</p>
         <select name="sport_id">
-          {sports.map((el) => <option>{el.title}</option>)}
+          {sports.map((el) => <option>{el?.title}</option>)}
         </select>
         <p class="card-text">Место проведения:</p>
         <select name="place_id">
-          {places.map((el) => <option>{el.title}</option>)}
+          {places.map((el) => <option>{el?.title}</option>)}
         </select>
         <p class="card-text">Стоимость:</p>
-        <input type="text" name="cost" defaultValue={event.cost}/>
+        <input type="text" name="cost" defaultValue={event?.cost}/>
         <button type="submit">
           Ответить
         </button>
