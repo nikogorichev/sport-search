@@ -317,6 +317,14 @@ const Header = () => {
                     )}
                   </IconButton>
                 </Tooltip>
+                <Switch
+                defaultChecked
+                color="warning"
+                // checked={checked}
+                // onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+                // sx={{color: 'yellow'}}
+              />
                 <Menu
                   sx={{ mt: '45px' }}
                   id="menu-appbar"
