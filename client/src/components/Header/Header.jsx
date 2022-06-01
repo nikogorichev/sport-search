@@ -60,7 +60,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ marginBottom: "0px" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "50px" }}>
       <div className='header'>
         <Container maxWidth="xl">
           <StyledToolbar disableGutters>
