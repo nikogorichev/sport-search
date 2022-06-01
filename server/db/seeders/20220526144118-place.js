@@ -3,21 +3,21 @@ module.exports = {
     await queryInterface.bulkInsert('Places', [
       {
         title: 'площадка',
-        address: 'шпалерная 10',
+        address: 'Невский 105',
         description: 'красивая',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         title: 'площадка 1',
-        address: 'новая 233',
+        address: 'Лиговский 48',
         description: 'большая',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         title: 'площадка 2',
-        address: 'осуждаемая 228',
+        address: 'Кирочная 19',
         description: 'волейбольная',
         createdAt: new Date(),
         updatedAt: new Date(),
