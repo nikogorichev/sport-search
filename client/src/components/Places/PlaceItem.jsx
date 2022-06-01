@@ -22,13 +22,17 @@ const PlaceItem = ({place, images}) => {
   };
   
   return (
-    <Card sx={{ margin: 5, maxWidth: '500px' }} >
+    <Card sx={{
+      margin: 5,
+      borderRadius: "40px",
+      width: 450,
+      height: 500,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      textAlign: "center"
+    }} >
         <CardHeader
-          action={
-            <IconButton aria-label="settings" >
-              <MoreVert />
-            </IconButton>
-          }
           title={place.title}
           subheader={place.address}
         />
@@ -45,7 +49,7 @@ const PlaceItem = ({place, images}) => {
             return <CardMedia
             key={index}
             component="img"
-            height="20%"
+            height="350px"
             src={image.url}
             alt="sport"
             
@@ -58,17 +62,7 @@ const PlaceItem = ({place, images}) => {
             {place.description}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <Checkbox
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite sx={{ color: "red" }} />}
-            />
-          </IconButton>
-          <IconButton aria-label="share">
-            <Share />
-          </IconButton>
-        </CardActions>
+        
       </Card>
   );
 };

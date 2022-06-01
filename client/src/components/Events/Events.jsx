@@ -7,6 +7,7 @@ import EventCard from "../EventCard/EventCard";
 import OpenModal from "../OpenModal/OpenModal";
 import './Events.css'
 
+
 function Events({ sport }) {
   const { events } = useSelector((state) => state.events);
   const { participants } = useSelector((state) => state.events);
@@ -80,7 +81,7 @@ function Events({ sport }) {
               />
             );
           })}
-
+         
         </EventBox>
 
 

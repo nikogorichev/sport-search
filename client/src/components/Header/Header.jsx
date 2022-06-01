@@ -14,22 +14,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
-import { styled, Switch } from "@mui/material";
+import { ListItemIcon, styled, Switch } from "@mui/material";
+import { ModeNight } from "@mui/icons-material";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Header = () => {
+const Header = ({mode, setMode}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElEvent, setAnchorElEvent] = React.useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
-  const StyledToolbar = styled(Toolbar)({
-    display: "flex",
-    justifyContent: "space-between",
-  });
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -61,7 +58,7 @@ const Header = () => {
 
     <AppBar position="sticky" sx={{ marginBottom: "0px", backgroundColor: "white", boxShadow: "none" }}>
       <Container maxWidth="xl">
-        <StyledToolbar disableGutters>
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -324,18 +321,19 @@ const Header = () => {
                   mt: '45px',
                   flexGrow: -1,
                 }}
-                id="menu-appbar"
+                // id="menu-appbar"
+                id="basic-menu"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
               
-                //   vertical: 'top',
-                //   horizontal: 'right',
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
-                // keepMounted
-                // transformOrigin={{
-                //   vertical: 'top',
-                //   horizontal: 'right',
-                // }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
@@ -364,7 +362,11 @@ const Header = () => {
               </Menu>
             </Box>
           )}
-        </StyledToolbar>
+          <Box>
+          
+          <Switch onChange={() => setMode(mode === "light" ? "dark": "light")}/>
+          </Box>
+        </Toolbar>
       </Container >
     </AppBar >
   );
