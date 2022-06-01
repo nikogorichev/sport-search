@@ -47,22 +47,27 @@ function Events({ sport }) {
         <Tooltip className='button-add'
           title="Добавить"
           sx={{
-            backgroundColor: "rgb(160, 251, 255)",
+            backgroundColor: "black",
             position: "fixed",
             bottom: 20,
-            left: { xs: "calc(50% )", md: 30 },
+            left: { xs: "calc(50% )", md: 15 },
           }}
         >
-          <Fab color="primary" aria-label="add">
+          <Fab sx={{
+            backgroundColor: "black", 
+            color: "white", 
+            position: "fixed",
+            bottom: 20,
+            left: { xs: "calc(50% )", md: 15 },
+          }}>
             <Add onClick={() => setModalActive(true)}></Add>
             <OpenModal active={modalActive} setActive={setModalActive} />
           </Fab>
         </Tooltip>
-       
 
-     
-       <EventBox>
-        
+
+
+        <EventBox>
           {sportEvent?.map((el) => {
             const filteredUser = allUsers.filter(
               (user) => user.id === el.user_id
@@ -78,8 +83,8 @@ function Events({ sport }) {
           })}
          
         </EventBox>
-        
-        
+
+
       </CardBox>
     </>
   );

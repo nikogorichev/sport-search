@@ -14,24 +14,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
-import './Header.css'
-import { styled, Switch } from "@mui/material";
-
+import { ListItemIcon, styled, Switch } from "@mui/material";
+import { ModeNight } from "@mui/icons-material";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Header = () => {
+const Header = ({mode, setMode}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElEvent, setAnchorElEvent] = React.useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
-  const StyledToolbar = styled(Toolbar)({
-    display: "flex",
-    justifyContent: "space-between",
-  });
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -60,316 +55,320 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ marginBottom: "50px" }}>
-      <div className='header'>
-        <Container maxWidth="xl">
-          <StyledToolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <Link style={{ textDecoration: "none", color: "white" }} to={`/`}>
-                SPORTSEARCH
-              </Link>
-            </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                {user.name ? (
-                  <>
-                    {" "}
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/events`}
-                        >
-                          События
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/places`}
-                        >
-                          Площадки
-                        </Link>
-                      </Typography>
-                    </MenuItem>{" "}
-                  </>
-                ) : (
-                  <>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/registration`}
-                        >
-                          Регистрация
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/login`}
-                        >
-                          Войти
-                        </Link>
-                      </Typography>
-                    </MenuItem>{" "}
-                  </>
-                )}
-              </Menu>
-            </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
+    <AppBar position="sticky" sx={{ marginBottom: "0px", backgroundColor: "white", boxShadow: "none" }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "system-ui",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "black",
+              textDecoration: "none",
+            }}
+          >
+            <Link style={{ textDecoration: "none", color: "black" }} to={`/`}>
+              SPORTSEARCH
+            </Link>
+          </Typography>
+
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              sx={{ color: "black" }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
               sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
+                display: { xs: "block", md: "none" },
               }}
             >
-              <Link style={{ textDecoration: "none", color: "white" }} to={`/`}>
-                SPORTSEARCH
-              </Link>
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {user.name ? (
                 <>
                   {" "}
-                  <Button
-                    onClick={handleOpenEventMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    <Link
-                      style={{ textDecoration: "none", color: "white" }}
-                      to={`/events`}
-                    >
-                      События
-                    </Link>
-                  </Button>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElEvent}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElEvent)}
-                    onClose={handleCloseEventMenu}
-                    sx={{
-                      display: { xs: "none", md: "block" },
-                    }}
-                  >
-                    <MenuItem onClick={handleCloseEventMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/events`}
-                        >
-                          Все события
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseEventMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/myevents`}
-                        >
-                          Мои события
-                        </Link>
-                      </Typography>
-                    </MenuItem>{" "}
-                    <MenuItem onClick={handleCloseEventMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/eventsplay`}
-                        >
-                          Где я играю
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseEventMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/eventmaps`}
-                        >
-                          На карте
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                  </Menu>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    <Link
-                      style={{ textDecoration: "none", color: "white" }}
-                      to={`/places`}
-                    >
-                      Площадки
-                    </Link>
-                  </Button>{" "}
-                </>
-              ) : (
-                <>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    <Link
-                      style={{ textDecoration: "none", color: "white" }}
-                      to={`/registration`}
-                    >
-                      Регистрация
-                    </Link>
-                  </Button>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    <Link
-                      style={{ textDecoration: "none", color: "white" }}
-                      to={`/login`}
-                    >
-                      Войти
-                    </Link>
-                  </Button>{" "}
-                </>
-              )}
-            </Box>
-            {user.name && (
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {user.photo ? (
-                      <>
-                        <Avatar
-                          src={user.photo}
-                          sx={{ width: 55, height: 55 }}
-                        ></Avatar>
-                      </>
-                    ) : (
-                      <>
-                        <Avatar
-                          src="/static/images/avatar/1.jpg"
-                          sx={{ width: 55, height: 55 }}
-                        ></Avatar>
-                      </>
-                    )}
-                  </IconButton>
-                </Tooltip>
-                <Switch
-                defaultChecked
-                color="warning"
-                // checked={checked}
-                // onChange={handleChange}
-                inputProps={{ 'aria-label': 'controlled' }}
-                // sx={{color: 'yellow'}}
-              />
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to={`/profile`}
+                        to={`/events`}
                       >
-                        Профиль
+                        События
                       </Link>
                     </Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to={`/logout`}
-                        onClick={logoutUser}
+                        to={`/places`}
                       >
-                        Выйти
+                        Площадки
+                      </Link>
+                    </Typography>
+                  </MenuItem>{" "}
+                </>
+              ) : (
+                <>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/registration`}
+                      >
+                        Регистрация
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/login`}
+                      >
+                        Войти
+                      </Link>
+                    </Typography>
+                  </MenuItem>{" "}
+                </>
+              )}
+
+            </Menu>
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "system-ui",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            <Link style={{ textDecoration: "none", color: "black" }} to={`/`}>
+              SPORTSEARCH
+            </Link>
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {user.name ? (
+              <>
+                {" "}
+                <Button
+                  onClick={handleOpenEventMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/events`}
+                  >
+                    События
+                  </Link>
+                </Button>
+
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElEvent}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElEvent)}
+                  onClose={handleCloseEventMenu}
+                  sx={{
+                    color: "black",
+                    display: { xs: "none", md: "block" },
+                  }}
+                >
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/events`}
+                      >
+                        Все события
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/myevents`}
+                      >
+                        Мои события
+                      </Link>
+                    </Typography>
+                  </MenuItem>{" "}
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/eventsplay`}
+                      >
+                        Где я играю
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseEventMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/eventmaps`}
+                      >
+                        На карте
                       </Link>
                     </Typography>
                   </MenuItem>
                 </Menu>
-              </Box>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/places`}
+                  >
+                    Площадки
+                  </Link>
+                </Button>{" "}
+              </>
+            ) : (
+              <>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/registration`}
+                  >
+                    Регистрация
+                  </Link>
+                </Button>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/login`}
+                  >
+                    Войти
+                  </Link>
+                </Button>{" "}
+              </>
             )}
+          </Box>
+          {user.name && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Профиль/Выйти">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  {user.photo ? (
+                    <>
+                      <Avatar
+                        src={user.photo}
+                        sx={{ width: 55, height: 55 }}
+                      ></Avatar>
+                    </>
+                  ) : (
+                    <>
+                      <Avatar
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 55, height: 55 }}
+                      ></Avatar>
+                    </>
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{
+                  mt: '45px',
+                  flexGrow: -1,
+                }}
+                // id="menu-appbar"
+                id="basic-menu"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+              
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
 
-          </StyledToolbar>
-        </Container>
-      </div >
-   </AppBar>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/profile`}
+                    >
+                      Профиль
+                    </Link>
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/logout`}
+                      onClick={logoutUser}
+                    >
+                      Выйти
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
+          <Box>
+          
+          <Switch onChange={() => setMode(mode === "light" ? "dark": "light")}/>
+          </Box>
+        </Toolbar>
+      </Container >
+    </AppBar >
   );
 };
 export default Header;

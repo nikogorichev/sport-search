@@ -71,7 +71,6 @@ function EventsPlayCard({ event, creator }) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-around",
-              backgroundColor: "#f0f4c3",
             }}
           >
             <CardHeader
@@ -111,7 +110,7 @@ function EventsPlayCard({ event, creator }) {
                   <CardMedia
                     component="img"
                     height="270px"
-                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+                    image="https://alfa-basket.ru/images/blog/streetball__2.jpg"
                     alt="sport"
                   />
                 </>

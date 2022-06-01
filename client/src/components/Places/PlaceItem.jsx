@@ -30,7 +30,7 @@ const PlaceItem = ({place, images}) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
-      backgroundColor: "#f0f4c3",
+      textAlign: "center"
     }} >
         <CardHeader
           title={place.title}
