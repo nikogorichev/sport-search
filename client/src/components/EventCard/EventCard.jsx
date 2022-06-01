@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './EventCard.css'
+import "./EventCard.css";
 import {
   Avatar,
   Card,
@@ -11,6 +11,7 @@ import {
   IconButton,
   Typography,
   Button,
+  styled,
 } from "@mui/material";
 import {
   Favorite,
@@ -32,7 +33,6 @@ import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
 import UserPage from "../UserPage/UserPage";
 import { useNavigate } from "react-router-dom";
 
-
 function EventCard({ event, participants, creator }) {
   const [open, setOpen] = useState(false);
   const { user } = useSelector((state) => state.user);
@@ -47,8 +47,9 @@ function EventCard({ event, participants, creator }) {
 
   // Фильтр по количеству игроков к каждому мероприятию
 
-  const playersCounter = allParticipants.filter(el => event.id === el.EventId)
-
+  const playersCounter = allParticipants.filter(
+    (el) => event.id === el.EventId
+  );
 
   //добавить участие
   const addParticipant = () => {
@@ -77,9 +78,28 @@ function EventCard({ event, participants, creator }) {
     dispatch(fetchDeleteEvent(delEvent));
   };
 
+  const MyButton = styled(Button)(({ theme }) => ({
+    borderRadius: "20px",
+    backgroundColor: "#1a237e",
+    "&:hover": {
+      backgroundColor: "lightblue",
+    },
+  }));
+
   return (
     <div>
-      <Card sx={{ margin: 5 }}>
+      <Card
+        sx={{
+          margin: 5,
+          borderRadius: "40px",
+          width: 450,
+          height: 800,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          backgroundColor: "#f0f4c3",
+        }}
+      >
         <CardHeader
           onClick={() => setOpen(true)}
           avatar={
@@ -91,104 +111,107 @@ function EventCard({ event, participants, creator }) {
               <>
                 <Avatar
                   src="/static/images/avatar/1.jpg"
-                  sx={{ bgcolor: "red" }}
+                  sx={{ bgcolor: "#1a237e" }}
                 >
                   {creator[0].name.slice(0, 1).toUpperCase()}
                 </Avatar>
               </>
             )
           }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVert />
-            </IconButton>
-          }
           title={creator[0].name}
           subheader={event.date}
-        />      
-        <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
-        <div onClick={ () => navigation(`/events/${event.id}`)}   >
-        {event.image ? (
-          <>
-        <CardMedia
-
-          component="img"
-          height="20%"
-          image={event.image}
-          alt="sport"
         />
-          </>
-        ) : (
-          <>
-            <CardMedia
-              component="img"
-              height="20%"
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
-              alt="sport"
-            />
-          </>
-        )}
-        
-        <CardContent>
-          <Typography variant="h5">{event.title}</Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Описание: {event.description}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Вид спорта:{" "}
-            {sports.filter((el) => el.id === event.sport_id)[0].title}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Место проведения:{" "}
-            {places.filter((el) => el.id === event.place_id)[0].title}
-          </Typography>
+        <UserPage open={open} setOpen={setOpen} user={creator[0]} />
+        <div onClick={() => navigation(`/events/${event.id}`)}>
+          {event.image ? (
+            <>
+              <CardMedia
+                component="img"
+                height="270px"
+                image={event.image}
+                alt="sport"
+              />
+            </>
+          ) : (
+            <>
+              <CardMedia
+                component="img"
+                height="270px"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
+                alt="sport"
+              />
+            </>
+          )}
+
+          <CardContent>
+            <Typography variant="h6">{event.title}</Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Описание: {event.description}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Вид спорта:{" "}
+              {sports.filter((el) => el.id === event.sport_id)[0].title}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Место проведения:{" "}
+              {places.filter((el) => el.id === event.place_id)[0].address}
+            </Typography>
           </CardContent>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
               Способ связи: {event.phone}
             </Typography>
           </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Количество участников:
-            {playersCounter.length == event.members_count ? (
-              <p>участники набраны</p>
-            ) : (
-              ` ${playersCounter.length} / ${event.members_count}`
-            )}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Стоимость: {event.cost}
-          </Typography>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Количество участников:
+              {playersCounter.length == event.members_count ? (
+                <p>участники набраны</p>
+              ) : (
+                ` ${playersCounter.length} / ${event.members_count}`
+              )}
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Стоимость: {event.cost}
+            </Typography>
           </CardContent>
         </div>
-        <CardActions disableSpacing>
+        <CardActions
+          disableSpacing
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           {user.id === event.user_id ? (
             <>
-              <div className='btn-delete'>
-                <Button
+              <div className="btn-delete">
+                <MyButton
                   onClick={deleteEvent}
                   variant="contained"
                   startIcon={<Delete />}
+                  sx={{
+                    backgroundColor: "#dd2c00",
+                    "&:hover": {
+                      backgroundColor: "red",
+                    },
+                  }}
                 >
                   Удалить
-                </Button>
+                </MyButton>
               </div>
-              <Button
+              <MyButton
                 onClick={() => setModalActive(true)}
                 variant="contained"
                 startIcon={<Edit />}
               >
                 Изменить
-              </Button>
+              </MyButton>
               <OpenModalEdit
                 active={modalActive}
                 setActive={setModalActive}
@@ -196,35 +219,30 @@ function EventCard({ event, participants, creator }) {
               />
             </>
           ) : participants[0] ? (
-            <Button
+            <MyButton
+              sx={{
+                backgroundColor: "#ff6e40",
+                "&:hover": {
+                  backgroundColor: "red",
+                },
+              }}
               onClick={deleteParticipant}
               variant="contained"
               startIcon={<Close />}
             >
               Выйти
-            </Button>
+            </MyButton>
           ) : (
-            <Button
+            <MyButton
               onClick={addParticipant}
               variant="contained"
               startIcon={<GroupAdd />}
             >
               Участвовать
-            </Button>
+            </MyButton>
           )}
-
-          <IconButton aria-label="add to favorites">
-            <Checkbox
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite sx={{ color: "red" }} />}
-            />
-          </IconButton>
-          <IconButton aria-label="share">
-            <Share />
-          </IconButton>
         </CardActions>
       </Card>
-
     </div>
   );
 }

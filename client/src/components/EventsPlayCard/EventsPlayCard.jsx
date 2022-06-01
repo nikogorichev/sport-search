@@ -45,7 +45,16 @@ function EventsPlayCard({event, creator}) {
   <>
     { block ? 
         <div>
-      <Card sx={{ margin: 5 }}>
+      <Card sx={{
+          margin: 5,
+          borderRadius: "40px",
+          width: 450,
+          height: 800,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          backgroundColor: "#f0f4c3",
+        }}>
         <CardHeader
         onClick={() => setOpen(true)}
          avatar={
@@ -57,16 +66,11 @@ function EventsPlayCard({event, creator}) {
             <>
               <Avatar
                 src="/static/images/avatar/1.jpg"
-                sx={{ bgcolor: "red" }}
+                sx={{ bgcolor: "#1a237e" }}
               >{creator[0].name.slice(0,1).toUpperCase()}</Avatar>
             </>
           )
         }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVert />
-            </IconButton>
-          }
           title={creator[0].name}
           subheader={event.date}
         />
@@ -76,7 +80,7 @@ function EventsPlayCard({event, creator}) {
           <>
         <CardMedia
           component="img"
-          height="20%"
+          height="270px"
           image={event.image}
           alt="sport"
         />
@@ -136,15 +140,6 @@ function EventsPlayCard({event, creator}) {
           <Button onClick={ exit } variant="contained" startIcon={<Close />}>
             Выйти
           </Button>
-          <IconButton aria-label="add to favorites">
-            <Checkbox
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite sx={{ color: "red" }} />}
-            />
-          </IconButton>
-          <IconButton aria-label="share">
-            <Share />
-          </IconButton>
         </CardActions>
       </Card>
         </div>
