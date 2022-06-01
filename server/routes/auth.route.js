@@ -52,7 +52,7 @@ router.get('/logout', (req, res) => {
     res.clearCookie('sid');
     res.status(201).json({});
   } else {
-    res.redirect('/login');
+    res.status(201).json({error: 'Авторизуйтесь'})
   }
 });
 

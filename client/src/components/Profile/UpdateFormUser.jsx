@@ -83,28 +83,6 @@ function UpdateUser(props) {
               onChange={(e) => handleImageUpload(e, setImageUrl)}
             />
             <figure class="personal-figure">
-              {/* {!user.photo ? (
-                <>
-                  <Avatar
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 200, height: 200 }}
-                  ></Avatar>
-                </>
-              ) : imageURL ? (
-                <>
-                  <Avatar
-                    src={imageURL}
-                    sx={{ width: 200, height: 200 }}
-                  ></Avatar>
-                </>
-              ) : (
-                <>
-                  <Avatar
-                    src={user.photo}
-                    sx={{ width: 200, height: 200 }}
-                  ></Avatar>
-                </>
-              )} */}
               {imageURL  ? (
                 <>
                   <Avatar
