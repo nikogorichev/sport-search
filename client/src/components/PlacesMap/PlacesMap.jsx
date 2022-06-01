@@ -1,9 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import {
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
   Typography,
   Box,
   Container
@@ -77,6 +74,59 @@ function PlacesMap() {
       }
     });
   };
+
+
+
+  // let myMap;
+  // const initMap = () => {
+  //   window.ymaps.ready(() => {
+  //     if (places.length) {
+  //       myMap = new window.ymaps.Map('map', {
+  //         center: [59.97, 30.35],
+  //         zoom: 10,
+  //         controls: [
+  //           'zoomControl',
+  //           'searchControl',
+  //           'fullscreenControl',
+  //           'routeButtonControl',
+  //         ],
+  //       });
+        
+        
+  //         places?.map((el) => {
+  //           const placeImage = images.filter(image => image.place_id === el.id)
+  //           ymaps
+  //             .geocode(el.address, {
+  //               // boundedBy: myMap.getBounds(),
+  //             })
+              
+  //             .then(function (res) {
+  //               let firstGeoObj = res.geoObjects.get(0);
+              
+  //               let coords = firstGeoObj.geometry.getCoordinates();
+  //               const myPlacemark = new ymaps.Placemark(
+  //                 coords,
+  //                 {
+  //                   hintContent: el.title,
+  //                   balloonContentHeader: `${el.title}`,
+                    
+  //                   balloonContentBody: `<br><img src="${placeImage[0].url}" alt="event_pic" height="100"><br>${el.description}`,
+  //                   balloonContentFooter: `<br>${el.address
+  //                     }<br><a href="/place/${el.id}">Посмотреть подробнее</a>`,
+  //                 },
+  //                 {
+  //                   iconLayout: 'default#image',
+  //                   iconImageSize: [45, 45],
+  //                 }
+  //               );
+
+  //               myMap?.geoObjects.add(myPlacemark);
+  //             });
+  //         });
+        
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     initMap();
