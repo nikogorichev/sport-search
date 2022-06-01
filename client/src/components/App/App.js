@@ -23,6 +23,7 @@ import MyEvents from '../MyEvents/MyEvents';
 import EventsPlay from '../EventsPlay/EventsPlay';
 import EventPage from '../EventPage/EventPage';
 import PlacesMap from '../PlacesMap/PlacesMap';
+import Footer from '../Footer/Footer';
 
 function App() {
   const dispatch = useDispatch()
@@ -55,6 +56,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/placesmap" element={<PlacesMap/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
      
      </Provider>

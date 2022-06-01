@@ -11,7 +11,7 @@ import {
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addPlacesFetch, getPlacesFetch } from '../../redux/thunk/placesAsync';
+import { addPlacesFetch} from '../../redux/thunk/placesAsync';
 
 function PlacesMap() {
   const { places } = useSelector((state) => state.places);
