@@ -103,7 +103,7 @@ function EventCardCabinet({ event }) {
             <>
               <CardMedia
                 component="img"
-                height="20%"
+                height="270px"
                 image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkBoZl9OW3hZI5YFb08B_L-XUlxCnmqs8fQ&usqp=CAU"
                 alt="sport"
               />
