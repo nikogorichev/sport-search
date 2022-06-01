@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
 import EventCard from "../EventCard/EventCard";
 import OpenModal from "../OpenModal/OpenModal";
+import './Events.css'
 
 function Events({ sport }) {
   const { events } = useSelector((state) => state.events);
@@ -41,10 +42,11 @@ function Events({ sport }) {
 
   return (
     <>
-      <CardBox>
-        <Tooltip
-          title="Add"
+      <CardBox >
+        <Tooltip className='button-add'
+          title="Добавить"
           sx={{
+            backgroundColor: "rgb(160, 251, 255)",
             position: "fixed",
             bottom: 20,
             left: { xs: "calc(50% )", md: 30 },
@@ -67,7 +69,7 @@ function Events({ sport }) {
               <EventCard
                 key={el.id}
                 event={el}
-                creator = {filteredUser}
+                creator={filteredUser}
                 participants={participants.filter((e) => e.EventId === el.id)}
               />
             );

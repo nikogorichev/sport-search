@@ -42,9 +42,9 @@ function App() {
   return (
 
     <Provider store={globalStore}>
-   
+
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/places" element={<Places />}/>
           <Route path="/profile" element={<Profile/>} />
@@ -59,8 +59,8 @@ function App() {
         </Routes>
         <Footer/>
       </BrowserRouter>
-     
-     </Provider>
+
+    </Provider>
   );
 }
 

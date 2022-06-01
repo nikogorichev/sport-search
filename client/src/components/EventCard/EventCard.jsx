@@ -78,10 +78,10 @@ function EventCard({ event, participants, creator }) {
   };
 
   return (
-<div>
+    <div>
       <Card sx={{ margin: 5 }}>
         <CardHeader
-        onClick={() => setOpen(true)}
+          onClick={() => setOpen(true)}
           avatar={
             creator[0].photo ? (
               <>
@@ -105,8 +105,7 @@ function EventCard({ event, participants, creator }) {
           }
           title={creator[0].name}
           subheader={event.date}
-        />
-        
+        />      
         <UserPage open={open} setOpen={setOpen} user={creator[0]}/>
         <div onClick={ () => navigation(`/events/${event.id}`)}   >
         {event.image ? (
@@ -170,17 +169,19 @@ function EventCard({ event, participants, creator }) {
             Стоимость: {event.cost}
           </Typography>
           </CardContent>
-          </div>
+        </div>
         <CardActions disableSpacing>
           {user.id === event.user_id ? (
             <>
-              <Button
-                onClick={deleteEvent}
-                variant="contained"
-                startIcon={<Delete />}
-              >
-                Удалить
-              </Button>
+              <div className='btn-delete'>
+                <Button
+                  onClick={deleteEvent}
+                  variant="contained"
+                  startIcon={<Delete />}
+                >
+                  Удалить
+                </Button>
+              </div>
               <Button
                 onClick={() => setModalActive(true)}
                 variant="contained"
@@ -223,7 +224,7 @@ function EventCard({ event, participants, creator }) {
           </IconButton>
         </CardActions>
       </Card>
-      
+
     </div>
   );
 }
