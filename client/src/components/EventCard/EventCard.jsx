@@ -149,7 +149,12 @@ function EventCard({ event, participants, creator }) {
             Место проведения:{" "}
             {places.filter((el) => el.id === event.place_id)[0].title}
           </Typography>
-        </CardContent>
+          </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Способ связи: {event.phone}
+            </Typography>
+          </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             Количество участников:

@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
-import { styled } from "@mui/material";
+import { styled, Switch } from "@mui/material";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -60,7 +60,7 @@ const Header = () => {
   return (
     <AppBar position="sticky" sx={{ marginBottom: "0px" }}>
       <Container maxWidth="xl">
-        <StyledToolbar disableGutters>
+        <StyledToolbar  disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -314,6 +314,14 @@ const Header = () => {
               )}
                 </IconButton>
               </Tooltip>
+              <Switch
+                defaultChecked
+                color="warning"
+                // checked={checked}
+                // onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+                sx={{color: 'yellow'}}
+              />
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
