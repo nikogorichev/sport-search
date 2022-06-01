@@ -54,6 +54,9 @@ module.exports = {
         defaultValue: 0,
         type: Sequelize.INTEGER,
       },
+      phone: {
+        type: Sequelize.TEXT,
+      },
       image: {
         type: Sequelize.TEXT,
       },
