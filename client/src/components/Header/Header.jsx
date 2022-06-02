@@ -247,16 +247,6 @@ const Header = ({mode, setMode}) => {
                       </Link>
                     </Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseEventMenu}>
-                    <Typography textAlign="center">
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to={`/eventmaps`}
-                      >
-                        На карте
-                      </Link>
-                    </Typography>
-                  </MenuItem>
                 </Menu>
                 <Button
                   onClick={handleCloseNavMenu}
