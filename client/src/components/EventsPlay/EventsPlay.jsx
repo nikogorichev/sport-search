@@ -17,21 +17,28 @@ function EventsPlay(props) {
   }, [dispatch]);
 
   const EventBox = styled(Box)(({ theme }) => ({
-    maxWidth: 500,
-    display: "flex",
-    justifyContent: "space-around",
-    flexWrap: "wrap",
+    // maxWidth: 500,
+    // display: "flex",
+    // justifyContent: "space-around",
+    // flexWrap: "wrap",
   }));
 
   return (
     <div>
-      <h4>События, в которых я участвую:</h4>
-      <EventBox>
+      <h4 style={{
+        display: "flex",
+        justifyContent: "space-around",
+      }}>События, в которых я участвую:</h4>
+      <EventBox sx={{
+        display: "flex",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+      }}>
         {userEvents?.map((el) => {
           const filteredUser = allUsers.filter(
             (user) => user.id === el.user_id
           );
-          return <EventsPlayCard key={el.id} event={el} creator = {filteredUser}/>;
+          return <EventsPlayCard key={el.id} event={el} creator={filteredUser} />;
         })}
       </EventBox>
     </div>

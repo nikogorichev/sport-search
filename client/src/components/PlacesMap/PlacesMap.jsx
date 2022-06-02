@@ -140,7 +140,7 @@ function PlacesMap() {
   return (
     <Container>
       <Typography variant="h4" sx={{ py: 2 }}>
-        Карта площадок:
+        {/* Карта площадок: */}
       </Typography>
       
       <Box id="map" sx={{ height: 600, mb: 5 }}></Box>

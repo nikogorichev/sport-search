@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchInitEvents } from "../../redux/thunk/asyncEvents";
 import EventCardCabinet from "../EventCardCabinet/EventCardCabinet";
+import './MyEvents.css'
 
 function MyEvents(props) {
   const { user } = useSelector((state) => state.user);
@@ -17,20 +18,23 @@ function MyEvents(props) {
   const userEvents = events.filter((el) => el.user_id === user.id);
 
   const EventBox = styled(Box)(({ theme }) => ({
-    maxWidth: 500,
-    display: "flex",
-    justifyContent: "space-around",
-    flexWrap: "wrap",
+    // maxWidth: 500,
+    // display: "flex",
+    // justifyContent: "space-around",
+    // flexWrap: "wrap", 
   }));
+
 
   return (
     <div>
-      <h4>Мои события:</h4>
-      <EventBox>
-        {userEvents.map((el) => {
-          return <EventCardCabinet key={el.id} event={el} />;
-        })}
-      </EventBox>
+      <h4 className="myEvents-title">Мои события:</h4>
+      <div className='myEvents-cards'>
+        <EventBox>
+          {userEvents.map((el) => {
+            return <EventCardCabinet key={el.id} event={el} />;
+          })}
+        </EventBox>
+      </div>
     </div>
   );
 }
