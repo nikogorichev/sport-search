@@ -40,7 +40,7 @@ function EventsPlay(props) {
           );
           return <EventsPlayCard key={el.id} event={el} creator={filteredUser} />;
         })}
-      
+        </EventBox>
     </div>
   );
 }
