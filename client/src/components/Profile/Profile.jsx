@@ -13,8 +13,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Avatar, CardActions } from "@mui/material";
-
+import { Avatar, CardActions, styled } from "@mui/material";
+import { Box } from "@mui/material";
+import { Edit } from "@mui/icons-material";
 function Profile() {
   const { user } = useSelector((state) => state.user);
   const { usersSports } = useSelector((state) => state.usersSports);
@@ -26,125 +27,101 @@ function Profile() {
     dispatch(getFetchUsersSports());
   }, [dispatch]);
 
-
   useEffect(() => {
     dispatch(postFetchUsersSports());
   }, [dispatch]);
 
+  const MyButton = styled(Button)(({ theme }) => ({
+    borderRadius: "20px",
+    backgroundColor: "#1a237e",
+    "&:hover": {
+      backgroundColor: "lightblue",
+    },
+  }));
 
   return (
     <>
-      {edit ? (
-        <UpdateFormUser />
-      ) : (
-        <Card sx={{ maxWidth: 345 }}>
-          {user.photo ? (
-                <>
+      <Box
+        sx={{
+          margin: 10,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {edit ? (
+          <UpdateFormUser />
+        ) : (
+         
+          <Card
+          className="profilePage"
+            sx={{
+              p: 4,
+              height: '100%',
+              width: 360,
+              borderRadius: "40px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            {user.photo ? (
+              <>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Avatar
                     src={user.photo}
                     sx={{ width: 200, height: 200 }}
                   ></Avatar>
-                </>
-              ) : (
-                <>
+                </Box>
+              </>
+            ) : (
+              <>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Avatar
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 200, height: 200 }}
                   ></Avatar>
-                </>
-              )}
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ m: 1, p: 1 }}
-            >
-              {user.name}
-            </Typography>
-          
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ m: 1, p: 1 }}
-            >
-              Email: {user.email}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ m: 1, p: 1 }}
-            >
-              О себе: {user.description}
-            </Typography>
-            {/* <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ m: 1, p: 1 }}
-            >
-              Виды спорта:
-              {usersSports.map((usersSports) => (
-                <SportButton key={usersSports.id} usersSports={usersSports} />
-              ))}
-            </Typography> */}
-          </CardContent>
-          <CardActions>
-            <Button
-              onClick={() => setEdit((prevEdit) => !prevEdit)}
-              value={edit}
-            >
-              Изменить
-            </Button>
-          </CardActions>
-        </Card>
-      )}
+                </Box>
+              </>
+            )}
+            <CardContent sx={{ textAlign: "center" }}>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ m: 1, p: 1, fontSize: '36px' }}
+              >
+                {user.name}
+              </Typography>
 
-      {/* {edit && <UpdateFormUser />}
-      <div className="card">
-        <Card sx={{ maxWidth: 345 }}>
-          <Avatar
-            src="/static/images/avatar/1.jpg"
-            sx={{ width: 200, height: 200 }}
-          >
-            
-          </Avatar>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              <h5 className="person-info">Личная информация:</h5>
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              
-              {!edit && (
-                <>
-                  <p>Имя: {user.name}</p>
-                  <p>Email: {user.email}</p>
-                  <p>О себе: {user.description}</p>
-                  <p>
-                    Виды спорта:
-                    <div className="btn-sport">
-                      {" "}
-                      {usersSports.map((usersSports) => (
-                        <SportButton
-                          key={usersSports.id}
-                          usersSports={usersSports}
-                        />
-                      ))}{" "}
-                    </div>{" "}
-                  </p>
-                  <div className="btn-edit">
-                    <Button
-                      onClick={() => setEdit((prevEdit) => !prevEdit)}
-                      value={edit}
-                    >
-                      Изменить
-                    </Button>
-                  </div>
-                </>
-              )}
-            </Typography>
-          </CardContent>
-        </Card>
-      </div> */}
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ m: 1, p: 1, fontSize: '20px' }}
+              >
+                Email: {user.email}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ m: 1, p: 1, fontSize: '18px'  }}
+              >
+                О себе: {user.description}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+              <MyButton
+                onClick={() => setEdit((prevEdit) => !prevEdit)}
+                value={edit}
+                variant="contained"
+                  startIcon={<Edit />}
+              >
+                Изменить
+              </MyButton>
+            </CardActions>
+          </Card>
+          
+        )}
+      </Box>
     </>
   );
 }
