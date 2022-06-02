@@ -93,6 +93,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        title: 'скалолазание',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {});
   },
 
