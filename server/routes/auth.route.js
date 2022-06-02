@@ -5,16 +5,12 @@ const { User } = require('../db/models');
 
 router.post('/registration', async (req, res) => {
   const {
-    name, email, password, password2,
+    name, email, password,
   } = req.body;
   const user = await User.findOne({ where: { email } });
   if (user) {
     res.status(401).json({
       error: 'Такой email уже зарегистрирован',
-    });
-  } else if (password !== password2) {
-    res.status(401).json({
-      error: 'Пароли не совпадают',
     });
   } else {
     const newUser = await User.create({ name, email, password: await bcrypt.hash(password, 10) });
