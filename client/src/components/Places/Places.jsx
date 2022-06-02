@@ -9,6 +9,8 @@ import Modal from './Modal/Modal';
 import PlaceItem from './PlaceItem';
 import './Places.css'
 import PlacesMap from '../PlacesMap/PlacesMap';
+import OpenModal from '../OpenModal/OpenModal';
+import PlaceModal from '../Placemodal/PlaceModal';
 
 const Places = () => {
   const [map, setMap] = useState(false);
@@ -42,18 +44,21 @@ const Places = () => {
           position: "fixed",
           bottom: 20,
           left: { xs: "calc(50% )", md: 15 },
-        }}>
+        }}
+          
+        >
           <Add onClick={() => setModal(true)}></Add>
+      
+          <PlaceModal active={isModal} setActive={setModal} />
         </Fab>
       </Tooltip>
-
-      <Modal
-        isVisible={isModal}
+      {/* <Modal
+        active={isModal}
+        setActive={setModal}
         title="Modal Title"
-        content={<p>Add your content here</p>}
-        footer={<button>Cancel</button>}
-        onClose={() => setModal(false)}
-      />
+      onClose={() => setModal(false)}
+      /> */}
+
       <Box sx={{ display: 'flex', justifyContent: 'center'}}>
       <FormGroup sx={{ mb: 2}}>
         <FormControlLabel

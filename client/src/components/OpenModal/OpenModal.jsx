@@ -68,45 +68,6 @@ const OpenModal = ({ active, setActive }) => {
   }));
 
   return (
-    // <div className={active ? "modal active" : "modal"}
-    //   onClick={() => setActive(false)}>
-    //   <form
-    //     //ФУНКЦИЯ ДЛЯ ОТПРАВКИ ФОРМЫ ДОБАВЛЕНИЯ МЕРОПРИЯТИЯ
-    //     onSubmit={newEvent}
-    //     className="modal__content"
-    //     onClick={(e) => e.stopPropagation()}
-    //   >
-    //     <h5>Добавить событие:</h5>
-    //     <p class="card-title">Название:</p>
-    //     <input type="text" name="title" />
-    //     <p class="card-text">Дата мероприятия:</p>
-    //     <input type="datetime-local" name="date" />
-    //     <p class="card-text">Описание:</p>
-    //     <input type="text" name="description" />
-    //     <p class="card-text">Количество участников:</p>
-    //     <input type="text" name="members_count" />
-    //     <p class="card-text">Способ связи:</p>
-    //     <input type="text" name="phone" />
-    //     <p class="card-text">Вид спорта:</p>
-    //     <select name="sport_id">
-    //       {sports.map((el) => <option>{ el.title }</option>)}
-    //     </select>
-    //     <p class="card-text">Место проведения:</p>
-    //     <select name="place_id">
-    //       {places.map((el) => <option>{el.title}</option>)}
-    //     </select>
-    //     <p class="card-text">Стоимость:</p>
-    //     <input type="text" name="cost" defaultValue={0}/>
-    //     <input
-    //         id="img"
-    //         type="file"
-    //         onChange={(e) => handleImageUpload(e, setImageUrl)}
-    //       />
-    //     <button type="submit">
-    //       Ответить
-    //     </button>
-    //   </form>
-    // </div>
 <>
     {/* <Button onClick={handleOpen}>Open modal</Button> */}
 <StyledModal
@@ -139,12 +100,12 @@ const OpenModal = ({ active, setActive }) => {
               size="small"
               style={{width:'80%', margin: '5px', }}
               type="text" name="title" />
-            
+            <InputLabel text-align left
+            >Дата проведения:</InputLabel>
             <TextField
-              label='Дата мероприятия'
               size="small"
               style={{ width: '80%', margin: '5px', }}
-              type="datetime-local" name="date" />
+                type="datetime-local" name="date" />
             <TextField
               multiline
               label='Описание'
