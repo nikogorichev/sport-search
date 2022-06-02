@@ -106,6 +106,11 @@ function PlacePage() {
         </Card>
       </Box>
       <Typography variant="h5" sx={{textAlign: 'center'}}>Проводимые игры:</Typography>
+      <div style={{
+        display:'flex',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap'
+      }}>
       {event?.map((el) => {
         const filteredUser = allUsers.filter((user) => user.id === el.user_id);
         return (
@@ -117,6 +122,7 @@ function PlacePage() {
           />
         );
       })}
+      </div>
     </>
   );
 }
