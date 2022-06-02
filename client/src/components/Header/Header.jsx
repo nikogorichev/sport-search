@@ -58,7 +58,7 @@ const Header = ({mode, setMode}) => {
 
   return (
 
-    <AppBar position="sticky" sx={{ marginBottom: "40px", backgroundColor: "white", boxShadow: "none" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "5px", backgroundColor: "white", boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -244,16 +244,6 @@ const Header = ({mode, setMode}) => {
                         to={`/eventsplay`}
                       >
                         Где я играю
-                      </Link>
-                    </Typography>
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseEventMenu}>
-                    <Typography textAlign="center">
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to={`/eventmaps`}
-                      >
-                        На карте
                       </Link>
                     </Typography>
                   </MenuItem>

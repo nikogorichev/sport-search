@@ -13,9 +13,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Avatar, CardActions, createTheme, styled, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
-import { Avatar, CardActions, styled } from "@mui/material";
+
 import { Edit } from "@mui/icons-material";
+
+const theme = createTheme();
+
 function Profile() {
   const { user } = useSelector((state) => state.user);
   const { usersSports } = useSelector((state) => state.usersSports);
@@ -42,6 +46,7 @@ function Profile() {
 
   return (
     <>
+    <ThemeProvider theme={theme}>
       <Box
         sx={{
           margin: 10,
@@ -123,6 +128,7 @@ function Profile() {
           
         )}
       </Box>
+      </ThemeProvider>
     </>
   );
 }

@@ -15,12 +15,6 @@ import {
   styled,
   Box,
 } from "@mui/material";
-<<<<<<< HEAD
-import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete, Edit, ArrowBack } from "@mui/icons-material";
-import { fetchDeleteEvent, fetchInitEvents } from '../../redux/thunk/asyncEvents';
-import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
-import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
-=======
 import {
   Favorite,
   FavoriteBorder,
@@ -41,8 +35,7 @@ import {
   fetchDeleteParticipant,
 } from "../../redux/thunk/asyncParticipant";
 import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
-import "./EventPage.css";
->>>>>>> 76da908bcc2028462179f68a2c10d074437a8a1c
+
 
 function EventPage(props) {
   const { allUsers } = useSelector((state) => state.events);

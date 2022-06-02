@@ -102,7 +102,7 @@ function EventCardCabinet({ event }) {
               <CardMedia
                 component="img"
                 height="270px"
-                image="https://alfa-basket.ru/images/blog/streetball__2.jpg"
+                image="https://i.pinimg.com/564x/37/ce/2b/37ce2b63fda78695379d6a9503560c88.jpg"
                 alt="sport"
               />
             </>
