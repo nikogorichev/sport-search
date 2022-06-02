@@ -54,9 +54,11 @@ const Header = ({mode, setMode}) => {
     dispatch(logoutFetch());
   };
 
+ 
+
   return (
 
-    <AppBar position="sticky" sx={{ marginBottom: "0px", backgroundColor: "white", boxShadow: "none" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "40px", backgroundColor: "white", boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -297,7 +299,7 @@ const Header = ({mode, setMode}) => {
           </Box>
           {user.name && (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Профиль/Выйти">
+              <Tooltip title="Профиль">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   {user.photo ? (
                     <>
@@ -311,7 +313,7 @@ const Header = ({mode, setMode}) => {
                       <Avatar
                         src="/static/images/avatar/1.jpg"
                         sx={{ width: 55, height: 55 }}
-                      ></Avatar>
+                      >{user.name.slice(0,1).toUpperCase()}</Avatar>
                     </>
                   )}
                 </IconButton>
