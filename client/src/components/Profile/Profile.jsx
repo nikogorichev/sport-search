@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar, CardActions, createTheme, styled, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
+
 import { Edit } from "@mui/icons-material";
 
 const theme = createTheme();
@@ -41,6 +42,7 @@ function Profile() {
       backgroundColor: "lightblue",
     },
   }));
+
 
   return (
     <>
@@ -73,13 +75,13 @@ function Profile() {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Avatar
                     src={user.photo}
-                    sx={{ width: 200, height: 200 }}
+                    sx={{ width: 200, height: 200,}}
                   ></Avatar>
-                </Box>
-              </>
-            ) : (
-              <>
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  </Box>
+                </>
+              ) : (
+                <>
+                 <Box sx={{display:'flex', justifyContent: 'center'}}>
                   <Avatar
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 200, height: 200 }}

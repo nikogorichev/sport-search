@@ -3,8 +3,10 @@ import style from "./Modal.module.css";
 import axios from "axios";
 import { newPlacesFetch } from "../../../redux/thunk/placesAsync";
 import { useDispatch } from "react-redux";
+import { Button, styled, TextField } from "@mui/material";
+import { AddCircleOutline } from "@mui/icons-material";
 
-const Modal = ({ isVisible = true, title, content, footer, onClose }) => {
+const Modal = ({ active, setActive, isVisible = true, title, content, footer, onClose }) => {
   const [imageURL, setImageUrl] = useState(null);
   const [imageURL2, setImageUrl2] = useState(null);
   const [imageURL3, setImageUrl3] = useState(null);
@@ -62,7 +64,27 @@ const Modal = ({ isVisible = true, title, content, footer, onClose }) => {
     dispatch(newPlacesFetch(data));
   };
 
+  const MyButton = styled(Button)(({ theme }) => ({
+    borderRadius: "20px",
+    backgroundColor: "#1a237e",
+    "&:hover": {
+      backgroundColor: "lightblue",
+    },
+  }));
+
+  const StyledModal = styled(Modal)({
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+  })
+
   return !isVisible ? null : (
+    <StyledModal
+      open={active}
+      onClose={e => setActive(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
     <div className={style.modal} onClick={onClose}>
       <div className={style.modalDialog} onClick={(e) => e.stopPropagation()}>
         <div className={style.modalHeader}>
@@ -78,37 +100,46 @@ const Modal = ({ isVisible = true, title, content, footer, onClose }) => {
           method="POST"
           onSubmit={onButtonClick}
         >
-          <input placeholder="title" ref={inputPlaceTitle} type="text"></input>
-          <input
+          <TextField placeholder="title" ref={inputPlaceTitle} type="text"></TextField>
+          <TextField
             placeholder="address"
             ref={inputPlaceAddress}
             type="text"
-          ></input>
-          <input
+          ></TextField>
+          <TextField
             placeholder="description"
             ref={inputPlaceDescription}
             type="text"
-          ></input>
-          <input
+          ></TextField>
+          <TextField
             id="img"
             type="file"
             onChange={(e) => handleImageUpload(e, setImageUrl)}
           />
-          <input
+          <TextField
             id="img2"
             type="file"
             onChange={(e) => handleImageUpload(e, setImageUrl2)}
           />
-          <input
+          <TextField
             id="img3"
             type="file"
             onChange={(e) => handleImageUpload(e, setImageUrl3)}
           />
-          <button type="submit">Добавить площадку</button>
+          <MyButton
+            type="submit"
+            variant="contained"
+            startIcon={<AddCircleOutline />}
+          >
+            ДОБАВИТЬ
+          </MyButton>
 
         </form>
+        </div>
+
       </div>
-    </div>
+    </StyledModal>
+      
   );
 };
 

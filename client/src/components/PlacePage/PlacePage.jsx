@@ -33,7 +33,7 @@ function PlacePage() {
   useEffect(() => {
     dispatch(fetchInitEvents());
   }, [dispatch]);
-  const { id } = useParams();
+  const { id } = useParams()
   const navigation = useNavigate();
   const { places } = useSelector((state) => state.places);
   const { images } = useSelector((state) => state.places);
@@ -41,10 +41,9 @@ function PlacePage() {
   const { allUsers } = useSelector((state) => state.events);
   const { participants } = useSelector((state) => state.events);
 
-  const location = places.filter((el) => el.id === +id);
-  const image = images.filter((el) => el.place_id === location[0]?.id);
-
-  const event = events.filter((el) => el.place_id === location[0]?.id);
+  const location = places.filter(el => el.id === +id)
+  const image = images.filter(el => el.place_id === location[0]?.id)
+  const event = events.filter(el => el.place_id === location[0]?.id)
 
   const [index, setIndex] = useState(0);
 
