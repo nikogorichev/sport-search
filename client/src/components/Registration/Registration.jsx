@@ -110,7 +110,6 @@ function Registration() {
                   label="Имя"
                   variant="outlined"
                   fullWidth
-                  autoFocus
                   autoComplete="name"
                   id="name"
                 />

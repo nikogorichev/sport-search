@@ -86,9 +86,11 @@ const PlaceModal = ({ active, setActive }) => {
           flexDirection={'column'}
           alignItems={'center'}
           justifyContent={'space-around'}
-          width={800} height={700} bgcolor={'white'} borderRadius={4} >
+          bgcolor={"background.default"}
+          color={"text.primary"}
+          width={600} height={700} borderRadius={20} >
           <Typography marginBottom={2} id="modal-modal-title" variant="h6" component="h2">
-            Добавить событие:
+            Добавить площадку:
           </Typography>
             <TextField placeholder="title" name="title" type="text"></TextField>
             <TextField

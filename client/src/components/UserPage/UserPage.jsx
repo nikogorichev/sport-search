@@ -73,7 +73,7 @@ function UserPage({ open, setOpen, user }) {
               color="text.secondary"
               sx={{ m: 1, p: 1, fontSize: '18px' }}
             >
-              О себе: {user.description}
+              Что умеет: {user.description}
             </Typography>
             {/* <Typography
               variant="body2"
