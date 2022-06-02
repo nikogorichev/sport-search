@@ -63,8 +63,6 @@ function Events({ sport }) {
           </Fab>
         </Tooltip>
 
-
-
         <EventBox>
           {sportEvent?.map((el) => {
             const filteredUser = allUsers.filter(
@@ -81,8 +79,6 @@ function Events({ sport }) {
           })}
          
         </EventBox>
-
-
       </CardBox>
     </>
   );
