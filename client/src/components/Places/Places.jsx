@@ -54,14 +54,16 @@ const Places = () => {
         footer={<button>Cancel</button>}
         onClose={() => setModal(false)}
       />
-      <FormGroup sx={{ mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+      <FormGroup sx={{ mb: 2}}>
         <FormControlLabel
           control={<Checkbox />}
           label="Показать площадки на карте"
           onChange={() => setMap(!map)}
         />
+        
       </FormGroup>
-
+      </Box>
       {map ? (<><PlacesMap map={map} /></>) : (
         <>
           <PlaceBox>

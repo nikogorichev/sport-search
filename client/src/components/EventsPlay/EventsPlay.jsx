@@ -26,14 +26,14 @@ function EventsPlay(props) {
   return (
     <div>
       <h4>События, в которых я участвую:</h4>
-      <EventBox>
+      
         {userEvents?.map((el) => {
           const filteredUser = allUsers.filter(
             (user) => user.id === el.user_id
           );
           return <EventsPlayCard key={el.id} event={el} creator = {filteredUser}/>;
         })}
-      </EventBox>
+      
     </div>
   );
 }

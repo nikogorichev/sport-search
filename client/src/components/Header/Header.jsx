@@ -54,9 +54,11 @@ const Header = ({mode, setMode}) => {
     dispatch(logoutFetch());
   };
 
+ 
+
   return (
 
-    <AppBar position="sticky" sx={{ marginBottom: "0px", backgroundColor: "white", boxShadow: "none" }}>
+    <AppBar position="sticky" sx={{ marginBottom: "40px", backgroundColor: "white", boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

@@ -6,11 +6,10 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Checkbox,
-  IconButton,
   Typography,
   Button,
   styled,
+  Box
 } from "@mui/material";
 import {
   Favorite,
@@ -60,6 +59,7 @@ function EventsPlayCard({ event, creator }) {
 
   return (
     <>
+    
       {block ? (
         <div>
           <Card
