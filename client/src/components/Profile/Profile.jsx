@@ -14,7 +14,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar, CardActions } from "@mui/material";
-
+import { Box } from "@mui/material";
 function Profile() {
   const { user } = useSelector((state) => state.user);
   const { usersSports } = useSelector((state) => state.usersSports);
@@ -35,27 +35,34 @@ function Profile() {
 
   return (
     <>
-     <div className="profilePage">
+     
+     <Box bgcolor="text.primary" />
      {edit ? (
+
         <UpdateFormUser />
       ) : (
-        <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: 'red', width: ""}}>
+        <div className="profilePage">
+        <Card sx={{ width: 320, }} >
           {user.photo ? (
                 <>
+                <Box sx={{display:'flex', justifyContent: 'center'}}>
                   <Avatar 
                     src={user.photo}
-                    sx={{ width: 200, height: 200 }}
+                    sx={{ width: 200, height: 200,}}
                   ></Avatar>
+                  </Box>
                 </>
               ) : (
                 <>
+                 <Box sx={{display:'flex', justifyContent: 'center'}}>
                   <Avatar
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 200, height: 200 }}
                   ></Avatar>
+                  </Box>
                 </>
               )}
-          <CardContent>
+          <CardContent sx={{textAlign:'center'}}>
             <Typography
               gutterBottom
               variant="h5"
@@ -90,7 +97,7 @@ function Profile() {
               ))}
             </Typography> */}
           </CardContent>
-          <CardActions>
+          <CardActions sx={{display:'flex', justifyContent: 'center'}}>
             <Button
               onClick={() => setEdit((prevEdit) => !prevEdit)}
               value={edit}
@@ -99,56 +106,14 @@ function Profile() {
             </Button>
           </CardActions>
         </Card>
+        </div>
       )}
-     </div>
-      
-
-      {/* {edit && <UpdateFormUser />}
-      <div className="card">
-        <Card sx={{ maxWidth: 345 }}>
-          <Avatar
-            src="/static/images/avatar/1.jpg"
-            sx={{ width: 200, height: 200 }}
-          >
-            
-          </Avatar>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              <h5 className="person-info">Личная информация:</h5>
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              
-              {!edit && (
-                <>
-                  <p>Имя: {user.name}</p>
-                  <p>Email: {user.email}</p>
-                  <p>О себе: {user.description}</p>
-                  <p>
-                    Виды спорта:
-                    <div className="btn-sport">
-                      {" "}
-                      {usersSports.map((usersSports) => (
-                        <SportButton
-                          key={usersSports.id}
-                          usersSports={usersSports}
-                        />
-                      ))}{" "}
-                    </div>{" "}
-                  </p>
-                  <div className="btn-edit">
-                    <Button
-                      onClick={() => setEdit((prevEdit) => !prevEdit)}
-                      value={edit}
-                    >
-                      Изменить
-                    </Button>
-                  </div>
-                </>
-              )}
-            </Typography>
-          </CardContent>
-        </Card>
-      </div> */}
+      <Box/>
+     
+  
+          
+                 
+         
     </>
   );
 }
