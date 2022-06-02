@@ -12,11 +12,14 @@ import {
   Autocomplete,
   Avatar,
   Box,
+  CardActions,
   CardContent,
+  styled,
   TextField,
   Typography,
 } from "@mui/material";
 import "./Profile.css";
+import { Done } from "@mui/icons-material";
 
 function UpdateUser(props) {
   const [imageURL, setImageUrl] = useState(null);
@@ -61,19 +64,24 @@ function UpdateUser(props) {
   }
 
 
-  // добавить спорт
-  // const [name, setName] = useState('')
-
-  // const addUserSport = (e) => {
-  //    e.preventDefault();
-
-  //    const data = { name, phase: e.target.phase.value}
-
-  //   dispatch(postFetchUsersSports(data))
-  // }
+  const MyButton = styled(Button)(({ theme }) => ({
+    borderRadius: "20px",
+    backgroundColor: "#1a237e",
+    "&:hover": {
+      backgroundColor: "lightblue",
+    },
+  }));
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box 
+    className="profilePage"
+    sx={{ p: 4,
+      height: '100%',
+      width: 360,
+      borderRadius: "40px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",}}>
       <form action="/profile" onSubmit={updateUser}>
         <div class="personal-image">
           <label class="label">
@@ -112,93 +120,48 @@ function UpdateUser(props) {
           </label>
         </div>
 
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ m: 1, p: 1 }}
-          >
-            Имя:{" "}
+        <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          
             <TextField
               id="name"
               label="Имя"
               variant="outlined"
               defaultValue={user.name}
               size="small"
+              sx={{mb: 3}}
             />
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ m: 1, p: 1 }}
-          >
-            Email:{" "}
+          
+         
             <TextField
               id="email"
               label="Email"
               variant="outlined"
               defaultValue={user.email}
               size="small"
+              sx={{mb: 3}}
             />
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ m: 1, p: 1 }}
-          >
-            О себе:{" "}
+        
+           
             <TextField
+            multiline
               id="description"
-              label="Description"
+              label="О себе"
               variant="outlined"
               defaultValue={user.description}
               size="small"
             />
-          </Typography>
-          {/* <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ m: 1, p: 1 }}
-          >
-            Виды спорта:
-            {usersSports.map((usersSports) => (
-              <SportButtonCross
-                sport={sport}
-                key={usersSports.id}
-                usersSports={usersSports}
-              />
-            ))}
-          </Typography>
-          <Autocomplete
-            onChange={(event) => setSport(event.target.innerText)}
-            id="country-select-demo"
-            sx={{ width: 300 }}
-            options={sports}
-            autoHighlight
-            getOptionLabel={(option) => option.title}
-            renderOption={(props, option) => (
-              <Box
-                component="li"
-                sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                {...props}
+         </CardContent>
+          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+              <MyButton
+               type="submit"
+               variant="contained"
+                  startIcon={<Done />}
               >
-                {option.title}
-              </Box>
-            )}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Выбери вид спорта"
-                inputProps={{
-                  ...params.inputProps,
-                  autoComplete: "new-password", // disable autocomplete and autofill
-                }}
-              />
-            )}
-          /> */}
-          <Button type="submit">Сохранить</Button>
-        </CardContent>
+                Принять
+              </MyButton>
+            </CardActions>
+          
+        
       </form>
     </Box>
     // <br />
