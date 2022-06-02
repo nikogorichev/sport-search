@@ -26,7 +26,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDeleteEvent } from "../../redux/thunk/asyncEvents";
 import OpenModalEdit from "../OpenModalEdit/OpenModelEdit";
 import { useNavigate } from "react-router-dom";
-import "./EventCardCabinet.css";
 
 function EventCardCabinet({ event }) {
   const navigation = useNavigate();

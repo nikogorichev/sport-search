@@ -18,7 +18,6 @@ import { Favorite, FavoriteBorder, MoreVert, Share, GroupAdd, Close, Delete, Edi
 import { fetchDeleteEvent, fetchInitEvents } from '../../redux/thunk/asyncEvents';
 import { fetchAddParticipant, fetchDeleteParticipant } from '../../redux/thunk/asyncParticipant';
 import OpenModalEdit from '../OpenModalEdit/OpenModelEdit';
-import './EventPage.css'
 
 function EventPage(props) {
   const { allUsers } = useSelector((state) => state.events);

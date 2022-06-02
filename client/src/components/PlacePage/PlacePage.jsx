@@ -88,7 +88,7 @@ function PlacePage() {
       }} variant="h5" >
         Проводимые игры:
       </Typography>
-      <div className='eventCard' style={{
+      <div style={{
         display: "flex",
         flexWrap: "wrap"
       }}>
