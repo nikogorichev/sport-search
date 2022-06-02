@@ -55,7 +55,10 @@ const Places = () => {
         onClose={() => setModal(false)}
       />
       <FormGroup sx={{ mb: 2 }}>
-        <FormControlLabel
+        <FormControlLabel sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
           control={<Checkbox />}
           label="Показать площадки на карте"
           onChange={() => setMap(!map)}
