@@ -111,7 +111,7 @@ function Profile() {
                 color="text.secondary"
                 sx={{ m: 1, p: 1, fontSize: '18px'  }}
               >
-                О себе: {user.description}
+                Твои увлечения: {user.description}
               </Typography>
             </CardContent>
             <CardActions sx={{ display: "flex", justifyContent: "center" }}>

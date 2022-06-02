@@ -14,19 +14,18 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../../redux/thunk/asyncUser";
-import { ListItemIcon, styled, Switch } from "@mui/material";
+import { ListItemIcon, Stack, styled, Switch } from "@mui/material";
 import { ModeNight } from "@mui/icons-material";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ["Products", "Pricing", "Blog"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const Header = ({mode, setMode}) => {
+const Header = ({ mode, setMode }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElEvent, setAnchorElEvent] = React.useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -54,11 +53,11 @@ const Header = ({mode, setMode}) => {
     dispatch(logoutFetch());
   };
 
- 
-
   return (
-
-    <AppBar position="sticky" sx={{ marginBottom: "5px", backgroundColor: "white", boxShadow: "none" }}>
+    <AppBar
+      position="sticky"
+      sx={{ marginBottom: "5px", backgroundColor: "white", boxShadow: "none" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -80,7 +79,6 @@ const Header = ({mode, setMode}) => {
               SPORTSEARCH
             </Link>
           </Typography>
-
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -159,7 +157,6 @@ const Header = ({mode, setMode}) => {
                   </MenuItem>{" "}
                 </>
               )}
-
             </Menu>
           </Box>
           <Typography
@@ -197,7 +194,6 @@ const Header = ({mode, setMode}) => {
                     События
                   </Link>
                 </Button>
-
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorElEvent}
@@ -303,33 +299,33 @@ const Header = ({mode, setMode}) => {
                       <Avatar
                         src="/static/images/avatar/1.jpg"
                         sx={{ width: 55, height: 55 }}
-                      >{user.name.slice(0,1).toUpperCase()}</Avatar>
+                      >
+                        {user.name.slice(0, 1).toUpperCase()}
+                      </Avatar>
                     </>
                   )}
                 </IconButton>
               </Tooltip>
               <Menu
                 sx={{
-                  mt: '45px',
+                  mt: "45px",
                   flexGrow: -1,
                 }}
                 // id="menu-appbar"
                 id="basic-menu"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
-              
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
                     <Link
@@ -344,7 +340,7 @@ const Header = ({mode, setMode}) => {
                   <Typography textAlign="center">
                     <Link
                       style={{ textDecoration: "none", color: "black" }}
-                      to={`/logout`}
+                      to={`/`}
                       onClick={logoutUser}
                     >
                       Выйти
@@ -354,13 +350,15 @@ const Header = ({mode, setMode}) => {
               </Menu>
             </Box>
           )}
-          <Box>
-          
-          <Switch onChange={() => setMode(mode === "light" ? "dark": "light")}/>
+          <Box sx={{ml: 5}}>
+            <ModeNight />
+            <Switch
+              onChange={() => setMode(mode === "light" ? "dark" : "light")}
+            />
           </Box>
         </Toolbar>
-      </Container >
-    </AppBar >
+      </Container>
+    </AppBar>
   );
 };
 export default Header;

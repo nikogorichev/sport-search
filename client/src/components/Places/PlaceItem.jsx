@@ -11,10 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 
 const PlaceItem = ({place, images}) => {
-
+  const navigation = useNavigate();
   const [index, setIndex] = React.useState(0);
 
   const handleChange = (cur, prev) => {
@@ -22,7 +23,9 @@ const PlaceItem = ({place, images}) => {
   };
   
   return (
-    <Card sx={{
+    <Card 
+    onClick={() => navigation(`/place/${place.id}`)}
+    sx={{
       margin: 5,
       borderRadius: "40px",
       width: 350,

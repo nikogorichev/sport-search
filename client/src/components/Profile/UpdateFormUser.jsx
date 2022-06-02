@@ -144,6 +144,7 @@ function UpdateUser(props) {
            
             <TextField
             multiline
+            placeholder="Расскажи про свой опыт, навыки, увлечения"
               id="description"
               label="О себе"
               variant="outlined"

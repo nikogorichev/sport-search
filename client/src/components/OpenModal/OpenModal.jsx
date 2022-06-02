@@ -89,8 +89,10 @@ const OpenModal = ({ active, setActive }) => {
             display={"flex"}
             flexDirection={'column'}
             alignItems={'center'}
+            bgcolor={"background.default"}
+          color={"text.primary"}
             justifyContent={'center'}
-            width={800} height={700} bgcolor={'white'} borderRadius={4} >
+            width={800} height={700} borderRadius={20} >
     <Typography marginBottom={2} id="modal-modal-title" variant="h6" component="h2">
       Добавить событие:
             </Typography>

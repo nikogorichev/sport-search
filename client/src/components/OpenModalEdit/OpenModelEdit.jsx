@@ -109,7 +109,9 @@ const OpenModalEdit = ({ active, setActive, event }) => {
           alignItems={'center'}
             justifyContent={'space-around'}
             padding={'20px'}
-          width={800} height={700} bgcolor={'white'} borderRadius={4} >
+            bgcolor={"background.default"}
+          color={"text.primary"}
+          width={800} height={700} borderRadius={20} >
           <Typography marginBottom={2} id="modal-modal-title" variant="h6" component="h2">
             Изменить событие:
           </Typography>
