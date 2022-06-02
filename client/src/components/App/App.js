@@ -22,7 +22,7 @@ import MyEvents from "../MyEvents/MyEvents";
 import EventsPlay from "../EventsPlay/EventsPlay";
 import EventPage from "../EventPage/EventPage";
 import PlacePage from "../PlacePage/PlacePage";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/place/:id" element={<PlacePage />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
         </Box>
       </ThemeProvider>
