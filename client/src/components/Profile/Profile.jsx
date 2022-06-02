@@ -13,8 +13,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Avatar, CardActions, styled } from "@mui/material";
 import { Box } from "@mui/material";
+import { Avatar, CardActions, styled } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 function Profile() {
   const { user } = useSelector((state) => state.user);
@@ -38,6 +38,7 @@ function Profile() {
       backgroundColor: "lightblue",
     },
   }));
+
 
   return (
     <>
@@ -69,13 +70,13 @@ function Profile() {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Avatar
                     src={user.photo}
-                    sx={{ width: 200, height: 200 }}
+                    sx={{ width: 200, height: 200,}}
                   ></Avatar>
-                </Box>
-              </>
-            ) : (
-              <>
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  </Box>
+                </>
+              ) : (
+                <>
+                 <Box sx={{display:'flex', justifyContent: 'center'}}>
                   <Avatar
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 200, height: 200 }}
