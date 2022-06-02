@@ -25,17 +25,14 @@ const PlaceItem = ({place, images}) => {
     <Card sx={{
       margin: 5,
       borderRadius: "40px",
-      width: 450,
+      width: 350,
       height: 500,
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
       textAlign: "center"
     }} >
-        <CardHeader
-          title={place.title}
-          subheader={place.address}
-        />
+        
         <Carousel
          index={index}
          onChange={handleChange}
@@ -56,12 +53,19 @@ const PlaceItem = ({place, images}) => {
           />
           })}
         </Carousel>
+       
+            <Typography variant="h6">{place.title}</Typography>
         
-        <CardContent>
+          
+          <Typography variant="body2" color="text.secondary">
+            {place.address}
+          </Typography>
+       
+       
           <Typography variant="body2" color="text.secondary">
             {place.description}
           </Typography>
-        </CardContent>
+       
         
       </Card>
   );
