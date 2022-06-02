@@ -32,15 +32,17 @@ function Profile() {
   }, [dispatch]);
 
 
+
   return (
     <>
-      {edit ? (
+     <div className="profilePage">
+     {edit ? (
         <UpdateFormUser />
       ) : (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: 'red', width: ""}}>
           {user.photo ? (
                 <>
-                  <Avatar
+                  <Avatar 
                     src={user.photo}
                     sx={{ width: 200, height: 200 }}
                   ></Avatar>
@@ -98,6 +100,8 @@ function Profile() {
           </CardActions>
         </Card>
       )}
+     </div>
+      
 
       {/* {edit && <UpdateFormUser />}
       <div className="card">
