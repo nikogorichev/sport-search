@@ -1,0 +1,18 @@
+/* все карточки */
+.css-1xdhyk6 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* ширина карточки */
+/* .css-13upfe4-MuiPaper-root-MuiCard-root {
+  width: 420px;
+  opacity: 0.8;
+} */
+
+/* высота картинки */
+.css-ohwg9z {
+  max-height: 300px;
+}
+

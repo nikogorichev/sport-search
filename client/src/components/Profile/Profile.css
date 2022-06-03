@@ -1,0 +1,95 @@
+.card {
+  margin: 10px;
+}
+.person-info {
+  text-align: center;
+}
+
+.btn-edit {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-sport {
+  padding: 5px;
+}
+
+
+.personal-image {
+  text-align: center;
+}
+.personal-image input[type="file"] {
+  display: none;
+}
+.personal-figure {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.personal-avatar {
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out .3s;
+}
+.personal-avatar:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.personal-figcaption {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  width: inherit;
+  height: inherit;
+  border-radius: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all ease-in-out .3s;
+}
+.personal-figcaption:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, .5);
+}
+.personal-figcaption > img {
+  margin-top: 36%;
+  width: 50px;
+  height: 50px;
+}
+
+ .profilePage {
+ display: flex;
+ justify-content: center; 
+
+    /* background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%); */
+  
+    
+        background: linear-gradient(-45deg, #ee7752, #cc6a91, #08a5da, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    
+   
+} 
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
