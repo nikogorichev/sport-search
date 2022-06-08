@@ -45,8 +45,8 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'lexa',
-        email: 'lexa@mail.ru',
+        name: 'kenya',
+        email: 'kenya@mail.ru',
         password: await bcrypt.hash('lexa', saltRounds),
         description: 'Я Леша. Занимаюсь армрестлингом и играю в шахматы. В своих кругах являюсь чемпионом. Поиграем?',
         isAdmin: true,

@@ -100,17 +100,17 @@ function Registration() {
                   variant="outlined"
                   fullWidth
                   autoFocus
-                  autoComplete="email"
+                  autoComplete= 'off'
                   id="email"
                   sx={{mb:-1}}
                 />
 
                 <TextField
                   margin="normal"
+                  autoComplete= 'off'
                   label="Имя"
                   variant="outlined"
                   fullWidth
-                  autoComplete="name"
                   id="name"
                 />
 
