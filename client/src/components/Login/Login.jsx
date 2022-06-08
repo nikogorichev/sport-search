@@ -82,7 +82,6 @@ function Login() {
           md={7}
           sx={{
             backgroundImage: "url(https://i.pinimg.com/564x/d3/cc/b4/d3ccb4249eb9c7deaef836526ea44fc7.jpg)",
-            // backgroundImage: "url(https://i.pinimg.com/564x/e0/05/f7/e005f7549d4213e07840ee5143b84a95.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -116,7 +115,7 @@ function Login() {
                   variant="outlined"
                   fullWidth
                   autoFocus
-                  autoComplete="name"
+                  autoComplete= 'off'
                   id="name"
                 />
                   <FormControl variant="outlined" fullWidth>
